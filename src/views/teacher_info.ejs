@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/teacher.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('./partials/header'); %>
+        <div class="grid wide">
+            <ul class="direction">
+                <li><a href="">Trang Chủ</a>></li>
+                <li><a href="">Giới Thiệu</a>></li>
+                <li><a href="">
+                        Đội Ngũ Giáo Viên
+                    </a></li>
+            </ul>
+            <div class="position_title">
+                <p>Đội ngũ cán bộ của Trung tâm Thực hành, Dịch vụ Du lịch và Nghệ thuật, trường Đại học Hạ Long</p>
+            </div>
+            <main class="content">
+                <div class="content_teacher">
+
+                    <div class="col">
+                        <div class="teachers-container">
+                            <div class="position-header"> <i class="fa-solid fa-caret-right"></i> Hiệu Trưởng
+                                <div class="position_line">
+
+                                </div>
+                            </div>
+                            <div class="position-members">
+                                <h2>Hiệu Trưởng</h2>
+                                <div class="position_flex">
+                                    <% for(var i=0; i < teacher.length; i++) { %>
+                                        <% if(teacher[i].position_group===1) { %>
+
+
+                                            <div class="teacher-card">
+                                                <img src="<%= teacher[i].img %>" alt=" <%= teacher[i].name %>">
+                                                <div class="teacher-info">
+                                                    <h3>
+                                                        <%= teacher[i].name %>
+                                                    </h3>
+                                                    <p>
+                                                        <%= teacher[i].position %>
+                                                    </p>
+                                                    <p>
+                                                        SĐT: <%= teacher[i].phone %>
+                                                    </p>
+                                                    <p>Email: <%= teacher[i].email %>
+                                                    </p>
+                                                    <p>Văn phòng: Phòng A123</p>
+                                                </div>
+                                            </div>
+                                            <% }%>
+                                                <% } %>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="teachers-container">
+
+                            <div class="position-header"> <i class="fa-solid fa-caret-right"></i>Hiệu Phó
+                                <div class="position_line">
+
+                                </div>
+                            </div>
+                            <div class="position-members">
+                                <h2>Hiệu Phó</h2>
+                                <div class="position_flex">
+                                    <% for(var i=0; i < teacher.length; i++) { %>
+                                        <% if(teacher[i].position_group===2) { %>
+
+
+                                            <div class="teacher-card">
+                                                <img src="<%= teacher[i].img %>" alt=" <%= teacher[i].name %>">
+                                                <div class="teacher-info">
+                                                    <h3>
+                                                        <%= teacher[i].name %>
+                                                    </h3>
+                                                    <p>
+                                                        <%= teacher[i].phone %>
+                                                    </p>
+                                                    <p>Email: <%= teacher[i].email %>
+                                                    </p>
+                                                    <p>Văn phòng: Phòng A123</p>
+                                                </div>
+                                            </div>
+                                            <% }%>
+                                                <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="teachers-container">
+
+                            <div class="position-header">
+                                <i class="fa-solid fa-caret-right"></i>
+                                Giáo Viên
+                                <div class="position_line">
+
+                                </div>
+                            </div>
+                            <div class="position-members">
+                                <h2>Giáo Viên</h2>
+                                <div class="position_flex">
+                                    <% for(var i=0; i < teacher.length; i++) { %>
+                                        <% if(teacher[i].position_group===3) { %>
+
+
+                                            <div class="teacher-card">
+                                                <img src="<%= teacher[i].img %>" alt=" <%= teacher[i].name %>">
+                                                <div class="teacher-info">
+                                                    <h3>
+                                                        <%= teacher[i].name %>
+                                                    </h3>
+                                                    <p>
+                                                        <%= teacher[i].phone %>
+                                                    </p>
+                                                    <p>Email: <%= teacher[i].email %>
+                                                    </p>
+                                                    <p>Văn phòng: Phòng A123</p>
+                                                </div>
+                                            </div>
+                                            <% }%>
+                                                <% } %>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+        </div>
+        </main>
+        </div>
+        <script>
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const positionHeaders = document.querySelectorAll('.position-header');
+
+                positionHeaders.forEach(header => {
+                    header.addEventListener('click', function () {
+                        const members = this.nextElementSibling;
+                        members.classList.toggle('hiden')
+
+                    });
+                });
+            });
+        </script>
+</body>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/news.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('./partials/header'); %>
+        <div class="body">
+            <div class="grid wide">
+
+                <ul class="direction">
+                    <li><a href="">Trang Chủ</a>></li>
+                    <li><a href="">Thông Báo</a>></li>
+                    <li><a href="">
+                            <%= noti.title %>
+                        </a></li>
+                </ul>
+                <div class="content">
+                    <%- noti.content %>
+                </div>
+            </div>
+        </div>
+
+</body>

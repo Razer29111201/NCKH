@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('./partials/header'); %>
+
+        <div class="body">
+            <div class="grid wide">
+                <div class="body_top">
+                    <div class="row">
+                        <div class="col m-8">
+                            <div class="slide">
+                                <img src="https://vcdn1-dulich.vnecdn.net/2021/07/16/1-1626437591.jpg?w=460&h=0&q=100&dpr=2&fit=crop&s=i2M2IgCcw574LT-bXFY92g"
+                                    alt="" class="slides">
+                                <img src="https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg"
+                                    alt="" class=" slides">
+                                <img src="https://vcdn1-dulich.vnecdn.net/2021/07/16/1-1626437591.jpg?w=460&h=0&q=100&dpr=2&fit=crop&s=i2M2IgCcw574LT-bXFY92g"
+                                    alt="" class="slides">
+                            </div>
+                        </div>
+                        <div class="col m-4">
+                            <div class="noti">
+                                <div class="noti_header">
+                                    <h3>Thông Báo</h3>
+                                </div>
+                                <ul class="noti_list">
+                                    <% for (var i=0; i < noti.length; i++) { %>
+                                        <li class="noti_item"><a href="/notification/<%= noti[i].id %>">
+                                                <%= noti[i].title %>
+                                            </a></li>
+                                        <% } %>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="news">
+                    <div class="row">
+                        <div class="col m-8">
+                            <div class="news_title">
+                                <h3>Tin Tức - Sự Kiện</h3>
+                            </div>
+                            <div class="news_new">
+                                <div class="news_outstanding">
+                                    <div class="row">
+                                        <div class="col m-6">
+                                            <div class="outstanding_img">
+                                                <img src="http://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202403/Images/img2144-17098671687531765903103-20240308102419-e.jpg"
+                                                    alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col m-6">
+                                            <div class="new_title">
+                                                <h4>Tăng cường hợp tác giáo dục Việt Nam-Australia với các dự án ngang
+                                                    tầm
+                                                    khu vực,
+                                                    mang tính biểu tượng</h4>
+                                                <p>Sáng 8/3 (giờ địa phương), tiếp tục chương trình chuyến thăm chính
+                                                    thức
+                                                    Australia, Thủ tướng Phạm</p>
+                                                <div class="new_time">
+                                                    <span><i class="fa-solid fa-calendar"></i>20/11/2023</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="news_">
+
+                                <div class="row">
+                                    <div class="col m-6">
+                                        <div class="news_outstanding">
+                                            <div class="row">
+                                                <div class="col m-6">
+                                                    <div class="outstanding_img news_smail_img ">
+                                                        <img src="http://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202403/Images/img2144-17098671687531765903103-20240308102419-e.jpg"
+                                                            alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col m-6">
+                                                    <div class="new_title news_smail">
+                                                        <div class="new_time">
+                                                            <span class="smail_time"><i
+                                                                    class="fa-solid fa-calendar"></i>20/11/2023</span>
+                                                        </div>
+                                                        <h4>Tăng cường hợp tác giáo dục Việt Nam-Australia với các dự án
+                                                            ngang
+                                                            tầm
+                                                            khu vực,
+                                                            mang tính biểu tượng</h4>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col m-6">
+                                        <div class="news_outstanding">
+                                            <div class="row">
+                                                <div class="col m-6">
+                                                    <div class="outstanding_img news_smail_img">
+                                                        <img src="http://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202403/Images/img2144-17098671687531765903103-20240308102419-e.jpg"
+                                                            alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col m-6">
+                                                    <div class="new_time">
+                                                        <span><i class="fa-solid fa-calendar"></i>20/11/2023</span>
+                                                    </div>
+                                                    <div class="new_title news_smail">
+                                                        <h4>Tăng cường hợp tác giáo dục Việt Nam-Australia với các dự án
+                                                            ngang
+                                                            tầm
+                                                            khu vực,
+                                                            mang tính biểu tượng</h4>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col m-6">
+                                        <div class="news_outstanding">
+                                            <div class="row">
+                                                <div class="col m-6">
+                                                    <div class="outstanding_img news_smail_img ">
+                                                        <img src="http://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202403/Images/img2144-17098671687531765903103-20240308102419-e.jpg"
+                                                            alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col m-6">
+                                                    <div class="new_title news_smail">
+                                                        <div class="new_time">
+                                                            <span class="smail_time"><i
+                                                                    class="fa-solid fa-calendar"></i>20/11/2023</span>
+                                                        </div>
+                                                        <h4>Tăng cường hợp tác giáo dục Việt Nam-Australia với các dự án
+                                                            ngang
+                                                            tầm
+                                                            khu vực,
+                                                            mang tính biểu tượng</h4>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col m-6">
+                                        <div class="news_outstanding">
+                                            <div class="row">
+                                                <div class="col m-6">
+                                                    <div class="outstanding_img news_smail_img">
+                                                        <img src="http://media.hdu.edu.vn/Media/1_hdu_home/FolderFunc/202403/Images/img2144-17098671687531765903103-20240308102419-e.jpg"
+                                                            alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col m-6">
+                                                    <div class="new_time">
+                                                        <span><i class="fa-solid fa-calendar"></i>20/11/2023</span>
+                                                    </div>
+                                                    <div class="new_title news_smail">
+                                                        <h4>Tăng cường hợp tác giáo dục Việt Nam-Australia với các dự án
+                                                            ngang
+                                                            tầm
+                                                            khu vực,
+                                                            mang tính biểu tượng</h4>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col m-4">
+                            <div class="hot_news">
+                                <div class="news_title">
+                                    <h3>Tin Nổi Bật</h3>
+                                </div>
+                                <div class="hot">
+                                    <ul class="hot_list">
+                                        <li class="hot_item">Trường Đại học Hồng Đức mở ngành Logistics đáp ứng nhu cầu
+                                            nhân
+                                            lực
+                                            của Khu kinh tế Nghi Sơn </li>
+                                        <li class="hot_item">Trường Tiểu học, Trung học cơ sở và Trung học phổ thông
+                                            Hồng
+                                            Đức tổ
+                                            chức toạ đàm kỷ niệm 01 năm ngày thành lập (13/03/2023 – 13/03/2024)</li>
+                                        <li class="hot_item">Hiệu trưởng Trường Đại học Hồng Đức tham dự buổi làm việc
+                                            của
+                                            Bộ
+                                            trưởng Bộ Khoa học và Công nghệ Việt Nam Huỳnh Thành Đạt với Starup
+                                            Bootcamp,
+                                            Australia</li>
+                                        <li class="hot_item">Hiệu trưởng Trường Đại học Hồng Đức tham dự buổi gặp mặt,
+                                            trao
+                                            đổi
+                                            của Thủ tướng Chính phủ Phạm Minh Chính với Chủ tịch Ngân hàng Trung ương
+                                            New
+                                            Zealand kiêm Hiệu trưởng Đại học Waikato </li>
+                                        <li class="hot_item">Tăng cường hợp tác giáo dục Việt Nam-Australia với các dự
+                                            án
+                                            ngang
+                                            tầm khu vực, mang tính biểu tượng</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="hot_news">
+                                <div class="news_title">
+                                    <h3>Tin Tuyển Dụng</h3>
+                                </div>
+                                <div class="hot">
+                                    <ul class="hot_list">
+                                        <li class="hot_item">Trường Đại học Hồng Đức mở ngành Logistics đáp ứng nhu cầu
+                                            nhân
+                                            lực
+                                            của Khu kinh tế Nghi Sơn </li>
+                                        <li class="hot_item">Trường Tiểu học, Trung học cơ sở và Trung học phổ thông
+                                            Hồng
+                                            Đức tổ
+                                            chức toạ đàm kỷ niệm 01 năm ngày thành lập (13/03/2023 – 13/03/2024)</li>
+                                        <li class="hot_item">Hiệu trưởng Trường Đại học Hồng Đức tham dự buổi làm việc
+                                            của
+                                            Bộ
+                                            trưởng Bộ Khoa học và Công nghệ Việt Nam Huỳnh Thành Đạt với Starup
+                                            Bootcamp,
+                                            Australia</li>
+                                        <li class="hot_item">Hiệu trưởng Trường Đại học Hồng Đức tham dự buổi gặp mặt,
+                                            trao
+                                            đổi
+                                            của Thủ tướng Chính phủ Phạm Minh Chính với Chủ tịch Ngân hàng Trung ương
+                                            New
+                                            Zealand kiêm Hiệu trưởng Đại học Waikato </li>
+                                        <li class="hot_item">Tăng cường hợp tác giáo dục Việt Nam-Australia với các dự
+                                            án
+                                            ngang
+                                            tầm khu vực, mang tính biểu tượng</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="admissions">
+                    <div class="admissions_title">
+                        <h4>TUYỂN SINH</h4>
+                    </div>
+                    <div class="line"></div>
+                    <div class="admissions_img">
+
+                        <div class="row">
+                            <div class="col m-4"><img src="/img/a1.png" alt=""></div>
+                            <div class="col m-4"><img src="/img/a2.png" alt=""></div>
+                            <div class="col m-4"><img src="/img/a3.png" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="admissions_banner">
+                        <img src="/img/a4.png" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+            <%- include('./partials/footer'); %>
+        </div>
+        <script src="https://www.w3schools.com/lib/w3.js"></script>
+        <script>
+            w3.slideshow(".slides", 1500);
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="/js/index.js"> </script>
+</body>
+
+</html>

@@ -1,0 +1,565 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+
+.header_top {
+    background-image: url(https://uhl.edu.vn/wp-content/themes/k2_hl_edu/assets/images/bg_head_top.jpg);
+    width: 100%;
+    height: 145px;
+    position: relative;
+}
+
+.login {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+}
+
+.login button {
+    background-color: #f7c938;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+@keyframes showModal {
+    from {
+        top: -400px;
+        opacity: 0;
+    }
+
+    to {
+        top: 6%;
+        opacity: 1;
+    }
+}
+
+.modal {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    position: absolute;
+
+    z-index: 9;
+}
+
+.modal-login {
+    background: #fff;
+    width: 500px;
+    top: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    animation: showModal 0.4s linear forwards;
+    position: absolute;
+    left: 50%;
+    z-index: 10;
+    transform: translateX(-50%);
+}
+
+.header-login {
+    background-color: var(--primary-color);
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+
+
+}
+
+.header-login h4 {
+    font-size: 1.6rem;
+    line-height: 2;
+    color: #f7c938;
+}
+
+.header-login i {
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.body-login {
+
+    width: 100%;
+    padding: 20px;
+
+}
+
+.body-btn {
+
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.body-login button {
+    background: #f7c938;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+
+
+
+}
+
+.body-login button:hover {
+    background: #6fd173;
+
+}
+
+.login-form {
+    margin-bottom: 20px;
+
+}
+
+.login-form input {
+    width: 100%;
+    padding: 15px 15px;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: rgb(226, 226, 226);
+    background: rgba(95, 94, 94, 0.2);
+    outline: none;
+
+}
+
+.login-form input:focus {
+    border-color: #49b14d;
+}
+
+.body-register {
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.body-register a {
+    text-decoration: none;
+    margin-left: 10px;
+    color: #333;
+    font-size: 14px;
+}
+
+.body-register a:hover {
+    text-decoration: underline;
+    color: #49b14d;
+}
+
+.footer-login {
+    padding: 20px 20px;
+    position: relative;
+    text-align: right;
+
+}
+
+.login_submid button {
+    background-color: #f7c938;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+.header_search {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+}
+
+.header_top input {
+    height: 34px;
+    padding: 0 30px;
+    width: 200px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.53);
+
+}
+
+.drop_list {
+    list-style: none;
+
+    align-items: center;
+    display: flex;
+    background-color: #fff46e;
+}
+
+.drop_item {
+    line-height: 3;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.drop_item:hover {
+    background-color: #f7c938;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+th:first-child {
+    width: 5%;
+}
+
+
+td img {
+    width: 100px;
+}
+
+.btnn {
+    margin: 50px 10px 20px;
+    justify-content: right;
+    display: flex;
+    align-items: center;
+}
+
+#editt {
+    display: flex;
+    align-items: center;
+}
+
+#editt button:last-child {
+    display: none;
+}
+
+.btnn button {
+    cursor: pointer;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    background-color: #49b14d;
+    height: 30px;
+    width: 100px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.admin__left {
+    background-color: #49b14d;
+    height: 100%;
+
+}
+
+.menu {
+    color: #fff;
+    background-color: #49b14d;
+    height: 100%;
+}
+
+.menu_logo {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.menu_logo img {
+    width: 60%;
+}
+
+.menu_item {
+    padding: 10px 10px 10px 30px;
+
+    line-height: 2;
+}
+
+.menu_item i {
+    margin-right: 10px;
+}
+
+.menu_item:hover {
+    background-color: #00b506;
+
+}
+
+.active {
+    background-color: #00b506;
+    color: #fff;
+}
+
+
+
+.title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 22px;
+
+}
+
+.news_add {
+    margin-top: 20px;
+
+}
+
+.form_group {
+    margin: 10px 0;
+    display: flex;
+}
+
+.hiden {
+    display: none;
+    animation: all 1s linear;
+}
+
+@keyframes all {
+    0% {
+        display: none;
+    }
+
+    100% {
+        display: block;
+    }
+}
+
+.form_group span {
+    width: 140px;
+    display: block;
+}
+
+.form_group input,
+select {
+    height: 30px;
+    width: 100%;
+}
+
+.form_group button {
+    height: 30px;
+    width: 100px;
+    margin-top: 20px;
+}
+
+.ck.ck-reset {
+    width: 100%;
+}
+
+.btn_direc {
+    display: flex;
+    margin: 20px 0;
+    justify-content: end;
+}
+
+.btn_direc button {
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
+    background-color: #fff46e;
+    border-radius: 5px;
+    margin: 0 20px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.wpaper {}
+
+.form_ {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #000000f0;
+    opacity: 0.6;
+}
+
+.form {
+    z-index: 1;
+    position: absolute;
+    background-color: #dddddd;
+    padding: 30px;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
+
+.form h2 {
+    text-align: center;
+}
+
+#exit {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Ck */
+.ck-editor__editable[role="textbox"] {
+    /* Editing area */
+    min-height: 200px;
+}
+
+.ck-content .image {
+    /* Block images */
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+
+
+.nav--login-suss {
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.nav--login-suss i {
+    font-size: 20px;
+    margin: 0 5px;
+}
+
+.nav--login-suss:hover .login__drop {
+    display: block;
+}
+
+.login__drop {
+    display: none;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    width: 250px;
+    background-color: #fff;
+    z-index: 1;
+    color: #333;
+    top: 25px;
+    right: 0;
+}
+
+.login__drop::after {
+    content: "";
+    position: absolute;
+
+    width: 100px;
+    height: 30px;
+    top: -10px;
+    right: 0;
+
+}
+
+.login__drop li {
+    line-height: 2;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.login__drop li:hover {
+    background-color: #49b14d;
+    color: #fff;
+}
+
+.login__drop a {
+    text-decoration: none;
+    color: #333;
+}
+
+.direction {
+    display: flex;
+    list-style: none;
+    margin: 10px 0;
+}
+
+.direction li {
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.direction a {
+    padding-right: 10px;
+}
+
+/* footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    position: relative;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.center-info {
+    flex: 2;
+}
+
+.center-info h3 {
+    margin-bottom: 10px;
+}
+
+.quick-links {
+    flex: 1;
+}
+
+.quick-links h3 {
+    margin-bottom: 10px;
+}
+
+.quick-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.quick-links li {
+    margin-bottom: 5px;
+}
+
+.quick-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+}

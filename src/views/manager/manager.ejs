@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('../partials/header'); %>
+        <div class="grid wide">
+            <div class="admin">
+
+                <div class="row">
+                    <div class="col m-3">
+                        <div class="admin__left">
+                            <div class="menu">
+                                <ul class="menu_list">
+                                    <li class="menu_item active">
+                                        <i class='bx bx-home'></i>
+                                        Trang Chủ Admin
+                                    </li>
+                                    <li class="menu_item">
+                                        <i class='bx bx-user'></i>
+                                        Quản Lý Tài Khoản
+                                    </li>
+                                    <li class="menu_item">
+                                        <i class='bx bx-list-ul'></i>
+                                        Quản Lý Sản Phẩm
+                                    </li>
+                                    <li class="menu_item">
+                                        <i class='bx bx-slideshow'></i>
+                                        Quản Lý Tin Tức
+                                    </li>
+                                    <li class="menu_item">
+                                        <i class='bx bx-news'></i>
+                                        Quản Lý Đơn Hàng
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col m-9">
+                        <div id="content"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <script>
+                document.getElementById('content').innerHTML = ` <%- include('../partials/news_admin'); %>`
+            </script>
+            <script src="/js/ck.js"></script>
+            <script src="/js/admin.js"> </script>
+</body>
+
+</html>
