@@ -145,19 +145,20 @@
         </div>
         </main>
         </div>
-        <script>
+        <%- include('./partials/footer'); %>
+            <script>
 
 
-            document.addEventListener('DOMContentLoaded', function () {
-                const positionHeaders = document.querySelectorAll('.position-header');
+                document.addEventListener('DOMContentLoaded', function () {
+                    const positionHeaders = document.querySelectorAll('.position-header');
 
-                positionHeaders.forEach(header => {
-                    header.addEventListener('click', function () {
-                        const members = this.nextElementSibling;
-                        members.classList.toggle('hiden')
+                    positionHeaders.forEach(header => {
+                        header.addEventListener('click', function () {
+                            const members = this.nextElementSibling;
+                            members.classList.toggle('hiden')
 
+                        });
                     });
                 });
-            });
-        </script>
+            </script>
 </body>

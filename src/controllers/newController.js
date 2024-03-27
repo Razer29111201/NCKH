@@ -13,25 +13,28 @@ const setNews = async (req, res) => {
     var tomtat = req.body.tomtat
     var content = req.body.editor
     const date = now.toLocaleDateString();
+    var file = req.file.path.split('\\').splice(2).join('/')
+
     const newsgroup = req.body.newsgroup
-    const [data, err] = await pool.execute(`INSERT INTO news(title, tomtat, content, date, author, idcmt, idgroup) values ('${title}','${tomtat}','${content}','${date}','${1}','${0}','${newsgroup}')`)
+    const [data, err] = await pool.execute(`INSERT INTO news(title, tomtat, content, date, author, idcmt, idgroup,thumb_news) values ('${title}','${tomtat}','${content}','${date}','${1}','${0}','${newsgroup}','${file}')`)
 
 
     res.redirect('/news')
 
 }
 const updateNews = async (req, res) => {
+    var file = req.file.path.split('\\').splice(2).join('/')
     var id = req.body.id
     var title = req.body.title
     var tomtat = req.body.tomtat
     var content = req.body.editor
     const date = now.toLocaleDateString();
     const newsgroup = req.body.newsgroup
-    const [data, err] = await pool.execute(`UPDATE news SET title='${title}',tomtat='${tomtat}',content='${content}',date='${date}',author='${1}',idcmt='${0}',idgroup='${newsgroup}' WHERE id = ${id}`)
+    const [data, err] = await pool.execute(`UPDATE news SET title='${title}',tomtat='${tomtat}',content='${content}',date='${date}',author='${1}',idcmt='${0}',idgroup='${newsgroup}',thumb_news = '${file}' WHERE id = ${id}`)
 
 
     res.redirect('/news')
-
+    thumb_news
 }
 const delNews = async (req, res) => {
     var id = req.body.id

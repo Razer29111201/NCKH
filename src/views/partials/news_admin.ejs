@@ -15,7 +15,7 @@
     </div>
     <div class="form">
         <h2 id="form_title">Thêm Tin Tức</h2>
-        <form class="news_add " id="form" action="/news" method="post">
+        <form class="news_add " id="form" action="/news" method="post" enctype="multipart/form-data">
             <div class="form_group">
                 <span>Tiêu Đề:</span>
                 <input type="text " id="id" name="id" hidden>
@@ -24,6 +24,10 @@
             <div class="form_group">
                 <span>Tóm Tắt:</span>
                 <input id="tomtat" type="text" name="tomtat">
+            </div>
+            <div class="form_group">
+                <span>Thumb: </span>
+                <input type="file" name="img">
             </div>
             <div class="form_group">
                 <span> Nội Dung:</span>

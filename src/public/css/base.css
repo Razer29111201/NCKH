@@ -563,3 +563,13 @@ footer {
 .footer-bottom p {
     font-size: 14px;
 }
+
+.Admin_img {
+    width: 130px;
+    height: 70px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
