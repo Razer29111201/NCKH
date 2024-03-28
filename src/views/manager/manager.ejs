@@ -21,34 +21,20 @@
                         <div class="admin__left">
                             <div class="menu">
                                 <ul class="menu_list">
-                                    <li class="menu_item active">
-                                        <i class='bx bx-home'></i>
-                                        Trang Chủ Admin
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-user'></i>
-                                        Quản Lý Tài Khoản
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-list-ul'></i>
-                                        Quản Lý Sản Phẩm
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-slideshow'></i>
-                                        Quản Lý Tin Tức
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-news'></i>
-                                        Quản Lý Đơn Hàng
-                                    </li>
-
-
+                                    <% for (var i=0; i < sidebar.length; i++) { %>
+                                        <li class="menu_item active">
+                                            <i class='bx bx-home'></i>
+                                            <%= sidebar[i].name %>
+                                        </li>
+                                        <% } %>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col m-9">
-                        <div id="content"></div>
+                        <div id="content">
+
+                        </div>
                     </div>
 
                 </div>
@@ -57,6 +43,15 @@
 
             <script>
                 document.getElementById('content').innerHTML = ` <%- include('../partials/news_admin'); %>`
+                const menu_item = document.querySelectorAll('.menu_item')
+                const content = document.querySelectorAll('.content')
+                menu_item.forEach((e, i) => {
+                    e.onclick = () => {
+                        console.log(e);
+
+                    }
+                })
+
             </script>
             <script src="/js/ck.js"></script>
             <script src="/js/admin.js"> </script>
