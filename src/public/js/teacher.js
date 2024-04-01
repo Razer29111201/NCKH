@@ -14,6 +14,12 @@ var btn_edit = document.getElementById('btn_edit')
 var cb = document.querySelectorAll('.checkbox')
 const title = document.getElementById('title')
 const editor = document.querySelector('.ck-editor__editable')
+var sdt = document.getElementById('sdt')
+var address = document.getElementById('address')
+var position = document.getElementById('position')
+var dateb = document.getElementById('date')
+var mail = document.getElementById('mail')
+var gt = document.getElementById('gt')
 console.log(form1);
 add.onclick = () => {
     form.classList.remove('hiden')
@@ -33,11 +39,11 @@ const editBtn = (e) => {
     }
     if (e === 2) {
         edit.onclick = () => {
-            alert('Hãy chọn bài viết muốn xóa')
+            alert('Hãy chọn bài viết muốn sửa')
         }
     }
 }
-if (id.value === '') {
+if (idE.value === '') {
     formdel.setAttribute('onsubmit', 'return false')
 
 }
@@ -66,17 +72,29 @@ cb.forEach((e, i) => {
             console.log(a[0].querySelector('input').value);
             id.value = a[0].querySelector('input').value
             idE.value = a[0].querySelector('input').value
-            title.value = a[1].innerText
+            title.value = a[2].innerText
+            sdt.value = a[4].innerText
+            address.value = a[5].innerText
+            position.value = a[6].innerText
+            dateb.value = a[3].innerText
+            mail.value = a[7].innerText
+            gt.value = a[8].innerText
+            console.log(idE);
 
-
-
-            window.editor.setData(a[2].innerHTML);
             formdel.setAttribute('onsubmit', 'return true')
         }
         else {
             editBtn(2)
             id.value = ''
             formdel.setAttribute('onsubmit', 'return false')
+        }
+        if (this.checked) {
+            // Hủy chọn tất cả các checkbox khác
+            cb.forEach(otherCheckbox => {
+                if (otherCheckbox !== this) {
+                    otherCheckbox.checked = false;
+                }
+            });
         }
     }
 })

@@ -4,14 +4,50 @@ import { getMenu } from "./homepageController.js"
 const getHomeAdmin = async (req, res) => {
     const [data, err] = await pool.execute('SELECT * FROM newsgroup')
     const [news, er] = await pool.execute('SELECT * FROM news')
-    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_Admin`')
-    res.render('manager/manager.ejs', { newsgroup: data, news: news,sidebar:sidebar, data: await getMenu() })
+    const [teacher, errr] = await pool.execute('SELECT * FROM `teacher`')
+    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
+    const [noti, r] = await pool.execute('SELECT * FROM notification')
+    res.render('manager/manager.ejs', { noti: noti, teacher: teacher, newsgroup: data, news: news, sidebar: sidebar, data: await getMenu() })
+}
+const getQLteacher = async (req, res) => {
+
+    const [teacher, errr] = await pool.execute('SELECT * FROM `teacher`')
+    const [gt, err] = await pool.execute('SELECT * FROM `teacher_group`')
+    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
+
+    res.render('QL_teacher.ejs', { teacher: teacher, sidebar: sidebar, gt: gt, data: await getMenu() })
+}
+const getQLnoti = async (req, res) => {
+
+    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
+    const [noti, r] = await pool.execute('SELECT * FROM notification')
+    res.render('QL_noti.ejs', { noti: noti, sidebar: sidebar, data: await getMenu() })
+}
+const getQLnews_a = async (req, res) => {
+    var [data] = await pool.execute('SELECT * FROM `news_adminssions`')
+    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
+
+    res.render('QL_news_a.ejs', { sidebar: sidebar, news: data, data: await getMenu() })
+}
+const getQLMenu = async (req, res) => {
+    const [data, err] = await pool.execute('SELECT * FROM newsgroup')
+    const [news, er] = await pool.execute('SELECT * FROM news')
+    const [teacher, errr] = await pool.execute('SELECT * FROM `teacher`')
+    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
+    const [noti, r] = await pool.execute('SELECT * FROM notification')
+    res.render('manager/manager.ejs', { noti: noti, teacher: teacher, newsgroup: data, news: news, sidebar: sidebar, data: await getMenu() })
 }
 const getMenuu = async (req, res) => {
     const [data, err] = await pool.execute('SELECT * FROM newsgroup')
     const [news, er] = await pool.execute('SELECT * FROM news')
     res.render('QL_Menu.ejs', { newsgroup: data, news: news, data: await getMenu() })
 }
+const setsidebar = async (req, res) => {
+
+    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
+
+    res.json(sidebar)
+}
 export {
-    getHomeAdmin,getMenuu
+    getHomeAdmin, getMenuu, setsidebar, getQLteacher, getQLnoti, getQLnews_a, getQLMenu
 }

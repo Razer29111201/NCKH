@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/adminssions.css">
+    <title>Tuyển Sinh</title>
+</head>
+
+<body>
+
+    <form action="/tuyensinh/add" method="post" enctype="multipart/form-data">
+        <div class="title">
+            <img src="https://tuyensinh.uhl.edu.vn/dhhl.png" alt="">
+            <h2>Biểu mẫu đăng ký tuyển sinh</h2>
+        </div>
+        <div class="container">
+            <div class="section">
+                <h3>Thông tin ứng tuyển</h3>
+                <div class="form-group">
+                    <label for="name">Họ và tên:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="gender">Giới tính:</label>
+                    <select height="40px" id="gender" name="gender">
+                        <option value="male">Nam</option>
+                        <option value="female">Nữ</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Ngày sinh:</label>
+                    <input type="date" id="dob" name="dob">
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="phone">Số điện thoại:</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_card">Căn cước công dân:</label>
+                    <input type="text" id="id_card" name="id_card">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h3>Địa chỉ cư trú</h3>
+
+                <div class="form-group">
+                    <div class="third">
+                        <label for="province">Tỉnh/Thành phố:</label>
+                        <select id="province" name="province">
+                            <option value="hn">Hà Nội</option>
+                            <option value="hcm">Hồ Chí Minh</option>
+                            <!-- Thêm các option khác tại đây -->
+                        </select>
+                    </div>
+
+                    <div class="third">
+                        <label for="district">Quận/Huyện:</label>
+                        <select id="district" name="district">
+                            <option value="q1">Quận 1</option>
+                            <option value="q2">Quận 2</option>
+                            <!-- Thêm các option khác tại đây -->
+                        </select>
+                    </div>
+
+                    <div class="third">
+                        <label for="ward">Phường/Xã:</label>
+                        <select id="ward" name="ward">
+                            <option value="phuong1">Phường 1</option>
+                            <option value="phuong2">Phường 2</option>
+                            <!-- Thêm các option khác tại đây -->
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <h3>Môn học muốn đăng ký</h3>
+
+                <div class="form-group">
+                    <label for="course">Môn học đăng ký:</label>
+                    <select id="course" name="course">
+                        <option value="math">Toán</option>
+                        <option value="physics">Vật lý</option>
+                        <option value="chemistry">Hóa học</option>
+                        <!-- Thêm các môn học khác tại đây -->
+                    </select>
+                </div>
+
+            </div>
+            <div class="section">
+                <h3>Thông tin chuyển khoản</h3>
+                <p><strong>Thông tin chuyển khoản:</strong></p>
+                <ul>
+                    <li>Chủ tài khoản: NGUYỄN THỊ THU HIỀN (Phòng Đào tạo Trường đại học Hạ Long)</li>
+                    <li>STK: 05001012531817</li>
+                    <li>MSB - Ngân hàng TMCP Hàng hải Việt Nam</li>
+                </ul>
+                <p><strong>Lưu ý khi chuyển khoản:</strong></p>
+                <ul>
+                    <li>Ghi nội dung theo cú pháp: Họ tên thí sinh + số CMND/CCCD + Mã ngành đăng ký</li>
+                    <li>Lệ phí xét tuyển: 30.000đ/ 01 Nguyện vọng đăng ký xét tuyển</li>
+                </ul>
+                <p><strong>Tải file hình ảnh chuyển khoản thành công:</strong></p>
+                <input type="file" id="payment_proof" name="payment_proof" accept="image/*">
+            </div>
+
+            <div class="section">
+                <h3>Thông tin giấy tờ</h3>
+
+                <div class="form-group">
+                    <label for="id_image">Hình ảnh căn cước công dân:</label>
+                    <input type="file" id="id_image" name="id_image" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="diploma_image">Hình ảnh bằng cấp:</label>
+                    <input type="file" id="diploma_image" name="diploma_image" accept="image/*">
+                </div>
+
+            </div>
+
+            <button type="submit">Gửi đăng ký</button>
+        </div>
+    </form>
+
+
+    <%- include('./partials/footer'); %>s
+        <script>
+            var select = document.getElementById('province')
+            var select1 = document.getElementById('district')
+            var select2 = document.getElementById('ward')
+            var id = ''
+            const api_provi = async () => {
+
+                await fetch('https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json').then(response => {
+                    return response.json()
+
+                }).then(data => {
+                    data.forEach(element => {
+                        console.log(data);
+                        var newOption = document.createElement("option");
+                        id = element.Id
+                        newOption.value = element.Name;
+                        newOption.text = element.Name;
+                        select.appendChild(newOption);
+                    });
+                    console.log(select);
+                    select.addEventListener("change", function () {
+                        select1.innerHTML = ""
+                        const results = data.filter(item => item.Name === select.value);
+                        id = results
+                        results[0].Districts.forEach(elementt => {
+                            var newOption = document.createElement("option");
+                            newOption.value = elementt.Name;
+                            newOption.text = elementt.Name;
+                            select1.appendChild(newOption);
+                        })
+                    })
+                    select1.addEventListener("change", function () {
+                        select2.innerHTML = ""
+                        const results = id[0].Districts.filter(item => item.Name === select1.value);
+                        results[0].Wards.forEach(elementt => {
+                            var newOption = document.createElement("option");
+                            newOption.value = elementt.Name;
+                            newOption.text = elementt.Name;
+                            select2.appendChild(newOption);
+                        })
+                    })
+                })
+            }
+
+
+            api_provi()
+        </script>
+</body>
+
+</html>

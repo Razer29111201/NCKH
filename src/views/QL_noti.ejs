@@ -18,34 +18,7 @@
 
                 <div class="row">
                     <div class="col m-3">
-                        <div class="admin__left">
-                            <div class="menu">
-                                <ul class="menu_list">
-                                    <li class="menu_item active">
-                                        <i class='bx bx-home'></i>
-                                        Trang Chủ Admin
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-user'></i>
-                                        Quản Lý Tài Khoản
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-list-ul'></i>
-                                        Quản Lý Sản Phẩm
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-slideshow'></i>
-                                        Quản Lý Tin Tức
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-news'></i>
-                                        Quản Lý Đơn Hàng
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                        </div>
+                        <%- include('./partials/sidebar_admin'); %>
                     </div>
                     <div class="col m-9">
                         <div class="title">
@@ -99,24 +72,24 @@
 
 
                             </tr>
-                            <% for (var i=0; i < data.length; i++ ) { %>
+                            <% for (var i=0; i < noti.length; i++ ) { %>
                                 <tr>
-                                    <td><input class="checkbox" value=" <%= data[i].id %>" type="checkbox">
+                                    <td><input class="checkbox" value=" <%= noti[i].id %>" type="checkbox">
 
                                     </td>
                                     <td>
-                                        <%= data[i].title %>
+                                        <%= noti[i].title %>
                                     </td>
 
 
                                     <td>
                                         <div class="content">
 
-                                            <%- data[i].content %>
+                                            <%- noti[i].content %>
                                         </div>
                                     </td>
                                     <td>
-                                        <%= data[i].date %>
+                                        <%= noti[i].date %>
                                     </td>
 
 

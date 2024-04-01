@@ -18,43 +18,53 @@
 
                 <div class="row">
                     <div class="col m-3">
-                        <div class="admin__left">
-                            <div class="menu">
-                                <ul class="menu_list">
-                                    <% for (var i=0; i < sidebar.length; i++) { %>
-                                        <li class="menu_item active">
-                                            <i class='bx bx-home'></i>
-                                            <%= sidebar[i].name %>
-                                        </li>
-                                        <% } %>
-                                </ul>
-                            </div>
-                        </div>
+                        <%- include('../partials/sidebar_admin'); %>
                     </div>
                     <div class="col m-9">
-                        <div id="content">
+                        <div class="content">
 
                         </div>
+
+
                     </div>
 
                 </div>
 
             </div>
-
             <script>
-                document.getElementById('content').innerHTML = ` <%- include('../partials/news_admin'); %>`
+                var value = document.getElementById('content')
+
                 const menu_item = document.querySelectorAll('.menu_item')
-                const content = document.querySelectorAll('.content')
+
+                const content = document.getElementById('content')
+
+                console.log(document.getElementById('admin_content'));
+
+
                 menu_item.forEach((e, i) => {
                     e.onclick = () => {
-                        console.log(e);
-
+                        if (i == 0) {
+                            content.innerHTML = ` <%- include('../partials/noti.ejs'); %>`;
+                        }
+                        if (i == 1) {
+                            content.innerHTML = ` <%- include('../partials/news_admin.ejs'); %>`;
+                        }
+                        if (i == 2) {
+                            content.innerHTML = ` <%- include('../partials/teacher.ejs'); %>`
+                        }
+                        if (i == 3) {
+                            content.innerHTML = ` <%- include('../partials/teacher.ejs'); %>`
+                        }
                     }
                 })
 
             </script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="/js/manager.js">
+            </script>
             <script src="/js/ck.js"></script>
-            <script src="/js/admin.js"> </script>
+
+
 </body>
 
 </html>

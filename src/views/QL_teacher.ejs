@@ -18,34 +18,7 @@
 
                 <div class="row">
                     <div class="col m-3">
-                        <div class="admin__left">
-                            <div class="menu">
-                                <ul class="menu_list">
-                                    <li class="menu_item active">
-                                        <i class='bx bx-home'></i>
-                                        Trang Chủ Admin
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-user'></i>
-                                        Quản Lý Tài Khoản
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-list-ul'></i>
-                                        Quản Lý Sản Phẩm
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-slideshow'></i>
-                                        Quản Lý Tin Tức
-                                    </li>
-                                    <li class="menu_item">
-                                        <i class='bx bx-news'></i>
-                                        Quản Lý Đơn Hàng
-                                    </li>
-
-
-                                </ul>
-                            </div>
-                        </div>
+                        <%- include('./partials/sidebar_admin'); %>
                     </div>
                     <div class="col m-9">
                         <div class="title">
@@ -65,7 +38,8 @@
                             </div>
                             <div class="form">
                                 <h2 id="form_title">Thêm Tin Tức</h2>
-                                <form class="news_add " action="" id="form2" method="post">
+                                <form class="news_add " enctype="multipart/form-data" action="" id="form2"
+                                    method="post">
                                     <div class="form_group">
                                         <span>Họ Tên:</span>
                                         <input type="text " id="id" name="id" hidden>
@@ -73,7 +47,11 @@
                                     </div>
                                     <div class="form_group">
                                         <span>Số Điện Thoại:</span>
-                                        <input id="title" type="text" name="title">
+                                        <input id="sdt" type="text" name="title">
+                                    </div>
+                                    <div class="form_group">
+                                        <span>Ngày sinh:</span>
+                                        <input id="date" type="date" name="date">
                                     </div>
                                     <div class="form_group">
                                         <span>Thumb: </span>
@@ -81,11 +59,25 @@
                                     </div>
                                     <div class="form_group">
                                         <span> Địa Chỉ:</span>
-                                        <input id="title" type="text" name="address">
+                                        <input id="address" type="text" name="address">
                                     </div>
                                     <div class="form_group">
                                         <span> Vị Trí:</span>
-                                        <input id="title" type="text" name="position">
+                                        <input id="position" type="text" name="position">
+                                    </div>
+                                    <div class="form_group">
+                                        <span> Mail:</span>
+                                        <input id="mail" type="mail" name="mail">
+                                    </div>
+                                    <div class="form_group">
+                                        <span> Chức vụ:</span>
+                                        <select name="gt" id="gt">
+                                            <% for (var i=0; i < gt.length; i++ ) { %>
+                                                <option value="<%= gt[i].id %>">
+                                                    <%= gt[i].name %>
+                                                </option>
+                                                <% } %>
+                                        </select>
                                     </div>
                                     <div class="form_group">
                                         <button class="hiden" id="btn_addd">Thêm</button>
@@ -109,7 +101,9 @@
                                 <th>Ngày Sinh</th>
                                 <th>SĐT</th>
                                 <th>Địa Chỉ</th>
-                                <th>Vị Trí</th>
+                                <th>Chức Vụ</th>
+                                <th>Vị trí</th>
+                                <th>Mail</th>
 
                             </tr>
                             <% for (var i=0; i < teacher.length; i++ ) { %>
@@ -119,8 +113,8 @@
                                     </td>
                                     <td>
                                         <div class="Admin_img">
+                                            <img src=" <%= teacher[i].img %>" alt="">
 
-                                            <%= teacher[i].img %>
                                         </div>
                                     </td>
                                     <td>
@@ -140,8 +134,23 @@
 
                                     </td>
                                     <td>
+                                        <% if (teacher[i].position_group===0) { %>
+                                            Giám đốc
+                                            <% } else if (teacher[i].position_group===1) { %>
+                                                Phó giám đốc
+                                                <% } else if (teacher[i].position_group===3) { %>
+                                                    Giảng viên
+                                                    <% } else if (teacher[i].position_group===4) { %>
+                                                        Nhân viên
+                                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <%= teacher[i].email %>
+                                    </td>
+                                    <td>
                                         <%= teacher[i].position %>
                                     </td>
+
 
 
 
@@ -153,10 +162,11 @@
                 </div>
 
             </div>
+        </div> DSAD
 
-            <%- include('./partials/footer'); %>s
-                <script src="/js/ck.js"></script>
-                <script src="/js/teacher.js"> </script>
+        <%- include('./partials/footer'); %>s
+            <script src="/js/ck.js"></script>
+            <script src="/js/teacher.js"> </script>
 </body>
 
 </html>
