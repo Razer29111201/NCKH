@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser());
 dotenv.config()
-const port = process.env.port
+const port = process.env.port || 8080
 
 configViewEngine(app, express)
 
