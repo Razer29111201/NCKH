@@ -16,6 +16,7 @@ const setTeacheri = async (req, res) => {
     console.log(req.body, req.file);
     const data = req.body
     var file = req.file.path.split('\\').splice(2).join('/')
+    console.log(file);
     await pool.execute(`INSERT INTO teacher(name, brith, phone, address, position, position_group, email, img) VALUES( '${data.name}', '${data.date}', '${data.title}', '${data.address}', '${data.position}', '${data.gt}', '${data.mail}', '${file}')`)
         .then(ress => {
             res.redirect('/admin/4')

@@ -9,6 +9,15 @@ const getHomeAdmin = async (req, res) => {
     const [noti, r] = await pool.execute('SELECT * FROM notification')
     res.render('manager/manager.ejs', { noti: noti, teacher: teacher, newsgroup: data, news: news, sidebar: sidebar, data: await getMenu() })
 }
+const getNews = async (req, res) => {
+    const [data, err] = await pool.execute('SELECT * FROM newsgroup')
+    const [news, er] = await pool.execute('SELECT * FROM news')
+    const [teacher, errr] = await pool.execute('SELECT * FROM `teacher`')
+    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
+    const [noti, r] = await pool.execute('SELECT * FROM notification')
+    console.log(sidebar);
+    res.render('QL_news.ejs', { noti: noti, newsgroup: data, teacher: teacher, news: news, sidebar: sidebar, data: await getMenu() })
+}
 const getQLteacher = async (req, res) => {
 
     const [teacher, errr] = await pool.execute('SELECT * FROM `teacher`')
@@ -49,5 +58,5 @@ const setsidebar = async (req, res) => {
     res.json(sidebar)
 }
 export {
-    getHomeAdmin, getMenuu, setsidebar, getQLteacher, getQLnoti, getQLnews_a, getQLMenu
+    getHomeAdmin, getMenuu, setsidebar, getQLteacher, getNews, getQLnoti, getQLnews_a, getQLMenu
 }

@@ -22,7 +22,7 @@
                     </div>
                     <div class="col m-9">
                         <div class="title">
-                            <h2>Quản Lý Thông Báo</h2>
+                            <h2>Quản Lý Giáo Viên</h2>
                         </div>
                         <div class="btn_direc">
                             <button id="add">Thêm </button>
@@ -37,7 +37,7 @@
 
                             </div>
                             <div class="form">
-                                <h2 id="form_title">Thêm Tin Tức</h2>
+                                <h2 id="form_title">Thêm Giáo Viên</h2>
                                 <form class="news_add " enctype="multipart/form-data" action="" id="form2"
                                     method="post">
                                     <div class="form_group">
@@ -113,7 +113,7 @@
                                     </td>
                                     <td>
                                         <div class="Admin_img">
-                                            <img src=" <%= teacher[i].img %>" alt="">
+                                            <img src=" /<%= teacher[i].img %>" alt="">
 
                                         </div>
                                     </td>
@@ -162,7 +162,7 @@
                 </div>
 
             </div>
-        </div> DSAD
+        </div>
 
         <%- include('./partials/footer'); %>s
             <script src="/js/ck.js"></script>
