@@ -7,11 +7,11 @@ import mysql from 'mysql2/promise';
 //     database: 'test'
 // })
 const pool = mysql.createPool({
-    host: 'sql6.freemysqlhosting.net',
-    user: 'sql6694948',
-    password: '2I7gJNjb1S',
+    host: 'b1rf6cipskzufiuqtjrt-mysql.services.clever-cloud.com',
+    user: 'u87wmwyuhr1ym9ef',
+    password: 'uj63h1PICnq3kU8VPmJW',
     port: 3306,
-    database: 'sql6694948'
+    database: 'b1rf6cipskzufiuqtjrt'
 })
 export default pool
 
