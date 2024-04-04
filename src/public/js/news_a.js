@@ -17,7 +17,7 @@ const editor = document.querySelector('.ck-editor__editable')
 console.log(form1);
 add.onclick = () => {
     form.classList.remove('hiden')
-    form1.setAttribute('action', 'tuyensinh/news/add')
+    form1.setAttribute('action', '/tuyensinh/news/add')
     btn_add.classList.remove('hiden')
     form_title.innerText = 'Thêm Tin Tức'
 }
@@ -26,7 +26,7 @@ const editBtn = (e) => {
 
         edit.onclick = () => {
             form.classList.remove('hiden')
-            form1.setAttribute('action', 'tuyensinh/news/update')
+            form1.setAttribute('action', '/tuyensinh/news/update')
             btn_edit.classList.remove('hiden')
             form_title.innerText = 'Cập Nhật Tin Tức'
         }
