@@ -19,7 +19,7 @@ const setTeacheri = async (req, res) => {
     console.log(file);
     await pool.execute(`INSERT INTO teacher(name, brith, phone, address, position, position_group, email, img) VALUES( '${data.name}', '${data.date}', '${data.title}', '${data.address}', '${data.position}', '${data.gt}', '${data.mail}', '${file}')`)
         .then(ress => {
-            res.redirect('/admin/4')
+            res.redirect('/admin/3')
         })
         .catch(er => {
             console.log(er);
@@ -35,7 +35,7 @@ const delTeacheri = async (req, res) => {
     console.log(id);
     const [data, er] = await pool.execute(`DELETE FROM teacher WHERE  id='${id}'`)
     if (data) {
-        res.redirect('/admin/4')
+        res.redirect('/admin/3')
     }
     else {
         res.json(lỗi)
