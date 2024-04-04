@@ -42,5 +42,5 @@ const delSubject = async (req, res) => {
 
 
 export {
-    delSubject, updateSubject, setSubject
+    updateSubject, setSubject, delSubject,
 }
