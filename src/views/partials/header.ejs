@@ -1,73 +1,72 @@
 <header>
-    <div class="login_form hiden">
-        <div class="modal">
-        </div>
-        <div class="modal-login">
-            <div class="header-login">
-                <h4>Đăng Nhập</h4>
-                <i class='bx bx-x'></i>
-            </div>
-            <form class="body-login" id="form" method="post" action="/user">
-                <div class="login-form">
-                    <i></i>
-                    <input type="text" name="login" placeholder="Nhập Vào usename">
-                    <div class="err"></div>
-                </div>
-                <div class="login-form">
-                    <input type="password" name="password" placeholder="Password">
-                    <div class="err"></div>
-                </div>
-                <div class="body-btn">
-                    <button class="login_submid">Đăng Nhập</button>
-                </div>
-            </form>
+    <%- include('./login'); %>
+        <div class="header">
 
-            <p class="body-register">Bạn Chưa Có Tài Khoản???<a href="./register.html">Đăng Ký</a></p>
+            <div class="grid wide">
+                <div class="header-content">
+                    <div class="header-img">
+                        <a href="/"><img src="/img/logo.png" alt="" class=""></a>
+                    </div>
+                    <div class="header-heding">
+                        <h2>TRUNG TÂM THỰC HÀNH, DỊCH VỤ DU LỊCH VÀ NGHỆ THUẬT</h2>
+                        <h2>TRƯỜNG ĐẠI HỌC HẠ LONG</h2>
+                    </div>
+                    <div class="header-right">
+                        <div class="header-user-success hiden">
+                            <i class='bx bxs-user-circle'></i>
+                            <Span class="btn_hov" id="usersuccess"></Span>
+                            <i class='bx bx-chevron-down'></i>
+                            <ul class="user-list hiden ">
+                                <li class="user-item">
+                                    <i class='bx bxs-user-rectangle'></i>
+                                    <a href="">Thông Tin Tài Khoản
 
+                                    </a>
+                                </li>
+                                <li class="user-item " id="adminrole">
 
-
-
-        </div>
-    </div>
-    <div class="grid wide">
-        <div class="header_top">
-            <div class="login">
-                <button id="btn_login"> Đăng Nhập</button>
-                <div class="nav--login-suss hidden">
-                    <i class='bx bx-user-circle'></i>
-                    <span id="name_login"></span>
-                    <i class='bx bx-chevron-down'></i>
-                    <ul class="login__drop">
-                        <li>Thông Tin Tài Khoản</li>
-                        <li><a href="/cart/order">Đơn Mua</a></li>
-                        <div id="admin">
-
+                                </li>
+                                <li class="user-item">
+                                    <i class='bx bx-log-out'></i>
+                                    <a href="" id="logout">Đăng Xuất</a>
+                                </li>
+                            </ul>
                         </div>
+                        <div class="header-user">
+                            <a id="btn_login">Đăng Nhập</a>
+                            <div></div>
+                            <a href="/register">Đăng Ký</a>
+                        </div>
+                        <div class="header-search">
+                            <input type="text" placeholder="Tìm Kiếm.......">
+                            <i class='bx bx-search-alt-2'></i>
+                        </div>
+                        <div class="header-date">
+                            <div class="time" id="time">
 
-                        <a href="/">
-                            <li id="logout">Đăng Xuất</li>
-                        </a>
-                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="header_drop_back">
+                <div class="grid wide">
+                    <div class="header_drop">
+                        <ul class="drop_list">
+                            <li class="drop_item">
+                                <a href=""><i class="fa-solid fa-house"></i></a>
+                            </li>
+                            <% for (var i=0; i < data.length; i++) { %>
+                                <li class="drop_item"><a href="/admin/<%= data[i].link %>">
+
+                                        <%= data[i].name %>
+
+                                    </a></li>
+                                <% } %>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="header_search">
-
-                <input type="text" placeholder="Tìm Kiếm....">
-            </div>
         </div>
-        <div class="header_drop">
-            <ul class="drop_list">
-                <li class="drop_item">
-                    <a href=""><i class="fa-solid fa-house"></i></a>
-                </li>
-                <% for (var i=0; i < data.length; i++) { %>
-                    <li class="drop_item"><a href="<%= data[i].link %>">
-
-                            <%= data[i].name %>
-
-                        </a></li>
-                    <% } %>
-            </ul>
-        </div>
-    </div>
 </header>

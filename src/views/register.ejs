@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/register.css">
+
+    <title>Đăng Ký</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title"> Đăng Ký</h1>
+        <form action="/account/register" method="post" id="form-1">
+
+
+
+            <div class="name form-group">
+
+                <input type="text" onchange="validater()" name="name" placeholder="Nhập Tên" id="name">
+                <div></div>
+                <small class=" err form-message2"></small>
+            </div>
+
+            <div class="input-list form-group">
+
+                <input type="text" name="user" onchange="validater()" id="user" placeholder="Tên Đăng Nhập">
+                <div></div>
+
+                <small class=" err form-message3">
+
+                </small>
+            </div>
+            <div class="input-list form-group">
+
+                <input type="text" onchange="validater()" name="nber" placeholder="Nhập SDT" id="nber">
+                <div></div>
+                <small class=" err form-message7"></small>
+            </div>
+            <div class="input-list form-group">
+
+                <input type="email" onchange="validater()" name="email" placeholder="Nhập Email" id="email">
+                <div></div>
+                <small class=" err form-message4"></small>
+            </div>
+            <div class="input-list form-group">
+
+                <input type="password" onchange="validater()" name="pass" placeholder="Nhập Mật Khẩu" id="pass">
+                <div></div>
+                <small class=" err form-message5"></small>
+            </div>
+            <div class="input-list form-group">
+
+                <input type="password" onchange="validater()" name="comfimpass" placeholder="Nhập Lại Mật Khẩu"
+                    id="comfimpass">
+                <div></div> <small class=" err form-message6"></small>
+            </div>
+
+            <div class="input-list form-group">
+                <label for="cars">Giới Tính</label>
+                <select id="cars" name="sex" aria-placeholder="Chọn danh xưng">
+                    <option value="1">Nam</option>
+                    <option value="2">Nữ</option>
+                    <option value="3">Khác</option>
+
+                </select>
+                <input type="text" value="0" hidden name="role">
+            </div>
+
+            <div class="note">
+                <span>Người dùng dịch vụ của chúng tôi có thể đã tải thông tin liên hệ của bạn lên Sever.</span>
+
+            </div>
+            <div class="dieukhoan">
+
+                <a href="/account">Bạn Đã Có Tài Khoản?</a>
+            </div>
+
+            <div class="btn">
+                <button id="btn-submit" type="submit">Đăng Ký</button>
+            </div>
+
+
+
+
+
+        </form>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        const model = {
+            name: false,
+            user: false,
+            email: false,
+            pass: false,
+            confimpass: false
+        }
+
+        const validater = () => {
+
+
+            if ($('#name').val() != '') {
+                model.name = true
+                $('.form-message2').html('')
+            } else {
+                $('.form-message2').html('Hãy Nhập Tên')
+                model.name = false
+            }
+
+            if ($('#user').val() != '') {
+                model.user = true
+                $('.form-message3').html('')
+            } else {
+                $('.form-message3').html('Hãy Nhập Tên')
+                model.user = false
+            }
+
+            if ($('#email').val() != '') {
+                model.email = true
+                $('.form-message4').html('')
+            } else {
+                $('.form-message4').html('Hãy Nhập Email')
+                model.email = false
+            }
+            if ($('#nber').val() != '') {
+                model.email = true
+                $('.form-message7').html('')
+            } else {
+                $('.form-message7').html('Hãy Nhập SDT')
+                model.email = false
+            }
+
+            if ($('#pass').val().trim().length > 6) {
+                model.pass = true
+                $('.form-message5').html('')
+            } else {
+                $('.form-message5').html('Mật Khẩu Phải Trên 6 Ký Tự')
+                model.pass = false
+            }
+
+            if ($('#comfimpass').val() === $('#pass').val()) {
+                model.confimpass = true
+                $('.form-message6').html('')
+            } else {
+                $('.form-message6').html('Mật Khẩu Không Khớp')
+                model.confimpass = false
+            }
+
+
+
+            if (
+                model.name == true &&
+                model.user == true &&
+                model.email == true &&
+                model.pass == true &&
+                model.confimpass == true) {
+
+                $('#btn-submit').prop('disabled', false);
+            } else {
+                $('#btn-submit').prop('disabled', true);
+
+
+            }
+            console.log(model);
+        }
+
+        $('#btn-submit').click(() => {
+
+            validater()
+        }
+        )
+
+        $.ajax({
+            url: '/account/allacc',
+            type: 'get',
+            success: function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    var a = data[i].user
+                    console.log(a);
+                    $("#user").change(function (e) {
+                        if ($('#user').val().trim().length > 4) {
+                            model.user = true
+                            $('.form-message3').html('')
+                            if ($('#user').val() == a) {
+                                $('.form-message3').html('Tên Đã Được Sửa Dụng')
+                                model.user = false
+                            }
+                        }
+                        else {
+                            $('.form-message3').html('Tên Đăng Nhập Phải Trên 4 Ký Tự')
+                            model.user = false
+                        }
+
+
+                    })
+
+                }
+                $('#user').blur(() => {
+
+
+                })
+
+            }
+        })
+    </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('./partials/header'); %>
+        <div class="grid wide">
+            <div class="admin">
+
+                <div class="row">
+                    <div class="col m-3">
+                        <%- include('./partials/sidebar_admin'); %>
+
+                    </div>
+                    <div class="col m-9">
+                        <div class="title">
+                            <h2>Quản Lý Thông Báo</h2>
+                        </div>
+                        <div class="btn_direc">
+                            <button id="add">Thêm </button>
+                            <button id="edit">Sửa </button>
+                            <form action="/subject/del" id="formdel" method="post">
+                                <input type="text " id="idE" name="id" hidden>
+                                <button id="del">Xóa </button>
+                            </form>
+                        </div>
+                        <div class="wpaper hiden">
+                            <div class="form_ ">
+
+                            </div>
+                            <div class="form">
+                                <h2 id="form_title">Thêm Tin Tức</h2>
+                                <form class="news_add " action="" id="form2" method="post">
+                                    <div class="form_group">
+                                        <span>Tên:</span>
+                                        <input type="text " id="id" name="id" hidden>
+                                        <input id="title" type="text" name="name">
+                                    </div>
+                                    <div class="form_group">
+                                        <span>Nhóm?:</span>
+                                        <input id="link" type="text" name="group">
+                                    </div>
+
+                                    <div class="form_group">
+                                        <button class="hiden" id="btn_addd">Thêm</button>
+                                        <button class="hiden" id="btn_edit">Sửa</button>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                            <span id="exit">X</span>
+
+                        </div>
+
+
+
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>STT</th>
+                                <th>Tên</th>
+                                <th>Nhóm?</th>
+
+
+                            </tr>
+                            <% for (var i=0; i < subject.length; i++ ) { %>
+                                <tr>
+                                    <td><input class="checkbox" value=" <%= subject[i].id %>" type="checkbox">
+
+                                    </td>
+
+                                    <td>
+                                        <%= i+1 %>
+                                    </td>
+
+                                    <td>
+                                        <%= subject[i].name%>
+                                    </td>
+                                    <td>
+                                        <%= subject[i].id_sbjgroup %>
+                                    </td>
+
+
+
+                                </tr>
+                                <% } %>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <%- include('./partials/footer'); %>
+            <script src="/js/ck.js"></script>
+            <script src="/js/subject.js"> </script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="/js/index.js"> </script>
+</body>
+
+</html>

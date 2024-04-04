@@ -19,7 +19,7 @@ const setNews = async (req, res) => {
     const [data, err] = await pool.execute(`INSERT INTO news(title, tomtat, content, date, author, idcmt, idgroup,thumb_news) values ('${title}','${tomtat}','${content}','${date}','${1}','${0}','${newsgroup}','${file}')`)
 
 
-    res.redirect('/admim/2')
+    res.redirect('/admin/2')
 
 }
 const updateNews = async (req, res) => {
@@ -33,7 +33,7 @@ const updateNews = async (req, res) => {
     const [data, err] = await pool.execute(`UPDATE news SET title='${title}',tomtat='${tomtat}',content='${content}',date='${date}',author='${1}',idcmt='${0}',idgroup='${newsgroup}',thumb_news = '${file}' WHERE id = ${id}`)
 
 
-    res.redirect('/admim/2')
+    res.redirect('/admin/2')
     thumb_news
 }
 const delNews = async (req, res) => {
@@ -42,7 +42,7 @@ const delNews = async (req, res) => {
     const [data, err] = await pool.execute(`DELETE FROM news  WHERE id = ${id}`)
 
 
-    res.redirect('/admim/2')
+    res.redirect('/admin/2')
 
 }
 const getQLNoti = async (req, res) => {

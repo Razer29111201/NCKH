@@ -4,18 +4,22 @@ import manager from './manager.js'
 import teacher from './teacher.js'
 import admissions from './admissions.js'
 import user from './user.js'
+import menu from './menu.js'
+import subject from './subject.js'
 import { getHomePage, getNotification } from '../controllers/homepageController.js'
-import { checkLogin } from '../controllers/userController.js'
+import { checkrole } from '../controllers/userController.js'
 
 const route = express.Router()
 
 const initRouter = (app) => {
 
     app.get('/notification/:id', getNotification)
-    app.use('/tuyensinh',admissions)
+    app.use('/tuyensinh', admissions)
     app.get('/', getHomePage)
     app.use('/teacher', teacher)
-    app.use('/admin', manager)
+    app.use('/menu', menu)
+    app.use('/subject', subject)
+    app.use('/admin', checkrole, manager)
     app.use('/user', user)
     app.use('/news', news)
     return app.use('/', route)

@@ -69,24 +69,192 @@ html {
     transform: translateX(-50%);
 }
 
-.header-login {
-    background-color: var(--primary-color);
-    padding: 10px;
-    text-align: center;
+@keyframes slidedrop {
+    from {
+        opacity: 0;
+
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideinfo {
+    0% {
+        transform: translateY(110%);
+    }
+
+    100% {
+        transform: translatey(-180%);
+
+    }
+
+
+}
+
+/* header */
+.header {
+    background-color: #ededed;
+}
+
+.header-content {
+    display: flex;
+    height: 150px;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.header-img {
+    width: 140px;
+    height: 100px;
+    margin-left: 20px;
+    overflow: hidden;
+}
+
+.header-img img {
+    height: 100%;
+    object-fit: contain;
+}
+
+.header-heding {
+    text-align: left;
+    flex: 1;
+    padding-left: 25px;
+
+}
+
+.header-heding h2 {
+
+    font-weight: 700;
+    line-height: 1;
+
+}
+
+.header-heding h2:first-child {
+    font-size: 25px;
+    color: #0668ad;
     margin-bottom: 10px;
-
-
 }
 
-.header-login h4 {
-    font-size: 1.6rem;
-    line-height: 2;
-    color: #f7c938;
+.header-heding h2:last-child {
+    font-size: 30px;
+    color: #0b3451;
 }
 
-.header-login i {
+.header-right {
+    position: relative;
+    height: 100%;
+    width: 250px;
+}
+
+.header-user {
+    position: absolute;
+    display: flex;
+    top: 10px;
+    align-items: center;
+    right: 0;
     cursor: pointer;
-    font-size: 2rem;
+}
+
+.header-user-success {
+    position: absolute;
+    display: flex;
+    top: 10px;
+    align-items: center;
+    right: 10px;
+    cursor: pointer;
+}
+
+.header-user-success span {
+    padding: 0 5px;
+}
+
+.header-user-success i {
+    font-size: 20px;
+}
+
+
+
+.user-list {
+
+    position: absolute;
+    width: 250px;
+    right: 0;
+    top: 35px;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 0 2px 5px #777777;
+    list-style: none;
+    padding: 10px 20px;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+}
+
+.user-item a {
+    text-decoration: none;
+    line-height: 2;
+    color: #333;
+    margin-left: 10px;
+}
+
+.user-list::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    right: 0;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #ebebeb transparent;
+    z-index: 10;
+
+}
+
+.header-user a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+.header-user div {
+    height: 10px;
+    width: 1px;
+    background-color: #333;
+}
+
+.header-search {
+    top: 40px;
+    position: absolute;
+    width: 100%;
+
+
+}
+
+.header-search input {
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid rgb(170, 170, 170);
+    height: 35px;
+    padding-left: 20px;
+}
+
+.header-search input::placeholder {
+    font-size: 14px;
+}
+
+.header-search i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    font-size: 20px;
 }
 
 .body-login {
@@ -191,12 +359,16 @@ html {
 
 }
 
+.header_drop_back {
+    background-color: #fff46e;
+}
+
 .drop_list {
     list-style: none;
 
     align-items: center;
     display: flex;
-    background-color: #fff46e;
+
 }
 
 .drop_item {
@@ -276,7 +448,7 @@ td img {
 
 .menu {
     color: #fff;
-    background-color: #49b14d;
+    background-color: #ededed;
     height: 100%;
 }
 
@@ -303,12 +475,12 @@ td img {
 }
 
 .menu_item:hover {
-    background-color: #00b506;
+    background-color: #fff46e;
 
 }
 
 .active {
-    background-color: #00b506;
+    background-color: #fff46e;
     color: #fff;
 }
 
@@ -572,4 +744,32 @@ footer {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+}
+
+.err {
+    color: rgb(255, 31, 31);
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.header-login {
+    background-color: var(--primary-color);
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.header-login h4 {
+    font-size: 20px;
+    line-height: 2;
+    color: #f7c938;
+}
+
+.header-login i {
+    cursor: pointer;
+    font-size: 2;
 }

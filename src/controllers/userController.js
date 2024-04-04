@@ -2,20 +2,31 @@ import e from "express";
 import pool from "../configs/connetDB.js"
 import jwt from "jsonwebtoken";
 const setUser = async (req, res) => {
-    var username = req.body.login
+    var username = req.body.username
     var pass = req.body.password
-    const [data, er] = await pool.execute(`SELECT * FROM user WHERE username = '${username}' AND password = '${pass}'`)
+    console.log(req.body);
+    try {
+
+        var [data, err] = await pool.execute(`SELECT * FROM user WHERE username = '${username}' AND password = '${pass}'`)
 
 
-    var id = data[0].id
-    var token = jwt.sign(id, 'shhhhh');
-    var d = new Date();
-    d.setTime(d.getTime() + (1000 * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
+        var id = data[0].id
+        var token = jwt.sign(id, 'shhhhh');
+        var d = new Date();
+        d.setTime(d.getTime() + (1000 * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        res.cookie('acc', token, expires);
+        res.redirect('/')
+    }
+    catch {
+        res.status(401).send('Tên đăng nhập hoặc mật khẩu không đúng.');
+    }
 
-    res.cookie('acc', token, expires);
-    res.redirect('/')
+
+
+
 }
+
 const checkLogin = async (req, res, next) => {
     if (req.cookies.acc) {
         var token = req.cookies.acc
@@ -55,7 +66,11 @@ const checkrole = async (req, res, next) => {
         res.json('Bạn Không Đủ Quyền')
     }
 }
+const getRegister = async (req, res, next) => {
+    res.render('register.ejs')
+}
+
 
 export {
-    setUser, checkrole, checkLogin
+    setUser, checkrole, checkLogin, getRegister
 }
