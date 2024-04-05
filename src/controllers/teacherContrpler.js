@@ -12,21 +12,22 @@ const getQLTeacheri = async (req, res) => {
     console.log(data);
     res.render('QL_teacher.ejs', { data: await getMenu(), teacher: data })
 }
-const setTeacheri = async (req, res) => {
-    var originalString = "src/public/img/4-4-2024-IMG_20210814_171642.jpg";
 
-// Tìm vị trí của chuỗi "src/public/"
-var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-
-// Cắt chuỗi từ vị trí đó đến hết
-var result = originalString.substring(startIndex);
 
 // In ra kết quả
 console.log(result);
+const setTeacheri = async (req, res) => {
+    var originalString = req.file.path;
+
+    // Tìm vị trí của chuỗi "src/public/"
+    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+
+    // Cắt chuỗi từ vị trí đó đến hết
+    var result = originalString.substring(startIndex);
     console.log(req.body, req.file);
     const data = req.body
     var file = req.file.path.split('\\').splice(2).join('/') || result
-    console.log('a'+file);
+    console.log('a' + file);
     await pool.execute(`INSERT INTO teacher(name, brith, phone, address, position, position_group, email, img) VALUES( '${data.name}', '${data.date}', '${data.title}', '${data.address}', '${data.position}', '${data.gt}', '${data.mail}', '${file}')`)
         .then(ress => {
             res.redirect('/admin/3')

@@ -136,9 +136,9 @@
 
                                     </td>
                                     <td>
-                                        <% if (teacher[i].position_group===0) { %>
+                                        <% if (teacher[i].position_group===1) { %>
                                             Giám đốc
-                                            <% } else if (teacher[i].position_group===1) { %>
+                                            <% } else if (teacher[i].position_group===2) { %>
                                                 Phó giám đốc
                                                 <% } else if (teacher[i].position_group===3) { %>
                                                     Giảng viên
@@ -165,7 +165,7 @@
 
             </div>
         </div>
-       
+
 
         <%- include('./partials/footer'); %>
             <script src="/js/ck.js"></script>
