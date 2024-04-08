@@ -105,8 +105,49 @@ const updateNoti = async (req, res) => {
     }
 
 }
+const setintroduce = async (req, res) => {
 
+
+    var content = req.body.editor
+
+
+    const [data, er] = await pool.execute(`INSERT INTO introduce( content) VALUES ('${content}')`)
+
+    if (data) {
+        res.redirect('/admin/7')
+    }
+
+}
+const getintroduce = async (req, res) => {
+    const [data, er] = await pool.execute('SELECT * FROM introduce')
+    res.render('introduce.ejs', { introduce: data, data: await getMenu() })
+
+}
+const updateintroduce = async (req, res) => {
+    var id = req.body.id
+    var title = req.body.title
+    var content = req.body.editor
+    const date = now.toLocaleDateString();
+
+    const [data, er] = await pool.execute(`UPDATE notification SET title='${title}',content='${content}',date='${date}' WHERE id='${id}'`)
+
+    if (data) {
+        res.redirect('/admin/7')
+    }
+}
+const delintroduce = async (req, res) => {
+    var id = req.body.id
+    var title = req.body.title
+    var content = req.body.editor
+    const date = now.toLocaleDateString();
+
+    const [data, er] = await pool.execute(`UPDATE notification SET title='${title}',content='${content}',date='${date}' WHERE id='${id}'`)
+
+    if (data) {
+        res.redirect('/admin/7')
+    }
+}
 export {
     getNews, setNews, updateNews, delNews,
-    getQLNoti, delNoti, updateNoti, setQLNoti
+    getQLNoti, delNoti, updateNoti, setQLNoti, getintroduce, setintroduce, updateintroduce, delintroduce
 }

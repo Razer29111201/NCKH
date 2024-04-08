@@ -4,6 +4,7 @@ import manager from './manager.js'
 import teacher from './teacher.js'
 import admissions from './admissions.js'
 import user from './user.js'
+import introduce from './introduce.js'
 import menu from './menu.js'
 import subject from './subject.js'
 import { getHomePage, getNotification } from '../controllers/homepageController.js'
@@ -16,6 +17,7 @@ const initRouter = (app) => {
     app.get('/notification/:id', getNotification)
     app.use('/tuyensinh', admissions)
     app.get('/', getHomePage)
+    app.use('/introduce', introduce)
     app.use('/teacher', teacher)
     app.use('/menu', menu)
     app.use('/subject', subject)

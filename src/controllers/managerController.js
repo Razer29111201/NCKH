@@ -61,6 +61,13 @@ const getQLSubject = async (req, res) => {
     res.render('QL_Subject.ejs', { subject: data, sidebar: sidebar, data: await getMenu() })
 
 }
+const getQLintro = async (req, res) => {
+
+    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
+    const [introduce, er] = await pool.execute('SELECT * FROM `introduce`')
+    res.render('QL_introduce.ejs', { introduce: introduce, sidebar: sidebar, data: await getMenu() })
+
+}
 export {
-    getHomeAdmin, getMenuu, setsidebar, getQLteacher, getNews, getQLnoti, getQLnews_a, getQLMenu, getQLSubject
+    getHomeAdmin, getQLintro, getMenuu, setsidebar, getQLteacher, getNews, getQLnoti, getQLnews_a, getQLMenu, getQLSubject
 }

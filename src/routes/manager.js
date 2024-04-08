@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router();
-import { getHomeAdmin, getMenuu, setsidebar, getNews, getQLteacher, getQLnoti, getQLnews_a, getQLMenu, getQLSubject } from '../controllers/managerController.js';
+import { getHomeAdmin, getMenuu, setsidebar, getNews, getQLteacher, getQLnoti, getQLnews_a, getQLMenu, getQLSubject, getQLintro } from '../controllers/managerController.js';
 
 
 
@@ -12,6 +12,7 @@ router.get('/3', getQLteacher)
 router.get('/4', getQLMenu)
 router.get('/5', getQLnews_a)
 router.get('/6', getQLSubject)
+router.get('/7', getQLintro)
 router.get('/a', getMenuu)
 
 export default router

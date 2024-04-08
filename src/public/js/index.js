@@ -42,7 +42,7 @@ var formData = {
 
 };
 
-$('#form').submit(function (event) {
+$('#form11').submit(function (event) {
     event.preventDefault();
 
     // Lấy giá trị của tên đăng nhập và mật khẩu từ form
