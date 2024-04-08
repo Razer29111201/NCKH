@@ -15,7 +15,6 @@ const getQLTeacheri = async (req, res) => {
 
 
 // In ra kết quả
-console.log(result);
 const setTeacheri = async (req, res) => {
     var originalString = req.file.path;
 

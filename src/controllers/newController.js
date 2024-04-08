@@ -23,7 +23,15 @@ const setNews = async (req, res) => {
 
 }
 const updateNews = async (req, res) => {
-    var file = req.file.path.split('\\').splice(2).join('/')
+
+    var originalString = req.file.path;
+
+    // Tìm vị trí của chuỗi "src/public/"
+    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+
+    // Cắt chuỗi từ vị trí đó đến hết
+    var result = originalString.substring(startIndex);
+    var file = req.file.path.split('\\').splice(2).join('/') || result
     var id = req.body.id
     var title = req.body.title
     var tomtat = req.body.tomtat

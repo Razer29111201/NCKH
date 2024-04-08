@@ -92,6 +92,7 @@
                                 <th>Nội Dung</th>
                                 <th>Ngày viết</th>
                                 <th>Tác giả</th>
+                                <th>Hình ảnh</th>
 
                             </tr>
                             <% for (var i=0; i < news.length; i++ ) { %>
@@ -118,6 +119,13 @@
                                     <td>
                                         <%= news[i].author %>
                                     </td>
+                                    <td>
+                                        <div class="Admin_img">
+                                            <img src="/<%= news[i].thumb_news%>" alt="">
+
+                                        </div>
+                                    </td>
+
 
 
                                 </tr>
@@ -132,7 +140,10 @@
 
         <%- include('./partials/footer'); %>
             <script src="/js/ck.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <script src="/js/admin.js"> </script>
+            <script src="/js/index.js"> </script>
+
 </body>
 
 </html>
