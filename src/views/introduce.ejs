@@ -37,19 +37,19 @@
             <script async defer crossorigin="anonymous"
                 src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0&appId=954914929286425"
                 nonce="XedaI3Yc"></script>
+            <script>
 
+                document.addEventListener('DOMContentLoaded', function () {
+                    const positionHeaders = document.querySelectorAll('.position-header');
 
-            document.addEventListener('DOMContentLoaded', function () {
-            const positionHeaders = document.querySelectorAll('.position-header');
+                    positionHeaders.forEach(header => {
+                        header.addEventListener('click', function () {
+                            const members = this.nextElementSibling;
+                            members.classList.toggle('hiden')
 
-            positionHeaders.forEach(header => {
-            header.addEventListener('click', function () {
-            const members = this.nextElementSibling;
-            members.classList.toggle('hiden')
-
-            });
-            });
-            });
+                        });
+                    });
+                });
             </script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <script src="/js/index.js"> </script>

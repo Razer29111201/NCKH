@@ -25,7 +25,7 @@
                     </div>
                     <div class="col m-9">
                         <div class="title">
-                            <h2>Quản Lý Thông Báo</h2>
+                            <h2>Quản Lý Môn Học</h2>
                         </div>
                         <div class="btn_direc">
                             <button id="add">Thêm </button>
@@ -49,7 +49,13 @@
                                     </div>
                                     <div class="form_group">
                                         <span>Nhóm?:</span>
-                                        <input id="link" type="text" name="group">
+                                        <select name="group" id="">
+                                            <% for (var i=0; i < subject_group.length; i++ ) { %>
+                                                <option value="<%= subject_group[i].id  %>">
+                                                    <%= subject_group[i].name%>
+                                                </option>
+                                                <% } %>
+                                        </select>
                                     </div>
 
                                     <div class="form_group">

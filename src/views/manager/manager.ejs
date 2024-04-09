@@ -8,61 +8,105 @@
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/grid.css">
     <link rel="stylesheet" href="/css/admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Document</title>
 </head>
 
 <body>
     <%- include('../partials/header'); %>
-        <div class="grid wide">
-            <div class="admin">
+        <% var new_count=news.length ; %>
+            <% var noti_count=noti.length ; %>
+                <% var teacher_count=teacher.length ; %>
+                    <% var news_a_count=news_a.length ; %>
+                        <div class="grid wide">
+                            <div class="admin">
 
-                <div class="row">
-                    <div class="col m-3">
-                        <%- include('../partials/sidebar_admin'); %>
-                    </div>
-                    <div class="col m-9">
-                        <div class="content">
+                                <div class="row">
+                                    <div class="col m-3">
+                                        <%- include('../partials/sidebar_admin'); %>
+                                    </div>
+                                    <div class="col m-9">
+                                        <div class="main-content">
+                                            <div class="stats">
+                                                <div class="stat">
+                                                    <div class="stat-icon">
+                                                        <i class='bx bx-news'></i>
+                                                        <select>
+                                                            <option value="">
+                                                                Tuần
+                                                            </option>
+                                                            <option value="">
+                                                                Tháng
+                                                            </option>
+                                                            <option value="">
+                                                                Năm
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="stat-details">
+                                                        <h2>Tin tức mới</h2>
+                                                        <p class="news-count">
+                                                            <%= new_count%>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="stat">
+                                                    <div class="stat-icon">
+                                                        <i class='bx bxs-notification'></i>
+                                                    </div>
+                                                    <div class="stat-details">
+                                                        <h2>Thông báo mới</h2>
+                                                        <p class="notification-count">
+                                                            <%= noti_count%>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="stat">
+                                                    <div class="stat-icon">
+                                                        <i class='bx bx-book-add'></i>
+                                                    </div>
+                                                    <div class="stat-details">
+                                                        <h2>Bài viết tuyển sinh</h2>
+                                                        <p class="article-count">
+                                                            <%= news_a_count%>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="stat">
+                                                    <div class="stat-icon">
+                                                        <i class='bx bx-book-add'></i>
+                                                    </div>
+                                                    <div class="stat-details">
+                                                        <h2>Số Lượng Giáo Viên</h2>
+                                                        <p class="article-count">
+                                                            <%= teacher_count%>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="stat">
+                                                    <div class="stat-icon">
+                                                        <i class='bx bx-buildings'></i>
+                                                    </div>
+                                                    <div class="stat-details">
+                                                        <h2>Tổng số bài viết</h2>
+                                                        <p class="total-count">23</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
+
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-
-
-                    </div>
-
-                </div>
-
-            </div>
-            <script>
-                var value = document.getElementById('content')
-
-                const menu_item = document.querySelectorAll('.menu_item')
-
-                const content = document.getElementById('content')
-
-                console.log(document.getElementById('admin_content'));
-
-
-                menu_item.forEach((e, i) => {
-                    e.onclick = () => {
-                        if (i == 0) {
-                            content.innerHTML = ` <%- include('../partials/noti.ejs'); %>`;
-                        }
-                        if (i == 1) {
-                            content.innerHTML = ` <%- include('../partials/news_admin.ejs'); %>`;
-                        }
-                        if (i == 2) {
-                            content.innerHTML = ` <%- include('../partials/teacher.ejs'); %>`
-                        }
-                        if (i == 3) {
-                            content.innerHTML = ` <%- include('../partials/teacher.ejs'); %>`
-                        }
-                    }
-                })
-
-            </script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-            <script src="/js/manager.js">
-            </script>
-            <script src="/js/ck.js"></script>
+                        <%- include('../partials/footer'); %>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+                            <script src="/js/manager.js">
+                            </script>
+                            <script src="/js/ck.js"></script>
 
 
 </body>

@@ -24,7 +24,7 @@
                     </div>
                     <div class="col m-9">
                         <div class="title">
-                            <h2>Quản Lý Thông Báo</h2>
+                            <h2>Quản Lý Tuyển sinh</h2>
                         </div>
                         <div class="btn_direc">
                             <button id="add">Thêm </button>
@@ -39,7 +39,7 @@
 
                             </div>
                             <div class="form">
-                                <h2 id="form_title">Thêm Tin Tức</h2>
+                                <h2 id="form_title">Thêm Tuyển sinh</h2>
                                 <form class="news_add " action="" id="form2" enctype="multipart/form-data"
                                     method="post">
                                     <div class="form_group">
@@ -96,7 +96,10 @@
                                     </td>
 
                                     <td>
-                                        <%- news[i].content%>
+                                        <div class="content">
+
+                                            <%- news[i].content%>
+                                        </div>
                                     </td>
 
                                     <td>

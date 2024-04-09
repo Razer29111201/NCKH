@@ -42,11 +42,22 @@ const setQLadminssions = (req, res) => {
         });
 }
 const updateQLadminssions = async (req, res) => {
+    var originalString = req.file.path;
+
+    // Tìm vị trí của chuỗi "src/public/"
+    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+
+    // Cắt chuỗi từ vị trí đó đến hết
+    var result = originalString.substring(startIndex);
+
     const date = now.toLocaleDateString();
-    var thumb = req.file.path.split('\\').splice(2).join('/')
-    var [data] = await pool.execute(`UPDATE news_adminssions SET title='${req.body.title}',content='${req.body.editor}',thumb='${thumb}',date='${date}' WHERE id='${req.body.id}'`)
+    var parts = date.split("/");
+    var convertedDate = parts[0] + "-" + parts[1] + "-" + parts[2];
+    console.log(convertedDate);
+    var thumb = req.file.path.split('\\').splice(2).join('/') || result
+    var [data] = await pool.execute(`UPDATE news_adminssions SET title='${req.body.title}',content='${req.body.editor}',thumb='${thumb}',date='${convertedDate}' WHERE id='${req.body.id}'`)
     if (data) {
-        res.redirect('/tuyensinh')
+        res.redirect('admin/5')
     }
     else {
         res.json(lỗi)
@@ -57,21 +68,32 @@ const delQLadminssions = async (req, res) => {
     var [data] = await pool.execute(`DELETE FROM news_adminssions WHERE  id = '${req.body.id}'`)
 
     if (data) {
-        res.redirect('/tuyensinh')
+        res.redirect('admin/5')
     }
     else {
         res.json(lỗi)
     }
 }
 const addQLadminssions = async (req, res) => {
+    var originalString = req.file.path;
+
+    // Tìm vị trí của chuỗi "src/public/"
+    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+
+    // Cắt chuỗi từ vị trí đó đến hết
+    var result = originalString.substring(startIndex);
     const date = now.toLocaleDateString();
-    console.log(date);
-    var thumb = req.file.path.split('\\').splice(2).join('/')
+
+    var parts = date.split("/");
+    var convertedDate = parts[0] + "-" + parts[1] + "-" + parts[2];
+    console.log(convertedDate);
+
+    var thumb = req.file.path.split('\\').splice(2).join('/') || result
     console.log(req.body, req.file, thumb);
 
-    var [data, er] = await pool.execute(`INSERT INTO news_adminssions( title, content, thumb, date) VALUES ('${req.body.title}','${req.body.editor}','${thumb}','${date}')`)
+    var [data, er] = await pool.execute(`INSERT INTO news_adminssions( title, content, thumb, date) VALUES ('${req.body.title}','${req.body.editor}','${thumb}','${convertedDate}')`)
     if (data) {
-        res.redirect('/tuyensinh')
+        res.redirect('admin/5')
     }
     else {
         res.json(lỗi)

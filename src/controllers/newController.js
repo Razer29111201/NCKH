@@ -65,7 +65,7 @@ const delNoti = async (req, res) => {
     const [data, er] = await pool.execute(`DELETE FROM notification WHERE id ='${id}' `)
 
     if (data) {
-        res.redirect('/news/noti')
+        res.redirect('/admin/1')
     }
 
 
@@ -80,7 +80,7 @@ const setQLNoti = async (req, res) => {
     await pool.execute(`INSERT INTO notification( title, content, date) values ('${title}','${content}','${date}')`)
         .then(data => {
             // Xử lý dữ liệu
-            res.redirect('/news/noti')
+            res.redirect('/admin/1')
         })
         .catch(error => {
             // Xử lý lỗi
@@ -101,7 +101,7 @@ const updateNoti = async (req, res) => {
     const [data, er] = await pool.execute(`UPDATE notification SET title='${title}',content='${content}',date='${date}' WHERE id='${id}'`)
 
     if (data) {
-        res.redirect('/news/noti')
+        res.redirect('/admin/1')
     }
 
 }
