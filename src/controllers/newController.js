@@ -13,7 +13,13 @@ const setNews = async (req, res) => {
     var tomtat = req.body.tomtat
     var content = req.body.editor
     const date = now.toLocaleDateString();
-    var file = req.file.path.split('\\').splice(2).join('/')
+    var originalString = req.file.path;
+    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+
+    // Cắt chuỗi từ vị trí đó đến hết
+    var result = originalString.substring(startIndex);
+    var file = req.file.path.split('\\').splice(2).join('/') || result
+
 
     const newsgroup = req.body.newsgroup
     const [data, err] = await pool.execute(`INSERT INTO news(title, tomtat, content, date, author, idcmt, idgroup,thumb_news) values ('${title}','${tomtat}','${content}','${date}','${1}','${0}','${newsgroup}','${file}')`)
