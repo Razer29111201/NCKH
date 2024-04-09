@@ -27,21 +27,30 @@
                                     </div>
                                     <div class="col m-9">
                                         <div class="main-content">
+                                            <div class="loc">
+                                                <div class="stat">
+                                                    <label for="getSelect">Chọn cốc thời gian muốn lọc:</label>
+                                                    <div class="time">
+
+                                                        <div class="time_select">
+                                                            <label for="">Thời gian bắt đầu:</label>
+                                                            <input type="date" id="fr_time">
+                                                        </div>
+                                                        <div class="time_select">
+                                                            <label for="">Thời gian kết thúc:</label>
+                                                            <input type="date" id="last_time">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
                                             <div class="stats">
                                                 <div class="stat">
                                                     <div class="stat-icon">
                                                         <i class='bx bx-news'></i>
-                                                        <select>
-                                                            <option value="">
-                                                                Tuần
-                                                            </option>
-                                                            <option value="">
-                                                                Tháng
-                                                            </option>
-                                                            <option value="">
-                                                                Năm
-                                                            </option>
-                                                        </select>
+
                                                     </div>
                                                     <div class="stat-details">
                                                         <h2>Tin tức mới</h2>
@@ -105,7 +114,9 @@
                         <%- include('../partials/footer'); %>
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                             <script src="/js/manager.js">
+
                             </script>
+                            <script src="/js/all_admin.js"></script>
                             <script src="/js/ck.js"></script>
 
 

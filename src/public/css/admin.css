@@ -57,3 +57,24 @@
     margin: 5px 0 0;
     color: #007bff;
 }
+
+.loc {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.time {
+    display: flex;
+
+}
+
+.time_select {
+    padding: 10px;
+}
+
+.time_select input {
+    height: 26px;
+    width: 140px;
+}

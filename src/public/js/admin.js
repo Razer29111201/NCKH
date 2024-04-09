@@ -18,7 +18,7 @@ const editor = document.querySelector('.ck-editor__editable')
 console.log(btn_add);
 add.onclick = () => {
     form.classList.remove('hiden')
-    form1.setAttribute('action', 'news')
+    form1.setAttribute('action', '/news')
     btn_add.classList.remove('hiden')
     form_title.innerText = 'Thêm Tin Tức'
 }

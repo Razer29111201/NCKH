@@ -70,6 +70,13 @@ const getQLintro = async (req, res) => {
     res.render('QL_introduce.ejs', { introduce: introduce, sidebar: sidebar, data: await getMenu() })
 
 }
+const setAllAdmin = async (req, res) => {
+
+    console.log(req.body);
+    const [sidebar, ere] = await pool.execute(`SELECT * FROM news WHERE date BETWEEN '${req.body.firTime}' AND '${req.body.lastTime}';`)
+    res.json({ sidebar: sidebar })
+
+}
 export {
-    getHomeAdmin, getQLintro, getMenuu, setsidebar, getQLteacher, getNews, getQLnoti, getQLnews_a, getQLMenu, getQLSubject
+    getHomeAdmin, getQLintro, getMenuu, setsidebar, getQLteacher, getNews, getQLnoti, getQLnews_a, getQLMenu, getQLSubject, setAllAdmin
 }
