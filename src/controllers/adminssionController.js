@@ -57,7 +57,7 @@ const updateQLadminssions = async (req, res) => {
     var thumb = req.file.path.split('\\').splice(2).join('/') || result
     var [data] = await pool.execute(`UPDATE news_adminssions SET title='${req.body.title}',content='${req.body.editor}',thumb='${thumb}',date='${convertedDate}' WHERE id='${req.body.id}'`)
     if (data) {
-        res.redirect('admin/5')
+        res.redirect('/admin/5')
     }
     else {
         res.json(lỗi)
@@ -68,7 +68,7 @@ const delQLadminssions = async (req, res) => {
     var [data] = await pool.execute(`DELETE FROM news_adminssions WHERE  id = '${req.body.id}'`)
 
     if (data) {
-        res.redirect('admin/5')
+        res.redirect('/admin/5')
     }
     else {
         res.json(lỗi)
@@ -93,7 +93,7 @@ const addQLadminssions = async (req, res) => {
 
     var [data, er] = await pool.execute(`INSERT INTO news_adminssions( title, content, thumb, date) VALUES ('${req.body.title}','${req.body.editor}','${thumb}','${convertedDate}')`)
     if (data) {
-        res.redirect('admin/5')
+        res.redirect('/admin/5')
     }
     else {
         res.json(lỗi)

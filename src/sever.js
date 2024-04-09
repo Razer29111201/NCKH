@@ -5,7 +5,8 @@ import initRouter from "./routes/main.js"
 import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
 const app = express()
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true, limit: "20mb" }))
+
 app.use(cookieParser());
 dotenv.config()
 const port = process.env.port || 8080

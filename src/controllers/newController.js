@@ -131,11 +131,11 @@ const getintroduce = async (req, res) => {
 }
 const updateintroduce = async (req, res) => {
     var id = req.body.id
-    var title = req.body.title
-    var content = req.body.editor
-    const date = now.toLocaleDateString();
 
-    const [data, er] = await pool.execute(`UPDATE notification SET title='${title}',content='${content}',date='${date}' WHERE id='${id}'`)
+    var content = req.body.editor
+
+
+    const [data, er] = await pool.execute(`UPDATE introduce SET content='${content}' WHERE id='${id}'`)
 
     if (data) {
         res.redirect('/admin/7')
@@ -143,11 +143,9 @@ const updateintroduce = async (req, res) => {
 }
 const delintroduce = async (req, res) => {
     var id = req.body.id
-    var title = req.body.title
-    var content = req.body.editor
-    const date = now.toLocaleDateString();
 
-    const [data, er] = await pool.execute(`UPDATE notification SET title='${title}',content='${content}',date='${date}' WHERE id='${id}'`)
+
+    const [data, er] = await pool.execute(`DELETE FROM introduce WHERE id ='${id}'`)
 
     if (data) {
         res.redirect('/admin/7')

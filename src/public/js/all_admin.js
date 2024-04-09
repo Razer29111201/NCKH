@@ -41,4 +41,3 @@ const getvalue = (a, b) => {
         }
     })
 }
-getvalue()

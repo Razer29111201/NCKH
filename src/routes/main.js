@@ -15,8 +15,8 @@ const route = express.Router()
 const initRouter = (app) => {
 
     app.get('/notification/:id', getNotification)
-    app.use('/tuyensinh', admissions)
     app.get('/', getHomePage)
+    app.use('/tuyensinh', admissions)
     app.use('/introduce', introduce)
     app.use('/teacher', teacher)
     app.use('/menu', menu)

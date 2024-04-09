@@ -74,7 +74,11 @@ const setAllAdmin = async (req, res) => {
 
     console.log(req.body);
     const [news, ere] = await pool.execute(`SELECT * FROM news WHERE date BETWEEN '${req.body.firTime}' AND '${req.body.lastTime}';`)
-    res.json({ sidebar: sidebar })
+    if (news) {
+
+        res.json({ sidebar: sidebar })
+    }
+
 
 }
 export {

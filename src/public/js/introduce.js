@@ -27,7 +27,7 @@ const editBtn = (e) => {
 
         edit.onclick = () => {
             form.classList.remove('hiden')
-            form1.setAttribute('action', '/introduce/edit')
+            form1.setAttribute('action', '/introduce/update')
             btn_edit.classList.remove('hiden')
             form_title.innerText = 'Cập Nhật Tin Tức'
         }
