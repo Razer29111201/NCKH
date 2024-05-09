@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/user/info_user.css">
+
+
+    <title>Đăng Ký</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title"> Đăng Ký</h1>
+        <form action="/user/register" method="post" id="form">
+            <div class="input-list ">
+                <label for="name">Nhập Tên</label>
+                <input type="text" name="name" id="name">
+                <small class="err"></small>
+            </div>
+
+            <div class="input-list ">
+                <label for="user">Tên Đăng Nhập</label>
+                <input type="text" name="user" id="user">
+                <small class="err"></small>
+            </div>
+
+            <div class="input-list ">
+                <label for="nber">Nhập SDT</label>
+                <input type="text" name="nber" id="nber">
+                <small class="err"></small>
+            </div>
+
+            <div class="input-list ">
+                <label for="email">Nhập Email</label>
+                <input type="email" name="email" id="email">
+                <small class="err"></small>
+            </div>
+
+            <div class="input-list ">
+                <label for="pass">Nhập Mật Khẩu</label>
+                <input type="password" name="pass" id="pass">
+                <small class="err"></small>
+            </div>
+
+            <div class="input-list ">
+                <label for="comfimpass">Nhập Lại Mật Khẩu</label>
+                <input type="password" name="comfimpass" id="comfimpass">
+                <small class="err"></small>
+            </div>
+            <div class="input-list ">
+                <label for="date">Ngày sinh</label>
+                <input type="date" name="date" id="date">
+                <small class="err"></small>
+            </div>
+            <div class="input-list ">
+                <label for="cars">Giới Tính</label>
+                <select id="cars" name="sex" aria-placeholder="Chọn danh xưng">
+                    <option value="1">Nam</option>
+                    <option value="2">Nữ</option>
+                    <option value="3">Khác</option>
+                </select>
+                <input type="text" value="0" hidden name="role">
+            </div>
+            <div class="input-list address" id="select">
+                <div class="third">
+                    <label for="province">Tỉnh/Thành phố:</label>
+                    <select id="province" name="province">
+                        <option value="">
+                            Thành Phố Hà Nội
+                        </option>
+
+                        <!-- Thêm các option khác tại đây -->
+                    </select>
+                </div>
+
+                <div class="third">
+                    <label for="district">Quận/Huyện:</label>
+                    <select id="district" name="district">
+                        <option value="">
+                            Thành Phố Hà Nội
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="third">
+                    <label for="ward">Phường/Xã:</label>
+                    <select id="ward" name="ward">
+                        <option value="">
+                            Thành Phố Hà Nội
+                        </option>
+
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="note">
+                <span>Người dùng dịch vụ của chúng tôi có thể đã tải thông tin liên hệ của bạn lên Sever.</span>
+
+            </div>
+            <div class="dieukhoan">
+
+                <a href="/account">Bạn Đã Có Tài Khoản?</a>
+            </div>
+
+            <div class="btn">
+                <button id="btn-submit" type="submit">Đăng Ký</button>
+            </div>
+
+
+
+
+
+        </form>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="/js/resgister.js"> </script>
+
+
+
+</body>
+
+</html>

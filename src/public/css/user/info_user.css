@@ -1,0 +1,290 @@
+.card {
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e3e3;
+    border-radius: 20px;
+}
+
+.opacity {
+    opacity: 0.6;
+}
+
+.card-body {
+    color: #f7c938;
+    padding: 20px 30px;
+}
+
+.card_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.btn_edit {
+    margin-right: 20px;
+}
+
+.btn {
+    padding: 8px 15px;
+    border: 1px solid #CADDFF;
+    box-sizing: border-box;
+    border-radius: 6px;
+    color: #000000;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 12px;
+    margin-right: 12px;
+}
+
+.user {
+    margin: 20px;
+    transition: transform 0.3s;
+
+    margin-top: 60px;
+}
+
+.img_info {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+
+.img_info:hover {
+    transform: scale(1.1);
+}
+
+.avt {
+    position: relative;
+}
+
+.click_img {
+    margin-top: 20px;
+    width: 210px;
+    margin-left: 10px;
+    font-size: 14px;
+    position: absolute;
+    box-shadow: 0 0 6px #b8b8b8;
+    top: 120px;
+    z-index: 10;
+    background-color: #fff;
+    padding: 10px 20px;
+    animation: show_select_avt 250ms ease;
+}
+
+@keyframes show_select_avt {
+    0% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+
+.click_img::after {
+    content: "";
+    position: absolute;
+    border-width: 14px 10px;
+    border-color: transparent transparent #efefef transparent;
+    border-style: solid;
+    top: -28px;
+    left: 30%;
+
+}
+
+.click_img p,
+label {
+    opacity: 0.7;
+    line-height: 2;
+    cursor: pointer;
+}
+
+.click_img i {
+    margin-right: 10px;
+}
+
+.user-img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-info {
+    margin-top: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    height: auto;
+}
+
+.close {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.img_info {
+    border: 3px solid #f7c938;
+    display: flex;
+    justify-content: center;
+}
+
+.info_list {
+    list-style: none;
+    margin-top: 40px;
+}
+
+.info_name {
+    display: flex;
+
+}
+
+.info_name h2 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.name {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.info_item {
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+
+}
+
+.info_label {
+    width: 100px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.info_data {
+    margin-left: 20px;
+    flex: 1;
+
+}
+
+.name .info_data {
+    font-size: 14px;
+    margin-top: 10px;
+    opacity: 0.6;
+}
+
+.info_data input {
+    outline: none;
+    border: none;
+    height: 40px;
+    border-bottom: 1px solid #bbb;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.user .flex {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+nav ul li {
+    padding: 0 10px;
+}
+
+
+nav ul li:last-child {
+    color: #f7c938;
+}
+
+nav ul li:last-child a {
+    color: #f7c938;
+}
+
+.info_data span {
+    color: red;
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.form-group {
+    display: flex;
+}
+
+select {
+    color: #333;
+    height: 40px;
+    width: calc(100% - 10px);
+    padding: 10px;
+
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+}
+
+.info_data .hiden {
+    display: none;
+}
+
+.save_avt {
+    position: absolute;
+    bottom: 10px;
+    right: -130px;
+}

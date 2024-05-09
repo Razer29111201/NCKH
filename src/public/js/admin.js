@@ -1,4 +1,4 @@
-var add = document.getElementById('add')
+var add = document.getElementById('adda')
 var del = document.getElementById('del')
 var id = document.getElementById('id')
 var exit = document.getElementById('exit')
@@ -11,31 +11,20 @@ var form_ = document.querySelector('.form_')
 var formdel = document.getElementById('formdel')
 var btn_add = document.getElementById('btn_addd')
 var btn_edit = document.getElementById('btn_edit')
-var cb = document.querySelectorAll('.checkbox')
+var cb = document.querySelectorAll('.editButton')
 const title = document.getElementById('title')
-const tomtat = document.getElementById('tomtat')
+const link = document.getElementById('link')
 const editor = document.querySelector('.ck-editor__editable')
-console.log(btn_add);
+console.log(exit);
 add.onclick = () => {
+    console.log("a");
     form.classList.remove('hiden')
-    form1.setAttribute('action', '/news')
+    form1.setAttribute('action', '/news/banner/add')
     btn_add.classList.remove('hiden')
-    form_title.innerText = 'Thêm Tin Tức'
+    btn_edit.classList.add('hiden')
+    form_title.innerText = 'Tạo Banner'
 }
-edit.onclick = () => {
-    form.classList.remove('hiden')
-    form1.setAttribute('action', '/news/edit')
-    btn_edit.classList.remove('hiden')
-    form_title.innerText = 'Cập Nhật Tin Tức'
-}
-if (id.value === '') {
-    formdel.setAttribute('onsubmit', 'return false')
 
-}
-else {
-    formdel.setAttribute('onsubmit', 'return true')
-
-}
 exit.onclick = () => {
     form.classList.add('hiden')
     btn_add.classList.add('hiden')
@@ -44,28 +33,31 @@ exit.onclick = () => {
 form_.onclick = () => {
     form.classList.add('hiden')
 }
+document.addEventListener('click', (event) => {
+    const target = event.target;
 
+    if (!target.closest('.wpaper') && !target.closest('#adda') && !target.closest('.editButton')) {
+        form.classList.add('hiden')
+    }
+});
 
 
 
 cb.forEach((e, i) => {
-    e.onchange = () => {
+    e.onclick = () => {
 
-        if (e.checked === true) {
-            var a = e.parentElement.parentElement.querySelectorAll('td')
-            console.log(a[0].querySelector('input').value);
-            id.value = a[0].querySelector('input').value
-            idE.value = a[0].querySelector('input').value
-            title.value = a[1].innerText
-            tomtat.value = a[2].innerText
+        btn_add.classList.add('hiden')
+        form.classList.remove('hiden')
+        form1.setAttribute('action', '/news/banner/edit')
+        btn_edit.classList.remove('hiden')
+        form_title.innerText = 'Cập Nhật Banner'
+        var a = e.parentElement.parentElement.querySelectorAll('td')
+        console.log(a);
+        console.log(a[0].innerText);
+        id.value = a[0].innerText
+        title.value = a[1].innerText
+        link.value = a[4].innerText
 
 
-            window.editor.setData(a[3].innerHTML);
-            formdel.setAttribute('onsubmit', 'return true')
-        }
-        else {
-            id.value = ''
-            formdel.setAttribute('onsubmit', 'return false')
-        }
     }
 })

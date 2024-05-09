@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f5f7;
+}
+
+/* Thiết lập nội dung */
+.content {
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Thiết lập tiêu đề tin tức */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Thiết lập nội dung tin tức */
+p {
+    line-height: 2;
+}
+
+.content img {
+    text-align: center;
+}
+
+.table,
+.image {
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+nav ul li {
+    padding: 0 10px;
+}
+
+
+nav ul li:last-child {
+    color: #f7c938;
+}
+
+nav ul li:last-child a {
+    color: #f7c938;
+}
+
+.author {
+    padding: 20px 10px;
+    text-align: right;
+}
+
+.time {
+    font-style: italic;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    border-right: 1px solid #ecebeb;
+    width: 30%;
+
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-top: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+
+}
+
+.sidebar ul li {
+    padding: 10px 0;
+    line-height: 2;
+}
+
+.main-content {
+    margin: 10px 30px;
+}
+
+.news-article {
+    display: flex;
+    margin-top: 20px;
+}
+
+.news-article img {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    object-fit: contain;
+}
+
+.news_title {
+    text-align: left;
+}
+
+.news_title h2 {
+    margin-bottom: 10px;
+    height: 24px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.summary {
+    font-size: 14px;
+    height: 50px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.news_title .author,
+.news_title .date {
+    font-size: 12px;
+    text-align: left;
+    margin-left: 10px;
+    padding: 3px 0;
+    opacity: 0.6;
+}
+
+.news_title {
+    margin-left: 20px;
+    flex: 1;    
+}
+
+.thumb_news {
+
+    width: 300px;
+    height: 200px;
+}

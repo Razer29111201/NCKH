@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/news/index.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <%- include('../partials/sidebar_admin_news'); %>
+            <div class="flex_1">
+                <div>
+
+                    <%- include('../partials/header_admin'); %>
+
+                        <div class="content">
+
+                            <div class="content_body">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <div class="body_title">
+                                            <h3>Cập Nhật Tin Tức</h3>
+                                        </div>
+                                        <form action="/news/edit" id="form_add" class="form_add" method="post"
+                                            enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label for="title">Tiêu đề:</label>
+                                                <input type="text" name="id" hidden value="<%= news.id %>">
+                                                <input type="text" value=" <%= news.title %>" id="title" name="title"
+                                                    required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="summary">Tóm tắt:</label>
+                                                <input id="summary" name="summary" value="<%= news.tomtat %>"
+                                                    required></input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="image">Hình ảnh:</label>
+                                                <div>
+
+                                                    <input type="file" id="image" name="img" accept="image/*" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="content">Nội dung:</label>
+                                                <textarea id="content" name="content"></textarea>
+                                            </div>
+                                            <div class="form-group flex ">
+                                                <label for="" style="margin: 0;"> Nhóm tin:</label>
+
+                                                <select name="select" class="dropdown-select">
+                                                    <option value="">Select…</option>
+                                                    <% for (var i=0; i < news_group.length; i++ ) { %>
+                                                        <option value=" <%= news_group[i].id %>">
+                                                            <%= news_group[i].name %>
+                                                        </option>
+                                                        <% } %>
+                                                </select>
+
+                                            </div>
+
+                                            <div class="form-group"><input type="submit" id="btn" value="Lưu tin tức">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+
+    </div>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+    <script>
+
+
+        document.getElementById("form_add").addEventListener("submit", function (event) {
+            // Hiển thị cửa sổ xác nhận
+            var isConfirmed = confirm("Bạn chắc chắn muốn thêm tin tức?");
+
+            // Kiểm tra xem người dùng đã xác nhận hay không
+            if (!isConfirmed) {
+                // Nếu không xác nhận, ngăn chặn việc submit form
+                event.preventDefault();
+            }
+        });
+
+
+
+
+    </script>
+    <script src="/js/ck.js"></script>
+
+    <script>
+        window.editor.setData('<%- news.content %>')
+    </script>
+
+
+    <script src="/js/news/index.js"> </script>
+
+</body>
+
+</html>

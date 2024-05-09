@@ -6,11 +6,12 @@ const getMenu = async () => {
 }
 const getHomePage = async (req, res) => {
     const [data, err] = await pool.execute('SELECT * FROM `user`')
+    const [banner, erer] = await pool.execute('SELECT * FROM `banner`')
 
     const [notification, e] = await pool.execute('SELECT * FROM `notification`')
 
 
-    res.render("index.ejs", { data: await getMenu(), noti: notification })
+    res.render("index.ejs", { data: await getMenu(), noti: notification, banner: banner })
 }
 const getNotification = async (req, res) => {
     var id = req.params.id

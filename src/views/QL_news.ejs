@@ -97,7 +97,8 @@
                             </tr>
                             <% for (var i=0; i < news.length; i++ ) { %>
                                 <tr>
-                                    <td><input class="checkbox" value=" <%= news[i].id %>" type="checkbox">
+                                    <td id="col<%= news[i].id %>"><input class="checkbox" value=" <%= news[i].id %>"
+                                            type="checkbox">
 
                                     </td>
                                     <td>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/user/info_user.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include('../partials/header'); %>
+
+        <div class="body">
+            <div class="grid wide">
+                <nav>
+                    <ul>
+                        <li><a href="/">Trang chủ</a></li>>
+                        <li><a href="/news">Thông Tin Người Dùng</a></li>
+                    </ul>
+                </nav>
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="info">
+                            <div class="user-container">
+                                <div class="user">
+                                    <div class="card_header">
+                                        <div class="info_name">
+                                            <div class="avt">
+
+                                                <div class="img_info">
+
+                                                    <img src="/<%= info.avt %>" alt="User Image" class="user-img">
+                                                </div>
+                                                <div class="click_img hiden">
+                                                    <p id="see_avt">
+                                                        <i class="fa-regular fa-image"></i>
+                                                        Xem ảnh đại diện
+                                                    </p>
+                                                    <form method="post" action="/user/avt"
+                                                        enctype="multipart/form-data">
+                                                        <i class="fa-solid fa-user-plus"></i>
+                                                        <label for="img">Cập nhật ảnh đại điện</label>
+                                                        <input type="file" id="img" name="img" hidden>
+                                                        <button id="saveavt" hidden></button>
+                                                    </form>
+                                                </div>
+                                                <div class="save_avt hiden">
+                                                    <label for="saveavt" class="btn">Lưu thay đổi</label>
+                                                </div>
+                                            </div>
+                                            <div class="name">
+                                                <h2>
+                                                    <%= info.subname + " " +info.name %>
+                                                </h2>
+                                                <div class="info_data ">
+                                                    <% if (info.role===1) { %>
+                                                        <p>Người quản lý</p>
+                                                        <% } else if (info.role===2) { %>
+                                                            <p>Người viết bài</p>
+                                                            <% } else { %>
+                                                                <p>Người dùng</p>
+                                                                <% } %>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="btn_edit">
+                                            <button class="btn" id="edit">Chỉnh Sửa </button>
+                                            <button id="cancel" class="btn" hidden>Cancel</button>
+                                        </div>
+
+                                    </div>
+                                    <form action="/user/editprofile" method="post" id="form">
+                                        <div class="info_list">
+                                            <li class="info_item">
+                                                <div class="info_label">
+                                                    Tên Đầy Đủ:
+                                                </div>
+                                                <div class="info_data">
+
+                                                    <input type="text" id="name" name="name"
+                                                        value=" <%= info.subname.trim() + " " +info.name.trim() %>">
+                                                    <input type="text" hidden name="id" value="<%= id%>" id="">
+                                                    <span id="err"></span>
+
+
+
+                                                </div>
+
+                                            </li>
+                                            <li class="info_item">
+                                                <div class="info_label">
+                                                    Ngày Sinh:
+                                                </div>
+                                                <div class="info_data">
+                                                    <input type="text" id="date" name="date"
+                                                        value="<%= birth.trim() %>">
+                                                    <span id="err"></span>
+
+                                                </div>
+
+                                            </li>
+                                            <li class="info_item">
+                                                <div class="info_label">
+                                                    Email:
+                                                </div>
+                                                <div class="info_data">
+                                                    <input type="text" id="email" name="email"
+                                                        value="<%= info.email.trim() %>">
+                                                    <span id="err"></span>
+
+
+                                                </div>
+
+                                            </li>
+                                            <li class="info_item">
+                                                <div class="info_label">
+                                                    SDT:
+                                                </div>
+                                                <div class="info_data">
+                                                    <input type="text" name="sdt" id="sdt" value="+84 <%= info.sdt %>">
+                                                    <span id="err"></span>
+
+
+
+                                                </div>
+
+                                            </li>
+
+                                            <li class="info_item">
+                                                <div class="info_label">
+
+                                                    Quê Quán:
+                                                </div>
+                                                <div class="info_data" id="addre">
+                                                    <input type="text" id="address" name="address"
+                                                        value=" <%= info.address.trim() %>">
+                                                    <span id="err"></span>
+                                                    <div class="form-group hiden" id="select">
+                                                        <div class="third">
+                                                            <label for="province">Tỉnh/Thành phố:</label>
+                                                            <select id="province" name="province">
+                                                                <option value="<%= tinh %>">
+                                                                    <%= tinh %>
+                                                                </option>
+
+                                                                <!-- Thêm các option khác tại đây -->
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="third">
+                                                            <label for="district">Quận/Huyện:</label>
+                                                            <select id="district" name="district">
+                                                                <option value="<%= huyen %>">
+                                                                    <%= huyen %>
+                                                                </option>
+
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="third">
+                                                            <label for="ward">Phường/Xã:</label>
+                                                            <select id="ward" name="ward">
+                                                                <option value="<%= xa %>">
+                                                                    <%= xa %>
+                                                                </option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+
+                                            </li>
+                                            <div class="info_item" style="justify-content: right;">
+                                                <input type="button" value="Lưu Thay Đổi" hidden id="btn_save"
+                                                    class="btn">
+                                            </div>
+                                        </div>
+                                </div>
+                                <!-- Add more user profiles as needed -->
+                            </div>
+
+                            <!-- Popup modal for displaying full-size image -->
+                            <div id="myModal" class="modal">
+                                <span class="close">&times;</span>
+                                <img class="modal-content" id="img01">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <%- include('../partials/footer'); %>
+        </div>
+        <script>
+            var fullname = document.getElementById('name')
+            fullname.onchange = event => {
+                const regex = /^\S+\s\S+$/
+                const istrue = regex.test(event.target.value)
+                console.log(istrue);
+                validateForm(fullname, istrue, "Hãy nhập từ 2 từ trở lên.... ví dụ: Lê Thương")
+            }
+            var email = document.getElementById('email')
+            email.onchange = event => {
+                const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+                const istrue = regex.test(event.target.value)
+                console.log(istrue);
+                validateForm(email, istrue, "Hãy nhập từ đúng email")
+            }
+
+            var sdt = document.getElementById('sdt')
+            sdt.onchange = event => {
+                const regex = /^[1-9][0-9]{8}$/
+                const spaceIndex = event.target.value.indexOf(" ");
+                const dataAfterFirstSpace = event.target.value.substring(spaceIndex + 1);
+                console.log(dataAfterFirstSpace);
+                const istrue = regex.test(dataAfterFirstSpace)
+                if (!istrue) {
+                    if (dataAfterFirstSpace[0] == 0) {
+                        validateForm(sdt, false, "Hãy bỏ số 0 ở đầu....")
+                    }
+                    validateForm(sdt, false, "Hãy nhập 9 số và bỏ số 0 ở đầu ....")
+                }
+                else {
+
+                    validateForm(sdt, true, "Hãy nhập 9 số và bỏ số 0 ở đầu ....")
+                }
+
+            }
+            var address = document.getElementById('address')
+            var addre = document.getElementById('addre')
+
+
+            email.onchange = event => {
+
+                console.log(istrue);
+                validateForm(email, event.target, "Hãy nhập từ đúng email")
+            }
+
+
+
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="/js/index.js"> </script>
+        <script src="/js/info_user.js"> </script>
+
+</body>
+
+</html>

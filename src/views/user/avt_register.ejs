@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/user/avt.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <title>Thêm ảnh đại diện</title>
+</head>
+
+<body>
+    <div class="grid wide" style="    max-width: 1000px;">
+        <div class="card">
+            <div class="container">
+
+                <h1>Thêm ảnh đại diện</h1>
+                <form action="/user/img" method="post" enctype="multipart/form-data">
+                    <input type="text" name="id" value="<%= id %>" hidden>
+                    <img id="avatar-preview" src="/img/user.png" alt="Avatar Preview">
+                    <input onchange="saveAvatar()" type="file" name="img" id="avatar-input">
+                    <label for="avatar-input">Thêm hình ảnh</label>
+                    <input type="submit" id="save_img" value="Lưu Ảnh" class="btnsave hidden">
+                </form>
+                <div class="btn">
+                    <label class="back">Quay Lại</label>
+
+                    <label class="skip" for="">Bỏ Qua</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function saveAvatar() {
+            document.querySelector('.btnsave').classList.remove('hidden')
+            // Lấy đối tượng input chứa ảnh
+            var input = document.getElementById('avatar-input');
+
+            // Kiểm tra xem người dùng đã chọn ảnh chưa
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                // Đọc dữ liệu ảnh
+                reader.onload = function (e) {
+                    var preview = document.getElementById('avatar-preview');
+                    preview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+</body>
+
+
+
+</html>

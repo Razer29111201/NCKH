@@ -37,6 +37,7 @@ const getvalue = (a, b) => {
             lastTime: b
         },
         success: function (data) {
+            $(".news-count").text = data.lenght
             console.log(data);
         }
     })

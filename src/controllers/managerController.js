@@ -1,4 +1,5 @@
 import pool from "../configs/connetDB.js"
+import jwt from "jsonwebtoken";
 import { getMenu } from "./homepageController.js"
 
 const getHomeAdmin = async (req, res) => {
@@ -11,13 +12,27 @@ const getHomeAdmin = async (req, res) => {
     res.render('manager/manager.ejs', { noti: noti, news_a: news_adminssions, teacher: teacher, newsgroup: data, news: news, sidebar: sidebar, data: await getMenu() })
 }
 const getNews = async (req, res) => {
+    const id_sendnoti = req.params.id
     const [data, err] = await pool.execute('SELECT * FROM newsgroup')
-    const [news, er] = await pool.execute('SELECT * FROM news')
+    const [newsactive, e] = await pool.execute('SELECT * FROM news where status = 0')
+    const [news, er] = await pool.execute('SELECT * FROM news where status = 1')
     const [teacher, errr] = await pool.execute('SELECT * FROM `teacher`')
     const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
     const [noti, r] = await pool.execute('SELECT * FROM notification')
-    console.log(sidebar);
-    res.render('QL_news.ejs', { noti: noti, newsgroup: data, teacher: teacher, news: news, sidebar: sidebar, data: await getMenu() })
+    var token = req.cookies.acc
+    var id = jwt.verify(token, 'shhhhh', function (err, decoded) {
+        return decoded
+    });
+
+    var [dataa, errrr] = await pool.execute('SELECT * FROM user WHERE id = ?', [id])
+    var role = dataa[0].role
+    if (role == 1) {
+        res.render('news/QL_news.ejs', { noti: noti, newsgroup: data, teacher: teacher, news: newsactive, unnews: news, sidebar: sidebar, data: await getMenu(), id: id_sendnoti, role: 1 })
+    }
+    res.render('news/QL_news.ejs', { noti: noti, newsgroup: data, teacher: teacher, news: newsactive, unnews: news, sidebar: sidebar, data: await getMenu(), id: id_sendnoti, role: 0 })
+
+
+
 }
 const getQLteacher = async (req, res) => {
 
@@ -27,11 +42,21 @@ const getQLteacher = async (req, res) => {
 
     res.render('QL_teacher.ejs', { teacher: teacher, sidebar: sidebar, gt: gt, data: await getMenu() })
 }
-const getQLnoti = async (req, res) => {
+const getQLUser = async (req, res) => {
+    var birthdate = []
 
-    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
-    const [noti, r] = await pool.execute('SELECT * FROM notification')
-    res.render('QL_noti.ejs', { noti: noti, sidebar: sidebar, data: await getMenu() })
+    const [user, ere] = await pool.execute('SELECT * FROM `user`')
+    user.forEach(e => {
+        var isoDateString = e.birth;
+        var date = new Date(isoDateString);
+        var day = date.getDate();
+        var month = date.getMonth() + 1; // Tháng bắt đầu từ 0 nên cần cộng thêm 1
+        var year = date.getFullYear();
+        birthdate.push((day < 10 ? '0' : '') + day + '-' + (month < 10 ? '0' : '') + month + '-' + year)
+    })
+    console.log(birthdate, birthdate[0]);
+
+    res.render('user/QL_user.ejs', { user: user, birthdate: birthdate })
 }
 const getQLnews_a = async (req, res) => {
     var [data] = await pool.execute('SELECT * FROM `news_adminssions`')
@@ -74,13 +99,39 @@ const setAllAdmin = async (req, res) => {
 
     console.log(req.body);
     const [news, ere] = await pool.execute(`SELECT * FROM news WHERE date BETWEEN '${req.body.firTime}' AND '${req.body.lastTime}';`)
+
     if (news) {
 
-        res.json({ sidebar: sidebar })
+        res.json({ sidebar: news })
     }
 
 
 }
+
+const getAddNews = async (req, res) => {
+    const [news_group, ere] = await pool.execute('SELECT * FROM `newsgroup`')
+    res.render('news/add_news.ejs', { news_group: news_group })
+
+
+
+}
+const getNewsgroup = async (req, res) => {
+
+
+    const [news_group, ere] = await pool.execute('SELECT * FROM `newsgroup`')
+
+    res.render('news/QL_group.ejs', { data: news_group })
+
+}
+const getQLbanner = async (req, res) => {
+
+
+    const [banner, ere] = await pool.execute('SELECT * FROM `banner`')
+
+    res.render('news/QL_Banner.ejs', { data: banner })
+
+}
 export {
-    getHomeAdmin, getQLintro, getMenuu, setsidebar, getQLteacher, getNews, getQLnoti, getQLnews_a, getQLMenu, getQLSubject, setAllAdmin
+    getHomeAdmin, getQLintro, getMenuu, setsidebar, getQLteacher, getNews, getQLUser, getQLnews_a, getQLMenu, getQLSubject, setAllAdmin, getAddNews, getNewsgroup, getQLbanner
+
 }

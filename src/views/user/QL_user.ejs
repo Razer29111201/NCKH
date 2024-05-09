@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/admin_css.css">
+    <link rel="stylesheet" href="/css/user/ql_user.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <%- include('../partials/sidebar_admin_news'); %>
+
+            <div class="flex_1">
+                <div>
+                    <%- include('../partials/header_admin'); %>
+
+                        <div class="content">
+                            <div class="body_title">
+                                <h3>Tải Khoản</h3>
+                            </div>
+                            <div class="content_body">
+
+                                <div class="body_btn-add">
+                                    <a href="/user/register">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Thêm User
+                                    </a>
+                                </div>
+
+                                <div class="content_table">
+                                    <table id="newsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <div>STT</div>
+                                                </th>
+                                                <th>
+                                                    Họ
+                                                </th>
+                                                <th>Tên</th>
+                                                <th>Tên đăng nhập</th>
+                                                <th>Ngày sinh</th>
+                                                <th>Email</th>
+                                                <th>Sđt</th>
+                                                <th>Địa Chỉ</th>
+                                                <th>Quyền</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (var i=0; i < user.length; i++ ) { %>
+                                                <tr id="col<%= user[i].id %>">
+                                                    <td>
+                                                        <%= user[i].id %>
+                                                    </td>
+                                                    <td style="max-width: auto; width: auto ;">
+                                                        <%= user[i].subname %>
+                                                    </td>
+                                                    <td>
+                                                        <%= user[i].name %>
+                                                    </td>
+                                                    <td>
+                                                        <%= user[i].username %>
+                                                    </td>
+                                                    <td>
+                                                        <%= birthdate[i] %>
+                                                    </td>
+                                                    <td>
+                                                        <%= user[i].email %>
+                                                    </td>
+                                                    <td>
+                                                        <%= user[i].sdt %>
+                                                    </td>
+                                                    <td>
+                                                        <%= user[i].address %>
+                                                    </td>
+                                                    <td>
+                                                        <% if (user[i].role==1) { %>
+                                                            <p>Người quản lý</p>
+                                                            <% } else if (user[i].role==2) { %>
+                                                                <p>Người viết bài</p>
+                                                                <% } else { %>
+                                                                    <p>Người dùng</p>
+                                                                    <% } %>
+                                                    </td>
+                                                    <td><a class="btn_table btn_charole ">Đổi quyền</a>
+                                                    </td>
+                                                    <td> <a><button class="btn_table btn_e">Sửa</button></a> </td>
+                                                    <td><button class=" btn_table  deleteButton">Xóa</button></td>
+
+                                                </tr>
+                                                <% } %>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="modal hiden role_change" id="role_change">
+                                        <div class="role">
+
+                                            <form action="/user/change_role" id="formrole" method="post">
+                                                <h3>Thay đổi Quyền</h3>
+                                                <div class="name_title">
+                                                    <label for="">Tên:</label>
+                                                    <p></p>
+                                                </div>
+                                                <input type="text" name="id" id="idUser" hidden>
+                                                <div class="role_title">
+                                                    <label for="">Quyền:</label>
+                                                    <p></p>
+                                                </div>
+                                                <select name="role" id="">
+
+                                                    <option value="1">
+                                                        Người quản lý
+                                                    </option>
+                                                    <option value="2">Người viết bài</option>
+                                                    <option value="0">Người dùng</option>
+                                                </select>
+                                                <div class="btn_submit">
+
+                                                    <button class="btn" type="submit">Lưu thay đổi</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="modal form_res hiden">
+                                        <div class="modal_body">
+                                            <div class="item_edit">
+                                                <form action="/user/edit_ql" method="post" id="form">
+                                                    <h1 class="title"> Đăng Ký</h1>
+                                                    <div class="input-list ">
+                                                        <label for="name">Nhập Tên</label>
+                                                        <input type="text" name="id" id="ida" hidden>
+                                                        <input type="text" name="name" id="nam">
+                                                        <small class="err"></small>
+                                                    </div>
+
+                                                    <div class="input-list ">
+                                                        <label for="user">Tên Đăng Nhập</label>
+                                                        <input type="text" name="user" id="user">
+                                                        <small class="err"></small>
+                                                    </div>
+
+                                                    <div class="input-list ">
+                                                        <label for="nber">Nhập SDT</label>
+                                                        <input type="text" name="nber" id="nber">
+                                                        <small class="err"></small>
+                                                    </div>
+
+                                                    <div class="input-list ">
+                                                        <label for="email">Nhập Email</label>
+                                                        <input type="email" name="email" id="email">
+                                                        <small class="err"></small>
+                                                    </div>
+
+
+                                                    <div class="input-list ">
+                                                        <label for="date">Ngày sinh</label>
+                                                        <input type="date" name="date" id="dat">
+                                                        <small class="err"></small>
+                                                    </div>
+                                                    <div class="btn" style="border: none;">
+                                                        <button id="btn-submit" type="submit">Lưu thay Đổi</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        var role = document.querySelectorAll('.btn_charole')
+        var nam = document.querySelector('.name_title p')
+        var role_change = document.getElementById('role_change')
+        var roleName = document.querySelector('.role_title p')
+
+        role.forEach((item, index) => {
+
+            item.onclick = () => {
+                var tr = item.parentNode.parentNode
+                var listtd = tr.querySelectorAll('td')
+                const id = listtd[0].outerText
+                document.getElementById("idUser").value = id
+                nam.innerText = listtd[1].outerText + " " + listtd[2].outerText
+                roleName.innerText = listtd[8].outerText
+                role_change.classList.remove('hiden')
+            }
+        })
+
+        var edit = document.querySelectorAll('.btn_e')
+        var nameInput = document.getElementById('nam');
+        var ida = document.getElementById('ida');
+        var userInput = document.getElementById('user');
+        var nberInput = document.getElementById('nber');
+        var emailInput = document.getElementById('email');
+        var passInput = document.getElementById('pass');
+        var dateInput = document.getElementById('dat');
+        var carsSelect = document.getElementById('cars');
+
+        edit.forEach((item, u) => {
+            console.log("e");
+            item.onclick = () => {
+                var form_res = document.querySelector('.form_res')
+
+                var tr = item.parentNode.parentNode.parentNode
+                var listtd = tr.querySelectorAll('td')
+                const id = listtd[0].outerText
+                console.log(listtd[1].outerText + " " + listtd[2].outerText);
+                ida.value = id
+                nameInput.value = listtd[1].outerText + " " + listtd[2].outerText
+                userInput.value = listtd[3].outerText
+                nberInput.value = listtd[6].outerText
+                emailInput.value = listtd[5].outerText
+                var dateString = listtd[4].outerText
+                var parts = dateString.split("-"); // Phân tách chuỗi thành mảng các phần tử, sử dụng dấu "-"
+                var newDateString = parts[2] + "-" + parts[1] + "-" + parts[0];
+                dateInput.value = newDateString
+
+                form_res.classList.remove('hiden')
+            }
+        })
+        var form_res = document.querySelector('.form_res')
+        document.addEventListener('click', (event) => {
+            const target = event.target;
+
+            if (!target.closest('#form') && !target.closest('.btn_e')) {
+                form_res.classList.add('hiden')
+            }
+            if (!target.closest('.btn_charole') && !target.closest('#formrole')) {
+                document.querySelector('.role_change').classList.add('hiden')
+
+            }
+        });
+        var deleteButton = document.querySelectorAll('.deleteButton')
+        deleteButton.forEach((item, i) => {
+            item.onclick = () => {
+                var tr = item.parentNode.parentNode
+                var listtd = tr.querySelectorAll('td')
+                const id = listtd[0].outerText
+                $.ajax({
+                    url: '/user/del_ql',
+                    type: 'POST',
+                    data: {
+                        id: id
+
+                    },
+                    success: function (data) {
+                        window.location.href = '/admin/1'
+                    },
+                    error: function (xhr, status, error) {
+                    }
+
+                }
+                )
+            }
+        })
+
+
+    </script>
+    <script>
+
+    </script>
+    <script src="/js/ck.js"></script>
+    <script src="/js/noti.js"> </script>
+    <script src="/js/index.js"> </script>
+    <script src="/js/admin_js.js"> </script>
+</body>
+
+</html>

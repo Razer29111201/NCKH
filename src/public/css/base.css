@@ -8,7 +8,9 @@ html {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-
+body {
+    background-color: #f4f5f7;
+}
 
 .header_top {
     background-image: url(https://uhl.edu.vn/wp-content/themes/k2_hl_edu/assets/images/bg_head_top.jpg);
@@ -95,10 +97,11 @@ html {
 
 /* header */
 .header {
-    background-color: #ededed;
+    background-color: #f4f5f7;
 }
 
 .header-content {
+    position: relative;
     display: flex;
     height: 150px;
     align-items: center;
@@ -107,14 +110,12 @@ html {
 }
 
 .header-img {
-    width: 157px;
-    height: 100px;
-    margin-left: 20px;
+    height: 100%;
     overflow: hidden;
 }
 
 .header-img img {
-    height: 100%;
+    height: 101%;
     object-fit: contain;
 }
 
@@ -144,7 +145,9 @@ html {
 }
 
 .header-right {
-    position: relative;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     height: 100%;
     width: 250px;
 }
@@ -386,32 +389,6 @@ a {
     text-decoration: none;
 }
 
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td,
-th {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-
-th:first-child {
-    width: 5%;
-}
-
-
-td img {
-    width: 100px;
-}
-
 .btnn {
     margin: 50px 10px 20px;
     justify-content: right;
@@ -479,10 +456,7 @@ td img {
 
 }
 
-.active {
-    background-color: #fff46e;
-    color: #fff;
-}
+
 
 
 
@@ -571,15 +545,23 @@ select {
 }
 
 .form {
+    border-radius: 10px;
     z-index: 1;
     position: absolute;
-    background-color: #dddddd;
+    background-color: #ebebeb;
     padding: 30px;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -70%);
 
-    transform: translate(-50%, -50%);
+}
 
+
+.form input {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ebebeb;
+    padding: 0 10px;
 }
 
 .form h2 {
@@ -776,4 +758,61 @@ footer {
 
 .comment {
     margin-top: 30px;
+}
+
+.d {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* slide */
+.slideshow-container {
+    position: relative;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.slide {
+    display: none;
+}
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.6s ease;
+    border-radius: 50%;
+}
+
+.next {
+    right: 0;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+    background-color: #717171;
 }

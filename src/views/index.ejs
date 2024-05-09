@@ -20,34 +20,27 @@
         <div class="body">
             <div class="grid wide">
                 <div class="body_top">
-                    <div class="row">
-                        <div class="col m-8">
-                            <div class="slide">
-                                <img src="https://vcdn1-dulich.vnecdn.net/2021/07/16/1-1626437591.jpg?w=460&h=0&q=100&dpr=2&fit=crop&s=i2M2IgCcw574LT-bXFY92g"
-                                    alt="" class="slides">
-                                <img src="https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg"
-                                    alt="" class=" slides">
-                                <img src="https://vcdn1-dulich.vnecdn.net/2021/07/16/1-1626437591.jpg?w=460&h=0&q=100&dpr=2&fit=crop&s=i2M2IgCcw574LT-bXFY92g"
-                                    alt="" class="slides">
-                            </div>
-                        </div>
-                        <div class="col m-4">
-                            <div class="noti">
-                                <div class="noti_header">
-                                    <h3>Thông Báo</h3>
-                                </div>
-                                <ul class="noti_list">
-                                    <% for (var i=0; i < noti.length; i++) { %>
-                                        <li class="noti_item"><a href="/notification/<%= noti[i].id %>">
-                                                <%= noti[i].title %>
-                                            </a></li>
-                                        <% } %>
-                                </ul>
 
+                    <div class="slideshow-container">
+                        <% for (var i=0; i < banner.length; i++ ) { %>
+                            <div class="slide fade">
+                                <img src="  <%= banner[i].image %>" style="width:100%">
                             </div>
-                        </div>
+                            <% } %>
+
+
+                                <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
+                                <a class="next" onclick="moveSlide(1)">&#10095;</a>
                     </div>
+
+                    <div style="text-align:center">
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+
                 </div>
+
                 <div class="news">
                     <div class="row">
                         <div class="col m-8">
@@ -297,9 +290,38 @@
             </div>
             <%- include('./partials/footer'); %>
         </div>
-        <script src="https://www.w3schools.com/lib/w3.js"></script>
         <script>
-            w3.slideshow(".slides", 1500);
+            let slideIndex = 1;
+            showSlides(slideIndex);
+
+            function moveSlide(n) {
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                let i;
+                const slides = document.getElementsByClassName("slide");
+                const dots = document.getElementsByClassName("dot");
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex - 1].style.display = "block";
+                dots[slideIndex - 1].className += " active";
+            }
+
+            setInterval(function () {
+                moveSlide(1);
+            }, 2000);
+
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="/js/index.js"> </script>
