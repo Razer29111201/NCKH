@@ -52,7 +52,7 @@ const istrueSidebar = () => {
                         </div>
                         <ul class="sidebar_item-list">
                             <li class="sidebar_item-item">
-                                <a href="">
+                                <a href="/admin/1">
                                     <i class="fa-solid fa-list"></i>
                                     Danh sách tài khoản
                                 </a>

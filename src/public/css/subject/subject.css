@@ -1,0 +1,187 @@
+.subject_select {
+    margin-top: 20px;
+}
+
+.subject_select select,
+.modal_form select {
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid #dee2e6;
+    font-weight: 400;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    height: 2rem;
+    padding: 0 10px;
+    outline: none;
+}
+
+.subject_info {
+    margin-top: 50px;
+}
+
+.subject_info_title {
+    width: 250px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.subject_info_title h3 {
+    font-weight: 500;
+}
+
+.subject_price {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.subject_price_real {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-left: 20px;
+    text-decoration: line-through;
+}
+
+.subject_price_sale {
+    font-size: 20px;
+    color: #1F3BB3;
+}
+
+.subject_sologan {
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.subject_tomtat {
+    margin-top: 20px;
+}
+
+.subject_tomtat p {
+
+    line-height: 1.5;
+    height: 70px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.subject_header {
+    margin-top: 20px;
+    display: flex;
+    position: relative;
+}
+
+.subject_img {
+    width: 30%;
+
+
+}
+
+.subject_img img {
+    width: 100%;
+}
+
+.subject_title {
+    margin-left: 20px;
+
+}
+
+.absolute_btn {
+    position: absolute;
+    top: 5%;
+    right: 20px;
+}
+
+.btn_addSubject {
+    position: absolute;
+    top: -60px;
+    right: 20px;
+}
+
+.content_table {
+    position: relative;
+}
+
+.form_addSub {
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modal {
+    z-index: 9999998;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(20, 20, 20);
+    opacity: 0.3;
+    display: flex;
+    justify-content: center;
+}
+
+.modal_form {
+    border-radius: 5px;
+    margin-top: 100px;
+    z-index: 9999999;
+    width: 400px;
+    padding: 0 20px;
+    background-color: #fff;
+    animation: show_form 100ms linear;
+}
+
+.modal_form h3 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form-group input {
+    margin-left: 0;
+}
+
+.form-group input[type=submit] {
+    margin-bottom: 20px;
+}
+
+.container .hiden {
+    display: none;
+}
+
+@keyframes show_form {
+    0% {
+        transform: translateY(-60px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.ck-editor__main {
+    height: 200px;
+    overflow: auto;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+}
+
+.ck-editor__main::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+}
+
+.modal_form_info {
+    width: 600px;
+    margin-top: 40px;
+}

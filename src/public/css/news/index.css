@@ -232,6 +232,7 @@ html {
 }
 
 .form-group input {
+
     margin-top: 5px;
     width: 100%;
     border: 1px solid #dee2e6;
@@ -265,7 +266,7 @@ select:focus {
     background: #1F3BB3;
     color: #ffffff;
     height: 40px;
-    width: 100px;
+
 }
 
 .form-group:last-child input:hover {

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/admin_css.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <%- include('../partials/sidebar_admin_news'); %>
+
+            <div class="flex_1">
+                <div>
+                    <%- include('../partials/header_admin'); %>
+
+                        <div class="content">
+                            <div class="body_title">
+                                <h3>Tin Tức</h3>
+                            </div>
+                            <div class="content_body">
+                                <div class="body_btn-add">
+                                    <a href="/admin/add_news">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Thêm Giáo Viên
+                                    </a>
+                                </div>
+                                <div class="content_table">
+                                    <table>
+                                        <tr>
+                                            <th>Stt</th>
+                                            <th>Hình Ảnh</th>
+                                            <th>Tên</th>
+                                            <th>Ngày Sinh</th>
+                                            <th>SĐT</th>
+                                            <th>Địa Chỉ</th>
+                                            <th>Chức Vụ</th>
+                                            <th>Vị trí</th>
+                                            <th>Mail</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+
+                                        </tr>
+                                        <% for (var i=0; i < teacher.length; i++ ) { %>
+                                            <tr>
+                                                <td>
+                                                    <%= teacher[i].id %>
+                                                </td>
+                                                <td style="width: 200px;display: flex;justify-content: center;">
+                                                    <div class="Admin_img">
+                                                        <img style="object-fit: cover;" src=" /<%=teacher[i].img %>"
+                                                            alt="">
+
+                                                    </div>
+                                                </td>
+                                                <td style="width: 200px;">
+                                                    <%= teacher[i].name %>
+                                                </td>
+
+                                                <td>
+                                                    <%= birthdate[i]%>
+                                                </td>
+                                                <td>
+                                                    <%= teacher[i].phone %>
+                                                </td>
+                                                <td style="width: 260px;">
+
+
+                                                    <%- teacher[i].address %>
+
+                                                </td>
+                                                <td>
+                                                    <% if (teacher[i].position_group===1) { %>
+                                                        Giám đốc
+                                                        <% } else if (teacher[i].position_group===2) { %>
+                                                            Phó giám đốc
+                                                            <% } else if (teacher[i].position_group===3) { %>
+                                                                Giảng viên
+                                                                <% } else if (teacher[i].position_group===4) { %>
+                                                                    Nhân viên
+                                                                    <% } %>
+                                                </td>
+                                                <td>
+                                                    <%= teacher[i].email %>
+                                                </td>
+                                                <td>
+                                                    <%= teacher[i].position %>
+                                                </td>
+                                                <td><a class="btn_table "
+                                                        href="/teacher/<%= teacher[i].id %>">Detail</a>
+                                                </td>
+                                                <td> <a href="/teacher/editTeacher/<%= teacher[i].id %>"><button
+                                                            class="btn_table editButton">Sửa</button></a>
+                                                </td>
+                                                <td><button class=" btn_table  deleteButton">Xóa</button>
+                                                </td>
+
+
+
+
+                                            </tr>
+                                            <% } %>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script>
+
+
+
+                const btn_del = document.querySelectorAll('.deleteButton')
+                btn_del.forEach(item => {
+                    item.onclick = () => {
+                        var tr = item.parentNode.parentNode
+                        var listtd = tr.querySelectorAll('td')
+                        const id = listtd[0].outerText
+                        $.ajax({
+                            url: '/teacher/del',
+                            type: 'POST',
+                            data: {
+                                id: id
+
+                            },
+                            success: function (data) {
+                                window.location.href = '/admin/3'
+                            },
+                            error: function (xhr, status, error) {
+                            }
+
+                        }
+                        )
+
+                    }
+                })
+                const btnAccept = document.querySelectorAll(".btnD")
+
+                btnAccept.forEach(item => {
+                    item.onclick = () => {
+                        console.log("a");
+                        var tr = item.parentNode.parentNode
+                        var listtd = tr.querySelectorAll('td')
+                        const id = listtd[0].outerText
+                        const title = listtd[1].outerText
+                        $.ajax({
+                            url: '/news/accept',
+                            type: 'POST',
+                            data: {
+                                id: id,
+                                title: title
+
+                            },
+                            success: function (data) {
+                                window.location.href = '/admin/2'
+                            },
+                            error: function (xhr, status, error) {
+                            }
+
+                        }
+                        )
+                    }
+                })
+            </script>
+            <script src="/js/ck.js"></script>
+            <script src="/js/noti.js"> </script>
+            <script src="/js/index.js"> </script>
+            <script src="/js/admin_js.js"> </script>
+</body>
+
+</html>

@@ -241,8 +241,8 @@ const setavt = async (req, res, next) => {
 }
 const change_role = async (req, res, next) => {
     const id = req.body.id
-    const role = req.body.id
-
+    const role = req.body.roleid
+    console.log(role);
 
     await pool.execute(`UPDATE user SET role='${role}' WHERE id='${id}'`)
         .then(re => {

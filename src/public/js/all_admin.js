@@ -24,7 +24,7 @@ last_time.onchange = () => {
     var fistime = formatDate(fr_time.value);
     var lasttime = formatDate(last_time.value);
     getvalue(fistime, lasttime)
-    console.log(fistime, lasttime);
+   
 
 
 }
@@ -38,7 +38,7 @@ const getvalue = (a, b) => {
         },
         success: function (data) {
             $(".news-count").text = data.lenght
-            console.log(data);
+        
         }
     })
 }

@@ -9,7 +9,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <style>
+        select {
+            margin-top: 5px;
+            width: 100%;
+            border: 1px solid #dee2e6;
+            font-weight: 400;
+            font-size: 0.875rem;
+            border-radius: 4px;
+            height: 2rem;
+            margin-left: 10px;
+            padding: 0 10px;
+            outline: none;
+        }
+    </style>
     <title>Document</title>
 </head>
 
@@ -28,44 +41,58 @@
                                     <div class="card-body">
 
                                         <div class="body_title">
-                                            <h3>Thêm Tin Tức</h3>
+                                            <h3>Cập Nhật Giáo Viên</h3>
                                         </div>
-                                        <form action="/news" id="form_add" class="form_add" method="post"
-                                            enctype="multipart/form-data">
+                                        <form class="form_add" enctype="multipart/form-data" action="/teacher/update"
+                                            id="form_add" method="post">
                                             <div class="form-group">
-                                                <label for="title">Tiêu đề:</label>
-                                                <input type="text" id="title" name="title" required>
+                                                <span>Họ Tên:</span>
+                                                <input type="text " value="<%= teacher.id%>" id="id" name="id" hidden>
+                                                <input id="title" type="text" value="<%= teacher.name %>" name="name">
+                                            </div>
+                                            <div class="form-group">
+                                                <span>Số Điện Thoại:</span>
+                                                <input id="sdt" type="text" value="<%= teacher.phone %>" name="title">
+                                            </div>
+                                            <div class="form-group">
+                                                <span>Ngày sinh:</span>
+                                                <input id="date" type="date" value="<%= brith_date %>" name="date">
+                                            </div>
+                                            <div class="form-group">
+                                                <span>Thumb: </span>
+                                                <input type="file" name="img">
+                                            </div>
+                                            <div class="form-group">
+                                                <span> Địa Chỉ:</span>
+                                                <input id="address" type="text" value="<%= teacher.address %>"
+                                                    name="address">
+                                            </div>
+                                            <div class="form-group">
+                                                <span> Vị Trí:</span>
+                                                <input id="position" type="text" value="<%= teacher.position %>"
+                                                    name="position">
+                                            </div>
+                                            <div class="form-group">
+                                                <span> Mail:</span>
+                                                <input id="mail" type="mail" value="<%= teacher.email %>" name="mail">
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="summary">Tóm tắt:</label>
-                                                <input id="summary" name="summary" required></input>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="image">Hình ảnh:</label>
-                                                <div>
-                                                    <input type="file" id="image" name="img" accept="image/*" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="content">Nội dung:</label>
-                                                <textarea id="content" name="content"></textarea>
-                                            </div>
-                                            <div class="form-group flex ">
-                                                <label for="" style="margin: 0;"> Nhóm tin:</label>
-                                                <select name="select" class="dropdown-select">
-                                                    <option value="">Select…</option>
-                                                    <% for (var i=0; i < news_group.length; i++ ) { %>
-                                                        <option value=" <%= news_group[i].id %>">
-                                                            <%= news_group[i].name %>
+                                                <span> Chức vụ:</span>
+                                                <select name="gt" id="gt">
+                                                    <% for (var i=0; i < gt.length; i++ ) { %>
+                                                        <option value="<%= gt[i].id %>">
+                                                            <%= gt[i].name %>
                                                         </option>
                                                         <% } %>
                                                 </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" id="btn" value="Lưu thay đổi">
 
                                             </div>
 
-                                            <div class="form-group"><input type="submit" id="btn" value="Thêm Tin Tức">
-                                            </div>
+
                                         </form>
                                     </div>
                                 </div>
