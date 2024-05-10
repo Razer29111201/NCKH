@@ -114,7 +114,7 @@ select_choise.onchange = (e) => {
             if (data != 1) {
 
                 var subject_sologan = document.querySelector('.subject_sologan p')
-
+                console.log(data);
                 subject_info_title.innerText = data.data.name
                 subject_price_real.innerText = data.data.price + "Đ"
                 subject_price_sale.innerText = (data.data.price / 100) * (100 - data.data.sale) + "Đ"
@@ -178,12 +178,15 @@ editDetail.onclick = () => {
         success: function (data) {
             console.log(data);
             window.editor.setData(data.content)
+            document.getElementById('price').value = data.data.price;
+            document.getElementById('sale').value = data.data.sale;
         }
     })
     var subject_sologan = document.querySelector('.subject_sologan p')
     document.getElementById('titleDetail').value = subject_info_title.innerText;
     document.getElementById('slogan').value = subject_sologan.innerText;
-    document.getElementById('price').value = subject_price_real.innerText;
+
+
 
     document.getElementById('tomtat').value = subject_tomtat.innerText;
 
