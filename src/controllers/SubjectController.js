@@ -1,17 +1,17 @@
 import pool from "../configs/connetDB.js"
 import { Buffer } from 'buffer';
 import { getMenu } from "./homepageController.js";
+import fs from 'fs';
+import util from 'util';
+const readFileAsync = util.promisify(fs.readFile);
 const setSubject = async (req, res) => {
     console.log(req.body.group);
-    var originalString = req.file.path;
+    const fileData = await readFileAsync(req.file.path);
 
-    // Tìm vị trí của chuỗi "src/public/"
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-
-    // Cắt chuỗi từ vị trí đó đến hết
-    var result = originalString.substring(startIndex);
-    var file = req.file.path.split('\\').splice(2).join('/') || result
-    await pool.execute(`INSERT INTO subject(name, id_sbjgroup,img) VALUES ('${req.body.name}','${req.body.group}','${file}')`)
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
+    await pool.execute(`INSERT INTO subject(name, id_sbjgroup,img) VALUES ('${req.body.name}','${req.body.group}','${imageUrl}')`)
         .then(ress => {
             res.redirect('/admin/6')
         })
@@ -22,16 +22,13 @@ const setSubject = async (req, res) => {
 
 }
 const updateSubject = async (req, res) => {
-    var originalString = req.file.path;
+    const fileData = await readFileAsync(req.file.path);
 
-    // Tìm vị trí của chuỗi "src/public/"
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
 
-    // Cắt chuỗi từ vị trí đó đến hết
-    var result = originalString.substring(startIndex);
-    var file = req.file.path.split('\\').splice(2).join('/') || result
-
-    await pool.execute(`UPDATE subject SET name='${req.body.name}',id_sbjgroup='${req.body.group}', img ='${file}' WHERE id='${req.body.id}'`)
+    await pool.execute(`UPDATE subject SET name='${req.body.name}',id_sbjgroup='${req.body.group}', img ='${imageUrl}' WHERE id='${req.body.id}'`)
         .then(ress => {
             res.redirect('/admin/6')
         })
@@ -83,15 +80,16 @@ const addDetail = async (req, res) => {
     const sale = req.body.sale;
     const tomtat = req.body.tomtat;
     const content = req.body.content;
-    var originalString = req.file.path;
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-    var result = originalString.substring(startIndex);
-    var file = req.file.path.split('\\').splice(2).join('/') || result
+    const fileData = await readFileAsync(req.file.path);
+
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
     const currentDate = new Date();
 
     const mysqlFormattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
     console.log(req.body);
-    await pool.execute(`INSERT INTO subject_info( name, slogan, price, tomtat, content, sale, img, date, idSj) VALUES ('${title}','${slogan}','${price}','${tomtat}','${content}','${sale}','${file}','${mysqlFormattedDate}','${idDetail}')`)
+    await pool.execute(`INSERT INTO subject_info( name, slogan, price, tomtat, content, sale, img, date, idSj) VALUES ('${title}','${slogan}','${price}','${tomtat}','${content}','${sale}','${imageUrl}','${mysqlFormattedDate}','${idDetail}')`)
         .then(re => {
             res.redirect("/admin/6")
         })
@@ -106,15 +104,16 @@ const editDetail = async (req, res) => {
     const sale = req.body.sale;
     const tomtat = req.body.tomtat;
     const content = req.body.content;
-    var originalString = req.file.path;
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-    var result = originalString.substring(startIndex);
-    var file = req.file.path.split('\\').splice(2).join('/') || result
+    const fileData = await readFileAsync(req.file.path);
+
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
     const currentDate = new Date();
 
     const mysqlFormattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
     console.log(req.body);
-    await pool.execute(`UPDATE subject_info SET name = '${title}', slogan = '${slogan}', price = '${price}', tomtat = '${tomtat}', content = '${content}', sale = '${sale}', img = '${file}', date = '${mysqlFormattedDate}'  WHERE idSj = '${idDetail.trim()}'`)
+    await pool.execute(`UPDATE subject_info SET name = '${title}', slogan = '${slogan}', price = '${price}', tomtat = '${tomtat}', content = '${content}', sale = '${sale}', img = '${imageData}', date = '${mysqlFormattedDate}'  WHERE idSj = '${idDetail.trim()}'`)
         .then(re => {
             res.redirect("/admin/6")
         })

@@ -1,7 +1,9 @@
 
 import pool from "../configs/connetDB.js"
 import { getMenu } from "./homepageController.js";
-
+import fs from 'fs';
+import util from 'util';
+const readFileAsync = util.promisify(fs.readFile);
 const getTeacheri = async (req, res) => {
     const [data, er] = await pool.execute('SELECT * FROM `teacher`')
     console.log(data);
@@ -16,18 +18,15 @@ const getQLTeacheri = async (req, res) => {
 
 // In ra kết quả
 const setTeacheri = async (req, res) => {
-    var originalString = req.file.path;
+    const fileData = await readFileAsync(req.file.path);
 
-    // Tìm vị trí của chuỗi "src/public/"
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-
-    // Cắt chuỗi từ vị trí đó đến hết
-    var result = originalString.substring(startIndex);
-    console.log(req.body, req.file);
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
     const data = req.body
-    var file = req.file.path.split('\\').splice(2).join('/') || result
+
     console.log('a' + file);
-    await pool.execute(`INSERT INTO teacher(name, brith, phone, address, position, position_group, email, img) VALUES( '${data.name}', '${data.date}', '${data.title}', '${data.address}', '${data.position}', '${data.gt}', '${data.mail}', '${file}')`)
+    await pool.execute(`INSERT INTO teacher(name, brith, phone, address, position, position_group, email, img) VALUES( '${data.name}', '${data.date}', '${data.title}', '${data.address}', '${data.position}', '${data.gt}', '${data.mail}', '${imageUrl}')`)
         .then(ress => {
             res.redirect('/admin/3')
         })
@@ -36,18 +35,19 @@ const setTeacheri = async (req, res) => {
         })
 }
 const updateTeacheri = async (req, res) => {
-    var originalString = req.file.path;
+   
 
-    // Tìm vị trí của chuỗi "src/public/"
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+    const fileData = await readFileAsync(req.file.path);
 
-    // Cắt chuỗi từ vị trí đó đến hết
-    var result = originalString.substring(startIndex);
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
+   
     console.log(req.body, req.file);
     const data = req.body
-    var file = req.file.path.split('\\').splice(2).join('/') || result
+   
     console.log('a' + file);
-    await pool.execute(`UPDATE teacher SET name='${data.name}',brith='${data.date}',phone='${data.title}',address='${data.address}',position='${data.position}',position_group='${data.gt}',email='${data.mail}',img='${file}' WHERE id='${data.id}'`)
+    await pool.execute(`UPDATE teacher SET name='${data.name}',brith='${data.date}',phone='${data.title}',address='${data.address}',position='${data.position}',position_group='${data.gt}',email='${data.mail}',img='${imageUrl}' WHERE id='${data.id}'`)
         .then(re => {
             res.redirect('/admin/3')
         })

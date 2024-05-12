@@ -49,28 +49,31 @@
                             </div>
                             <div class="news_new">
                                 <div class="news_outstanding">
-                                    <div class="row">
-                                        <div class="col m-6">
-                                            <div class="outstanding_img">
-                                                <img src="<%= news[0].thumb_news %>" alt="">
+                                    <a href="/news/newsDetail <%=news[i].id %>">
+                                        <div class="row">
+
+                                            <div class="col m-6">
+                                                <div class="outstanding_img">
+                                                    <img src="<%= result[0] %>" alt="">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col m-6">
-                                            <div class="new_title">
-                                                <h4>
-                                                    <%= news[0].title %>
-                                                </h4>
-                                                <p>
-                                                    <%= news[0].tomtat %>
-                                                </p>
-                                                <div class="new_time">
-                                                    <span><i class="fa-solid fa-calendar"></i>
-                                                        <%= news[0].date %>
-                                                    </span>
+                                            <div class="col m-6">
+                                                <div class="new_title">
+                                                    <h4>
+                                                        <%= news[0].title %>
+                                                    </h4>
+                                                    <p>
+                                                        <%= news[0].tomtat %>
+                                                    </p>
+                                                    <div class="new_time">
+                                                        <span><i class="fa-solid fa-calendar"></i>
+                                                            <%= news[0].date %>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
 
 
                                 </div>
@@ -80,29 +83,34 @@
                                 <div class="row">
                                     <% for (var i=1; i < 5; i++ ) { %>
                                         <div class="col m-6">
+
                                             <div class="news_outstanding">
+
                                                 <div class="row">
 
                                                     <div class="col m-6">
                                                         <div class="outstanding_img news_smail_img ">
-                                                            <img src="<%= news[i].thumb_news %>" alt="">
+                                                            <img src="<%= result[i] %>" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="col m-6">
-                                                        <div class="new_title news_smail">
-                                                            <div class="new_time">
-                                                                <a href="/news/newsDetail<%=news[i].id %>"
-                                                                    class="smail_time"><i
-                                                                        class="fa-solid fa-calendar"></i>
-                                                                    <%=news[i].date %>
-                                                                </a>
-                                                            </div>
-                                                            <h4>
-                                                                <%= news[i].title %>
-                                                            </h4>
+                                                        <a href="/news/newsDetail<%=news[i].id %>">
+                                                            <div class="new_title news_smail">
+                                                                <div class="new_time">
+                                                                    <span class="smail_time">
+                                                                        <i class="fa-solid fa-calendar"></i>
+                                                                        <%=news[i].date %>
+                                                                    </span>
+                                                                </div>
+                                                                <h4>
+                                                                    <%= news[i].title %>
+                                                                </h4>
 
-                                                        </div>
+                                                            </div>
+                                                        </a>
                                                     </div>
+
+
                                                 </div>
 
 

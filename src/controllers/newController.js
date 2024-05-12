@@ -2,6 +2,9 @@
 import pool from "../configs/connetDB.js"
 import { getMenu } from "./homepageController.js";
 import jwt from "jsonwebtoken";
+import fs from 'fs';
+import util from 'util';
+const readFileAsync = util.promisify(fs.readFile);
 const now = new Date();
 
 const idlast = async (req, res) => {
@@ -57,22 +60,23 @@ const geteditNews = async (req, res) => {
 
 }
 const setNews = async (req, res) => {
+    const fileData = await readFileAsync(req.file.path);
+
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
     const id = await idlast() + 1
     var title = req.body.title
     var tomtat = req.body.summary
     var content = req.body.content
     const date = now.toLocaleDateString();
-    var originalString = req.file.path;
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-    const mysqlDateTimeString = now.toISOString().slice(0, 19).replace('T', ' ');
-    // Cắt chuỗi từ vị trí đó đến hết
-    var result = originalString.substring(startIndex);
-    var file = req.file.path.split('\\').splice(2).join('/') || result
 
+
+    const mysqlDateTimeString = now.toISOString().slice(0, 19).replace('T', ' ');
 
     const newsgroup = req.body.select
     await pool.execute(`INSERT INTO notification( title, link, type, time, iduser, status) VALUES ('${title}','/admin/2/${id}','1','${mysqlDateTimeString}','${iduser(req)}','0')`)
-    const [data, err] = await pool.execute(`INSERT INTO news(title, tomtat, content, date, author, idcmt, idgroup,thumb_news,status) values ('${title}','${tomtat}','${content}','${date}','${1}','${0}','${newsgroup}','${file}','1')`)
+    const [data, err] = await pool.execute(`INSERT INTO news(title, tomtat, content, date, author, idcmt, idgroup,thumb_news,status) values ('${title}','${tomtat}','${content}','${date}','${1}','${0}','${newsgroup}','${imageUrl}','1')`)
 
 
     res.redirect('/admin/2')
@@ -80,26 +84,31 @@ const setNews = async (req, res) => {
 }
 const updateNews = async (req, res) => {
 
-    var originalString = req.file.path;
+    try {
+        const fileData = await readFileAsync(req.file.path);
 
-    // Tìm vị trí của chuỗi "src/public/"
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+        // Chuyển đổi dữ liệu nhị phân thành base64
+        const imageData = fileData.toString('base64');
+        const imageUrl = `data:image/jpeg;base64,${imageData}`;
+        console.log(fileData);
 
-    // Cắt chuỗi từ vị trí đó đến hết
-    var result = originalString.substring(startIndex);
-    var file = req.file.path.split('\\').splice(2).join('/') || result
-    var id = req.body.id
-    var title = req.body.title
-    var tomtat = req.body.summary
-    var content = req.body.content
-    const date = now.toLocaleDateString();
-    const mysqlDateTimeString = now.toISOString().slice(0, 19).replace('T', ' ');
-    const newsgroup = req.body.select
-    await pool.execute(`INSERT INTO notification( title, link, type, time, iduser, status) VALUES ('${title}','/admin/2/${id}','2','${mysqlDateTimeString}','${iduser(req)}','0')`)
-    const [data, err] = await pool.execute(`UPDATE news SET title='${title}',tomtat='${tomtat}',content='${content}',date='${date}',author='${1}',idcmt='${0}',idgroup='${newsgroup}',thumb_news = '${file}', status='0' WHERE id = ${id}`)
+        const id = req.body.id;
+        const title = req.body.title;
+        const tomtat = req.body.summary;
+        const content = req.body.content;
+        const date = new Date().toLocaleDateString(); // Sử dụng new Date() thay vì now
+        const mysqlDateTimeString = new Date().toISOString().slice(0, 19).replace('T', ' '); // Sử dụng new Date() thay vì now
+        const newsgroup = req.body.select;
 
+        // Thực hiện các truy vấn SQL
+        await pool.execute(`INSERT INTO notification( title, link, type, time, iduser, status) VALUES ('${title}','/admin/2/${id}','2','${mysqlDateTimeString}','${iduser(req)}','0')`);
+        const [result, _] = await pool.execute(`UPDATE news SET title='${title}',tomtat='${tomtat}',content='${content}',date='${date}',author='${1}',idcmt='${0}',idgroup='${newsgroup}',thumb_news = '${imageData}', status='0' WHERE id = ${id}`);
 
-    res.redirect('/admin/2')
+        res.redirect('/admin/2');
+    } catch (error) {
+        console.error('Error updating news:', error);
+        res.status(500).send('Internal Server Error');
+    }
 
 }
 const delNews = async (req, res) => {

@@ -3,6 +3,9 @@ import pool from "../configs/connetDB.js"
 import { getMenu } from "./homepageController.js";
 import axios from "axios";
 const now = new Date();
+import fs from 'fs';
+import util from 'util';
+const readFileAsync = util.promisify(fs.readFile);
 
 const adminssions = async (req, res) => {
     var [data_gr, e] = await pool.execute('SELECT * FROM `adminssions_gr`')
@@ -75,20 +78,18 @@ const setQLadminssions = (req, res) => {
         });
 }
 const updateQLadminssions = async (req, res) => {
-    var originalString = req.file.path;
+    const fileData = await readFileAsync(req.file.path);
 
-    // Tìm vị trí của chuỗi "src/public/"
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-
-    // Cắt chuỗi từ vị trí đó đến hết
-    var result = originalString.substring(startIndex);
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
 
     const date = now.toLocaleDateString();
     var parts = date.split("/");
     var convertedDate = parts[0] + "-" + parts[1] + "-" + parts[2];
     console.log(convertedDate);
-    var thumb = req.file.path.split('\\').splice(2).join('/') || result
-    var [data] = await pool.execute(`UPDATE news_adminssions SET title='${req.body.title}',content='${req.body.content}',thumb='${thumb}',date='${convertedDate}',role='${req.body.role}}' WHERE id='${req.body.id}'`)
+
+    var [data] = await pool.execute(`UPDATE news_adminssions SET title='${req.body.title}',content='${req.body.content}',thumb='${imageUrl}',date='${convertedDate}',role='${req.body.role}}' WHERE id='${req.body.id}'`)
     if (data) {
         res.redirect('/admin/5')
     }
@@ -108,13 +109,11 @@ const delQLadminssions = async (req, res) => {
     }
 }
 const addQLadminssions = async (req, res) => {
-    var originalString = req.file.path;
-    // Tìm vị trí của chuỗi "src/public/"
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+    const fileData = await readFileAsync(req.file.path);
 
-    // Cắt chuỗi từ vị trí đó đến hết
-    var result = originalString.substring(startIndex);
-    var thumb = req.file.path.split('\\').splice(2).join('/') || result
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
     const date = now.toLocaleDateString();
 
     var parts = date.split("/");
@@ -123,7 +122,7 @@ const addQLadminssions = async (req, res) => {
 
     console.log(req.body, req.file, thumb);
 
-    var [data, er] = await pool.execute(`INSERT INTO news_adminssions( title, content, thumb, date,role) VALUES ('${req.body.title}','${req.body.content}','${thumb}','${convertedDate}','${req.body.category}')`)
+    var [data, er] = await pool.execute(`INSERT INTO news_adminssions( title, content, thumb, date,role) VALUES ('${req.body.title}','${req.body.content}','${imageUrl}','${convertedDate}','${req.body.category}')`)
     if (data) {
         res.redirect('/admin/5')
     }

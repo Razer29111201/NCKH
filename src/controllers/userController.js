@@ -2,6 +2,9 @@ import e from "express";
 import pool from "../configs/connetDB.js"
 import jwt from "jsonwebtoken";
 import { getMenu } from "./homepageController.js";
+import fs from 'fs';
+import util from 'util';
+const readFileAsync = util.promisify(fs.readFile);
 const setUser = async (req, res) => {
     var username = req.body.username
     var pass = req.body.password
@@ -153,10 +156,11 @@ const editprofile = async (req, res, next) => {
 }
 
 const updateAvt = async (req, res, next) => {
-    var originalString = req.file.path;
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-    var result = originalString.substring(startIndex);
-    var file = req.file.path.split('\\').splice(2).join('/') || result
+    const fileData = await readFileAsync(req.file.path);
+
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
     var token = req.cookies.acc
 
     if (token) {
@@ -164,7 +168,7 @@ const updateAvt = async (req, res, next) => {
         var id = jwt.verify(token, 'shhhhh', function (err, decoded) {
             return decoded
         });
-        await pool.execute(`UPDATE user SET avt='${file}' WHERE id='${id}'`)
+        await pool.execute(`UPDATE user SET avt='${imageUrl}' WHERE id='${id}'`)
             .then(re => {
                 res.redirect('/user/info_user')
             })
@@ -230,11 +234,12 @@ const getavt = async (req, res, next) => {
 }
 const setavt = async (req, res, next) => {
     const id = req.body.id
-    var originalString = req.file.path;
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-    var result = originalString.substring(startIndex);
-    var file = req.file.path.split('\\').splice(2).join('/') || result
-    await pool.execute(`UPDATE user SET avt='${file}' WHERE id='${id}'`)
+    const fileData = await readFileAsync(req.file.path);
+
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
+    await pool.execute(`UPDATE user SET avt='${imageUrl}' WHERE id='${id}'`)
         .then(re => {
             res.redirect('/user/info_user')
         })
