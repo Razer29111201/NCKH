@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "20mb" }))
 
 app.use(cookieParser());
 dotenv.config()
-const port = process.env.port || 8080
+const port = process.env.PORT || 10000
 
 configViewEngine(app, express)
 
