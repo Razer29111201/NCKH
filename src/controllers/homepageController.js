@@ -5,10 +5,10 @@ const getMenu = async () => {
     return dataMenu
 }
 const getHomePage = async (req, res) => {
-    const [data, err] = await pool.execute('SELECT * FROM `user`')
-    const [news, er] = await pool.execute('SELECT * FROM `news`')
-    const [banner, erer] = await pool.execute('SELECT * FROM `banner`')
-    const [news_adminssions, erere] = await pool.execute('SELECT * FROM `news_adminssions`')
+    const [data, err] = await pool.execute('SELECT * FROM `user` ORDER BY id DESC;')
+    const [news, er] = await pool.execute('SELECT * FROM `news` ORDER BY id DESC;')
+    const [banner, erer] = await pool.execute('SELECT * FROM `banner` ORDER BY id DESC;')
+    const [news_adminssions, erere] = await pool.execute('SELECT * FROM `news_adminssions` ORDER BY id DESC;')
 
     const [notification, e] = await pool.execute('SELECT * FROM `notification`')
 

@@ -27,12 +27,12 @@ const getNews = async (req, res) => {
     const q = req.query.q
     console.log(q);
     if (q) {
-        const [news, err] = await pool.execute(`SELECT * FROM news where idgroup = ${q} `)
+        const [news, err] = await pool.execute(`SELECT * FROM news where idgroup = ${q}  ORDER BY id DESC;`)
 
         res.render('news/news.ejs', { news: news, data: await getMenu(), news_group: news_group })
     }
     else {
-        const [news, err] = await pool.execute(`SELECT * FROM news`)
+        const [news, err] = await pool.execute(`SELECT * FROM news ORDER BY id DESC;`)
         res.render('news/news.ejs', { news: news, data: await getMenu(), news_group: news_group })
     }
 
