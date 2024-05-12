@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/admin_css.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <%- include('../partials/sidebar_admin_news'); %>
+
+            <div class="flex_1">
+                <div>
+                    <%- include('../partials/header_admin'); %>
+
+                        <div class="content">
+                            <div class="body_title">
+                                <h3>Thông tin tuyển sinh</h3>
+                            </div>
+                            <div class="content_body">
+
+                                <div class="body_btn-add">
+                                    <a href="/tuyensinh/add_news_tuyensinh">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Thêm
+                                    </a>
+                                </div>
+
+                                <div class="content_table">
+                                    <table id="newsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <div>STT</div>
+                                                </th>
+                                                <th>Hình Ảnh</th>
+                                                <th>Tiêu đề</th>
+                                                <th>Ngày viết</th>
+                                                <th>Danh mục</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (var i=0; i < news.length; i++ ) { %>
+                                                <tr id="col<%= news[i].id %>">
+                                                    <td>
+                                                        <%= news[i].id %>
+                                                    </td>
+                                                    <td style="width: 200px;">
+                                                        <div class=" Admin_img">
+                                                            <img src="/<%= news[i].thumb%>" alt="">
+
+                                                        </div>
+                                                    </td>
+                                                    <td style="width: auto;">
+                                                        <%= news[i].title %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= news[i].date %>
+                                                    </td>
+                                                    <td>
+                                                        <%= news[i].role %>
+                                                    </td>
+                                                    <td><a class="btn_table "
+                                                            href="/tuyensinh/<%= news[i].id %>">Detail</a>
+                                                    </td>
+                                                    <td> <a href=""><button
+                                                                class="btn_table editButton">Sửa</button></a> </td>
+                                                    <td><button class=" btn_table  deleteButton">Xóa</button></td>
+
+                                                </tr>
+                                                <% } %>
+                                                    <!-- Thêm các dòng tin tức khác tại đây -->
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+
+
+
+        const btn_del = document.querySelectorAll('.deleteButton')
+        btn_del.forEach(item => {
+            item.onclick = () => {
+                var tr = item.parentNode.parentNode
+                var listtd = tr.querySelectorAll('td')
+                const id = listtd[0].outerText
+                $.ajax({
+                    url: '/tuyensinh/news/del',
+                    type: 'POST',
+                    data: {
+                        id: id
+
+                    },
+                    success: function (data) {
+                        window.location.href = '/admin/5'
+                    },
+                    error: function (xhr, status, error) {
+                    }
+
+                }
+                )
+
+            }
+        })
+
+    </script>
+    <script src="/js/ck.js"></script>
+    <script src="/js/noti.js"> </script>
+    <script src="/js/index.js"> </script>
+    <script src="/js/admin_js.js"> </script>
+</body>
+
+</html>

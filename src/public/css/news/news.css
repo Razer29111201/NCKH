@@ -30,6 +30,14 @@ p {
 .image {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.image figcaption {
+    margin: 5px 0;
+    font-size: 12px;
+    font-style: italic;
 }
 
 nav {
@@ -144,7 +152,7 @@ nav ul li:last-child a {
 
 .news_title {
     margin-left: 20px;
-    flex: 1;    
+    flex: 1;
 }
 
 .thumb_news {

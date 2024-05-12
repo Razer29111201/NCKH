@@ -20,12 +20,28 @@ var link = document.getElementById('link')
 document.addEventListener('click', (event) => {
     const target = event.target;
 
-    if (!target.closest('#adda') && !target.closest('#editDetail') && !target.closest('.modal_form') && !target.closest('.btn_editt') && !target.closest('#addDetail')) {
+    if (!target.closest('#adda') && !target.closest('#add_gt') && !target.closest('#editDetail') && !target.closest('.modal_form') && !target.closest('.btn_editt') && !target.closest('#addDetail')) {
         form.classList.add('hiden')
-        subdetail.classList.add('hiden')
+        if (subdetail) {
+
+            subdetail.classList.add('hiden')
+        }
     }
 });
+var introl = document.getElementById('add_gt')
+if (introl) {
 
+    introl.onclick = () => {
+
+
+        form.classList.remove('hiden')
+
+        form1.setAttribute('action', '/introduce/add')
+        btn_add.classList.remove('hiden')
+        form_title.innerText = 'Thêm giới thiệu'
+        btn_editt.classList.add('hiden')
+    }
+}
 
 add.onclick = () => {
     form.classList.remove('hiden')
@@ -87,7 +103,7 @@ var editDetail = document.getElementById('editDetail')
 var subject_info_title = document.querySelector('.subject_info_title h3')
 var subject_price_sale = document.querySelector('.subject_price_sale')
 var subject_price_real = document.querySelector('.subject_price_real')
-
+var img = document.getElementById("img")
 var subject_tomtat = document.querySelector('.subject_tomtat p')
 
 select_choise.onchange = (e) => {
@@ -112,7 +128,7 @@ select_choise.onchange = (e) => {
         success: function (data) {
             console.log(data);
             if (data != 1) {
-
+                img.src = "/" + data.data.img
                 var subject_sologan = document.querySelector('.subject_sologan p')
                 console.log(data);
                 subject_info_title.innerText = data.data.name
@@ -193,3 +209,4 @@ editDetail.onclick = () => {
 
 
 }
+

@@ -25,6 +25,7 @@ const iduser = (req) => {
 const getNews = async (req, res) => {
     const [news_group, er] = await pool.execute(`SELECT * FROM newsgroup`)
     const q = req.query.q
+    console.log(q);
     if (q) {
         const [news, err] = await pool.execute(`SELECT * FROM news where idgroup = ${q} `)
 
@@ -170,13 +171,11 @@ const updateNoti = async (req, res) => {
 
 }
 const setintroduce = async (req, res) => {
-
-
-    var content = req.body.editor
-
-
-    const [data, er] = await pool.execute(`INSERT INTO introduce( content) VALUES ('${content}')`)
-
+    console.log(req.body);
+    var content = req.body.content
+    var title = req.body.title
+    var tomtat = req.body.tomtat
+    const [data, er] = await pool.execute(`INSERT INTO introduce(title,tomtat, content) VALUES ('${title}','${tomtat}','${content}')`)
     if (data) {
         res.redirect('/admin/7')
     }
@@ -184,7 +183,8 @@ const setintroduce = async (req, res) => {
 }
 const getintroduce = async (req, res) => {
     const [data, er] = await pool.execute('SELECT * FROM introduce')
-    res.render('introduce.ejs', { introduce: data, data: await getMenu() })
+    console.log(data);
+    res.render('introduce.ejs', { introduce: data[0], data: await getMenu() })
 
 }
 const updateintroduce = async (req, res) => {

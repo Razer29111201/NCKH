@@ -5,104 +5,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
-    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/news/index.css">
+    <link rel="stylesheet" href="/css/subject/subject.css">
     <link rel="stylesheet" href="/css/grid.css">
-    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <title>Document</title>
 </head>
 
 <body>
-    <%- include('./partials/header'); %>
-        <div class="grid wide">
-            <div class="admin">
+    <div class="container">
 
-                <div class="row">
-                    <div class="col m-3">
-                        <%- include('./partials/sidebar_admin'); %>
-                    </div>
-                    <div class="col m-9">
-                        <div class="title">
-                            <h2>Quản Lý Giới Thiệu</h2>
-                        </div>
-                        <div class="btn_direc">
-                            <button id="add">Thêm </button>
-                            <button id="edit">Sửa </button>
-                            <form action="/introduce/del" id="formdel" method="post">
-                                <input type="text " id="idE" name="id" hidden>
-                                <button id="del">Xóa </button>
-                            </form>
-                        </div>
-                        <div class="wpaper hiden">
-                            <div class="form_ ">
+        <%- include('./partials/sidebar_admin_news'); %>
+            <div class="flex_1">
+                <div>
 
+                    <%- include('./partials/header_admin'); %>
+
+                        <div class="form_addSub hiden">
+                            <div class="modal">
                             </div>
-                            <div class="form">
-                                <h2 id="form_title">Thêm Tin Tức</h2>
-                                <form class="news_add " action="" id="form" method="post">
-                                    <input type="text " id="id" name="id" hidden>
-                                    <div class="form_group">
-                                        <span> Nội Dung:</span>
-                                        <textarea name="editor" id="editor"></textarea>
+                            <div class="modal_form" style="width: 600px">
+                                <h3 id="form_title">Thêm môn học</h3>
+                                <form id="form_sub" class="form_add" method="post">
+                                    <div class="form-group">
+                                        <label for="title">Tên Nhóm Tin:</label>
+                                        <input type="text" name="id" hidden id="id">
+                                        <input type="text" id="title" name="title" required>
                                     </div>
-                                    <div class="form_group">
-                                        <button class="hiden" id="btn_addd">Thêm</button>
-                                        <button class="hiden" id="btn_edit">Sửa</button>
+                                    <div class="form-group">
+                                        <label for="title">Tên Nhóm Tin:</label>
+
+                                        <input type="text" id="tomtat" name="tomtat" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title">Tên Nhóm Tin:</label>
+
+                                        <textarea name="content" id="content"></textarea>
                                     </div>
 
 
+
+                                    <div class="form-group">
+
+                                        <input type="submit" class="hiden" id="btn_addd" value="Thêm"></input>
+                                        <input type="submit" class="hiden" id="btn_edit" value="Lưu thay đổi"></input>
+
+                                    </div>
                                 </form>
                             </div>
-                            <span id="exit">X</span>
+
+
 
                         </div>
+                        <div class="card">
 
+                            <div class="body_btn-add" style="margin-top: 20px; margin-left: 20px;">
+                                <a id="add_gt">
+                                    <i class="fa-solid fa-plus"></i>
+                                    Thêm
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <div class="body_title">
+                                    <h3>Giới thiệu</h3>
 
+                                </div>
+                                <div class="body_title">
+                                    <h3>
+                                        <%- introduce.title%>
+                                    </h3>
+                                </div>
+                                <div class="body_title">
+                                    <i style="font-size: 12px;">
+                                        <%- introduce.tomtat%>
 
-                        <table>
-                            <tr>
-                                <th></th>
-                                <th>STT</th>
+                                    </i>
+                                </div>
+                                <div class="body_title">
+                                    <%- introduce.content%>
+                                </div>
 
-                                <th>Nội Dung</th>
-
-
-
-                            </tr>
-                            <% for (var i=0; i < introduce.length; i++ ) { %>
-                                <tr>
-                                    <td><input class="checkbox" value=" <%= introduce[i].id %>" type="checkbox">
-
-                                    </td>
-
-                                    <td>
-                                        <%- i+1 %>
-                                    </td>
-                                    <td>
-                                        <div class="content" style="width: auto;">
-
-                                            <%- introduce[i].content %>
-                                        </div>
-                                    </td>
-
-
-
-                                </tr>
-                                <% } %>
-                        </table>
-                    </div>
-
+                            </div>
+                        </div>
                 </div>
-
             </div>
-        </div>
 
-        <%- include('./partials/footer'); %>
-            <script src="/js/ck.js"></script>
-            <script src="/js/introduce.js"> </script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-            <script src="/js/index.js"> </script>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="/js/ck.js"></script>
+    <script src="/js/subject.js"> </script>
+    <script src="/js/admin_js.js"> </script>
+
+    <script src="/js/index.js"> </script>
 </body>
 
 </html>

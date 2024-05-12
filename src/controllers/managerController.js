@@ -68,9 +68,9 @@ const getQLUser = async (req, res) => {
 }
 const getQLnews_a = async (req, res) => {
     var [data] = await pool.execute('SELECT * FROM `news_adminssions`')
-    const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
 
-    res.render('QL_news_a.ejs', { sidebar: sidebar, news: data, data_banner: await sidebar_admin(), data: await getMenu() })
+
+    res.render('tuyensinh/QL_tuyensinh.ejs', { news: data })
 }
 const getQLMenu = async (req, res) => {
     const [data, err] = await pool.execute('SELECT * FROM menu')
@@ -98,8 +98,8 @@ const getQLSubject = async (req, res) => {
 const getQLintro = async (req, res) => {
 
     const [sidebar, ere] = await pool.execute('SELECT * FROM `sidebar_admin`')
-    const [introduce, er] = await pool.execute('SELECT * FROM `introduce`')
-    res.render('QL_introduce.ejs', { introduce: introduce, sidebar: sidebar, data_banner: await sidebar_admin(), data: await getMenu() })
+    const [introduce, er] = await pool.execute('SELECT * FROM `introduce` ORDER BY id DESC')
+    res.render('QL_introduce.ejs', { introduce: introduce[0], sidebar: sidebar, data_banner: await sidebar_admin(), data: await getMenu() })
 
 }
 const setAllAdmin = async (req, res) => {

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/subject_info.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <title>
+
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <%- include('../partials/header.ejs'); %>
+        <div class="grid wide">
+            <% if (subject_info) { %>
+
+
+
+                <div class="content">
+                    <nav>
+                        <ul>
+                            <li><a href="/">Trang chủ</a></li>>
+                            <li><a href="/subject">Khóa Học</a></li>>
+                            <li>
+                                <%= subject_info.name %>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="detail_header">
+                        <div class="row">
+                            <div class="col m-9">
+                                <div class="row">
+                                    <div class="col m-6">
+                                        <div class="detail_img">
+                                            <img src="/<%= subject_info.img %>" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col m-6">
+                                        <div class="detail_right">
+                                            <div class="detail_title">
+                                                <h3>
+                                                    <%= subject_info.name %>
+                                                </h3>
+                                            </div>
+                                            <div class="detail_slogan">
+                                                <%= subject_info.slogan %>
+                                            </div>
+                                            <div class="detail_tomtat">
+                                                <%= subject_info.tomtat %>
+                                            </div>
+                                            <div class="detail_price">
+                                                <div class="price_sale">
+                                                    <p> Giá chỉ:</p>
+
+                                                    <%= (subject_info.price/100) *(100 - subject_info.sale) %>Đ
+                                                </div>
+                                                <div class="price_real">
+                                                    <%= subject_info.price %>
+                                                </div>
+                                            </div>
+                                            <div class="couse_res">
+                                                <a href="">Đăng ký ngay!</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="detail_body">
+
+                                    <div class="detail_content detail_border">
+                                        <div class="subject_heading">
+                                            <h3>
+                                                Mô Tả
+                                            </h3>
+                                        </div>
+                                        <%-content %>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col m-3">
+                                <% for (var i=0; i < subject_group.length; i++ ) { %>
+                                    <div class="subject_heading heading_detail">
+                                        <h3>
+                                            <%=subject_group[i].name%>
+                                        </h3>
+                                    </div>
+                                    <div class="subject_group">
+                                        <% var count=0; %>
+                                            <% for (var j=0; j < subject.length; j++ ) { if
+                                                (subject[j].id_sbjgroup==subject_group[i].id) { if (count < 2) {
+                                                count++; %>
+                                                <div class="group">
+                                                    <a href="/subject/<%= subject[j].id %>">
+                                                        <div class="group_border">
+                                                            <div class="group_img">
+                                                                <img src="/<%= subject[j].img %>" alt="">
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <% } } } %>
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="comment">
+
+                        <div class="fb-comments" data-href="https://nckh-v4cv.onrender.com/introduce" data-width="auto"
+                            data-numposts="5"></div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+
+
+        <%- include('../partials/footer.ejs'); %>
+            <script async defer crossorigin="anonymous"
+                src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0&appId=954914929286425"
+                nonce="XedaI3Yc"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="/js/index.js"> </script>
+</body>
+
+</html>

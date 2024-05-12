@@ -1,7 +1,7 @@
 import express from 'express'
 const router = express.Router();
 import { upload } from '../controllers/multer.js';
-import { getTeacheri, getaddTeacher,geteditTeacher, getQLTeacheri, setTeacheri, updateTeacheri, delTeacheri } from '../controllers/teacherContrpler.js';
+import { getTeacheri, getaddTeacher, geteditTeacher, getQLTeacheri, setTeacheri, updateTeacheri, delTeacheri } from '../controllers/teacherContrpler.js';
 
 
 router.get('/', getTeacheri)

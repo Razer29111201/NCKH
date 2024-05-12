@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/subject_info.css">
+    <title>
+        Danh sách tin
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <%- include('../partials/header.ejs'); %>
+        <div class="grid wide">
+            <div class="container">
+
+                <div class="subject_banner">
+                    <img src="https://image-proxy.mindx.edu.vn/1120x,webp/https://website-dev.hn.ss.bfcplatform.vn/Khoa_hoc_CONG_NGHE_danh_cho_tre_tu_6_17_3_3b04d8ea7d.png"
+                        alt="">
+                </div>
+                <div class="subject_body">
+
+                    <% for (var i=0; i < subject_group.length; i++ ) { %>
+                        <div class="subject_heading">
+                            <h3>
+                                <%=subject_group[i].name%>
+                            </h3>
+                        </div>
+                        <div class="subject_group">
+                            <div class="row">
+                                <% for (var j=0; j < subject.length; j++ ) { %>
+                                    <% if (subject[j].id_sbjgroup==subject_group[i].id) { %>
+                                        <div class="col m-4">
+                                            <div class="group">
+                                                <a href="/subject/<%=subject[j].id%>">
+
+                                                    <div class="group_border">
+                                                        <div class="group_img">
+                                                            <img src="/<%=subject[j].img%>" alt="">
+
+                                                        </div>
+                                                        <div class="group_title">
+                                                            <h3>
+                                                                <%= subject[j].name %>
+                                                            </h3>
+                                                        </div>
+                                                        <div class="group_link">
+                                                            <h3>Tìm hiểu thêm </h3>
+                                                            <i class="fa-solid fa-right-to-bracket"></i>
+                                                        </div>
+
+                                                    </div>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+
+                            </div>
+                            <% } %>
+
+                        </div>
+                        <div class="subject_how">
+                            <div class="subject_heading">
+                                <h2>Lý do nên lựa chọn chúng tôi</h2>
+                            </div>
+                            <div class="how_body">
+                                <div class="row">
+                                    <div class="col m-6">
+                                        <div class="card">
+                                            <div class="how_item">
+                                                <i class="fa-solid fa-school"></i>
+                                                <p> Trường Học Uy Tín</p>
+
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="how_item">
+                                                <svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                                    viewBox="0 0 512 512" class="w-16 h-16" height="1em" width="1em"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="32" d="M32 192L256 64l224 128-224 128L32 192z">
+                                                    </path>
+                                                    <path fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="32"
+                                                        d="M112 240v128l144 80 144-80V240m80 128V192M256 320v128">
+                                                    </path>
+                                                </svg>
+                                                <p> Đội ngũ giáo viên giàu kinh nghiệm, tay nghề cao, trình độ thạc sỹ
+                                                    trở
+                                                    lên </p>
+
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="how_item">
+                                                <i class="fa-solid fa-school"></i>
+                                                <p>Cơ sở vật chất tốt, trang thiết bị hiện đại</p>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col m-6">
+                                        <div class="how_img">
+                                            <img src="https://website-dev.hn.ss.bfcplatform.vn/photo_6113930948979572008_y_1_8c2db4e57e.jpg"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        <%- include('../partials/footer.ejs'); %>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="/js/index.js"> </script>
+</body>
+
+</html>

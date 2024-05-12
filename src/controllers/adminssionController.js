@@ -4,13 +4,46 @@ import { getMenu } from "./homepageController.js";
 import axios from "axios";
 const now = new Date();
 
+const adminssions = async (req, res) => {
+    var [data_gr, e] = await pool.execute('SELECT * FROM `adminssions_gr`')
+
+    if (req.query.q) {
+        var [data, er] = await pool.execute(`SELECT * FROM news_adminssions where role= '${req.query.q}'`)
+        res.render('tuyensinh/tuyensinh.ejs', { data: await getMenu(), news: data, news_group: data_gr })
+
+    }
+    else {
+        var [data, er] = await pool.execute('SELECT * FROM `news_adminssions`')
+        res.render('tuyensinh/tuyensinh.ejs', { data: await getMenu(), news: data, news_group: data_gr })
+    }
+}
 const getadminssions = async (req, res) => {
     res.render('admissions.ejs', { data: await getMenu() })
+}
+const getaddadminssions = async (req, res) => {
+
+    var [data] = await pool.execute('SELECT * FROM `adminssions_gr`')
+    res.render('tuyensinh/add_news_tuyensinh.ejs', { data: data })
+}
+const geteditadminssions = async (req, res) => {
+    var id = req.params.id
+    if (id) {
+        var [news, err] = await pool.execute(`SELECT * FROM news_adminssions where id='${id}'`)
+        console.log(news);
+        var [data] = await pool.execute('SELECT * FROM `adminssions_gr`')
+        res.render('tuyensinh/edit_news_tuyensinh.ejs', { data: data, news: news[0] })
+    }
+
 }
 const getQLadminssions = async (req, res) => {
     var [data] = await pool.execute('SELECT * FROM `news_adminssions`')
 
     res.render('QL_news_a.ejs', { data: await getMenu(), data: data })
+}
+const group_news = async (req, res) => {
+    var [data] = await pool.execute('SELECT * FROM `adminssions_gr`')
+
+    res.render('tuyensinh/tuyensinh_gr.ejs', { data: data })
 }
 const setQLadminssions = (req, res) => {
     // console.log(req.body, req.files.diploma_image[0]);
@@ -55,7 +88,7 @@ const updateQLadminssions = async (req, res) => {
     var convertedDate = parts[0] + "-" + parts[1] + "-" + parts[2];
     console.log(convertedDate);
     var thumb = req.file.path.split('\\').splice(2).join('/') || result
-    var [data] = await pool.execute(`UPDATE news_adminssions SET title='${req.body.title}',content='${req.body.editor}',thumb='${thumb}',date='${convertedDate}' WHERE id='${req.body.id}'`)
+    var [data] = await pool.execute(`UPDATE news_adminssions SET title='${req.body.title}',content='${req.body.content}',thumb='${thumb}',date='${convertedDate}',role='${req.body.role}}' WHERE id='${req.body.id}'`)
     if (data) {
         res.redirect('/admin/5')
     }
@@ -76,32 +109,100 @@ const delQLadminssions = async (req, res) => {
 }
 const addQLadminssions = async (req, res) => {
     var originalString = req.file.path;
-
     // Tìm vị trí của chuỗi "src/public/"
     var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
 
     // Cắt chuỗi từ vị trí đó đến hết
     var result = originalString.substring(startIndex);
+    var thumb = req.file.path.split('\\').splice(2).join('/') || result
     const date = now.toLocaleDateString();
 
     var parts = date.split("/");
     var convertedDate = parts[0] + "-" + parts[1] + "-" + parts[2];
     console.log(convertedDate);
 
-    var thumb = req.file.path.split('\\').splice(2).join('/') || result
     console.log(req.body, req.file, thumb);
 
-    var [data, er] = await pool.execute(`INSERT INTO news_adminssions( title, content, thumb, date) VALUES ('${req.body.title}','${req.body.editor}','${thumb}','${convertedDate}')`)
+    var [data, er] = await pool.execute(`INSERT INTO news_adminssions( title, content, thumb, date,role) VALUES ('${req.body.title}','${req.body.content}','${thumb}','${convertedDate}','${req.body.category}')`)
     if (data) {
         res.redirect('/admin/5')
     }
     else {
-        res.json(lỗi)
+        res.json("lỗi")
     }
 
 }
+const addgroup = async (req, res) => {
+    var title = req.body.name
+    var originalString = req.file.path;
+    // Tìm vị trí của chuỗi "src/public/"
+    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+
+    // Cắt chuỗi từ vị trí đó đến hết
+    var result = originalString.substring(startIndex);
+    var file = req.file.path.split('\\').splice(2).join('/') || result
+
+    await pool.execute(`INSERT INTO adminssions_gr(name, img) VALUES ('${title}','${file}')`)
+        .then(data => {
+            // Xử lý dữ liệu
+            res.redirect('/tuyensinh/group_news')
+        })
+        .catch(error => {
+            // Xử lý lỗi
+            console.error('There was a problem with the fetch operation:', error);
+        });
+
+}
+const updategroup = async (req, res) => {
+    var title = req.body.name
+    var id = req.body.id
+    var originalString = req.file.path;
+    // Tìm vị trí của chuỗi "src/public/"
+    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
+
+    // Cắt chuỗi từ vị trí đó đến hết
+    var result = originalString.substring(startIndex);
+    var file = req.file.path.split('\\').splice(2).join('/') || result
+
+    await pool.execute(`UPDATE adminssions_gr SET name='${name}',img='${file}' WHERE id='${id}'`)
+        .then(data => {
+            // Xử lý dữ liệu
+            res.redirect('/tuyensinh/group_news')
+        })
+        .catch(error => {
+            // Xử lý lỗi
+            console.error('There was a problem with the fetch operation:', error);
+        });
+
+}
+const delgroup = async (req, res) => {
+
+
+    await pool.execute(`Delete from adminssions_gr  WHERE id='${req.body.id}'`)
+        .then(data => {
+            // Xử lý dữ liệu
+            res.redirect('/tuyensinh/group_news')
+        })
+        .catch(error => {
+            // Xử lý lỗi
+            console.error('There was a problem with the fetch operation:', error);
+        });
+
+}
+const getDetail = async (req, res) => {
+    if (req.params.id) {
+
+        var [data, er] = await pool.execute(`SELECT * FROM news_adminssions WHERE id='${req.params.id}'`)
+
+        res.render('tuyensinh/tuyensinh_detail.ejs', { news: data[0], data: await getMenu() })
+
+    }
+
+
+}
+
 
 export {
-    getadminssions, setQLadminssions, getQLadminssions, addQLadminssions
-    , updateQLadminssions, delQLadminssions
+    addgroup, updategroup, delgroup, getadminssions, setQLadminssions, getQLadminssions, addQLadminssions, geteditadminssions
+    , updateQLadminssions, delQLadminssions, getaddadminssions, group_news, getDetail, adminssions
 }

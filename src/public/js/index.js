@@ -87,7 +87,7 @@ const istrueSidebar = () => {
                 $('#usersuccess').text(data.name)
                 if (data.role == 1) {
                     $("#adminrole").html(`  <i class='bx bxs-caret-right-circle'></i>
-                    <a href="/admin" id="admin">Quản Lý Web</a>`)
+                    <a href="/admin/1" id="admin">Quản Lý Web</a>`)
                 }
                 console.log(data);
                 $('#name').text(data.name)

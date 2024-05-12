@@ -22,11 +22,19 @@
             </div>
             <div class="modal_form">
                 <h3 id="form_title">Thêm môn học</h3>
-                <form id="form_sub" class="form_add" method="post">
+                <form id="form_sub" class="form_add" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Tên Nhóm Tin:</label>
                         <input type="text" name="id" hidden id="id">
                         <input type="text" id="title" name="name" required>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="image">Hình ảnh:</label>
+
+                        <input type="file" id="image" name="img" accept="image/*" required>
+
+
                     </div>
 
                     <div class="form-group">
@@ -129,6 +137,7 @@
 
                                         <div class="subject_select">
                                             <select name="" id="select_choise">
+                                                <option hidden value="">--- Hãy chọn môn học ---</option>
                                                 <% for (var i=0; i < subject.length; i++ ) { %>
                                                     <option value=" <%= subject[i].id %>">
                                                         <%= subject[i].name %>
@@ -144,8 +153,7 @@
                                                         liệu?</button>
                                                 </div>
                                                 <div class="subject_img">
-                                                    <img src="https://hocmonviet.edu.vn/wp-content/uploads/2018/05/anh-bai-khoa-hoc-nau-an-cho-tre-em-hoc-mon-viet.png"
-                                                        alt="">
+                                                    <img id="img" src="" alt="">
                                                 </div>
                                                 <div class="subject_title">
                                                     <div class="subject_info_title">

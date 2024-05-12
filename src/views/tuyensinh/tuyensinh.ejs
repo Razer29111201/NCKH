@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/news/news.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <title>
+        Danh sách tin
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <%- include('../partials/header.ejs'); %>
+        <div class="grid wide">
+            <nav>
+                <ul>
+                    <li><a href="/">Trang chủ</a></li>>
+                    <li><a href="/news">Tin tức</a></li>
+                </ul>
+            </nav>
+            <div class="container">
+                <aside class="sidebar">
+                    <h2>Danh mục</h2>
+                    <ul>
+                        <% for (var i=0; i < news_group.length; i++ ) { %>
+                            <li><a href="?q=<%= news_group[i].id %>">
+                                    <%= news_group[i].name %>
+                                </a></li>
+                            <% } %>
+                    </ul>
+                </aside>
+                <main class="main-content">
+                    <% for (var i=0; i < news.length; i++ ) { %>
+                        <a href="/tuyensinh/<%= news[i].id %>">
+
+                            <article class="news-article">
+                                <div class="thumb_news">
+                                    <img src="/<%= news[i].thumb %>" alt="Hình ảnh tin tức">
+
+                                </div>
+                                <div class="news_title">
+
+                                    <h2>
+                                        <%= news[i].title %>
+                                    </h2>
+                                    <p class="summary">
+                                        <%= news[i].tomtat %>
+                                    </p>
+
+                                    <p class="date">
+                                        <%= news[i].date %>
+                                    </p>
+                                </div>
+                            </article>
+                        </a>
+                        <% } %>
+
+
+                </main>
+            </div>
+        </div>
+        <%- include('../partials/footer.ejs'); %>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="/js/index.js"> </script>
+</body>
+
+</html>
