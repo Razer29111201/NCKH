@@ -42,9 +42,9 @@ const getNews = async (req, res) => {
 }
 const getNewsDetail = async (req, res) => {
     const id = req.params.id
-    console.log(id);
+
     const [news, err] = await pool.execute(`SELECT * FROM news WHERE id = "${id}"`)
-    console.log(news);
+
     res.render('news/news_detail.ejs', { news: news[0], data: await getMenu() })
 
 }
@@ -90,7 +90,7 @@ const updateNews = async (req, res) => {
         // Chuyển đổi dữ liệu nhị phân thành base64
         const imageData = fileData.toString('base64');
         const imageUrl = `data:image/jpeg;base64,${imageData}`;
-        console.log(fileData);
+
 
         const id = req.body.id;
         const title = req.body.title;
@@ -120,7 +120,7 @@ const delNews = async (req, res) => {
 
     await pool.execute(`DELETE FROM news WHERE id = '${id}'`)
     try {
-        console.log(req.body);
+
 
         res.redirect('/admin/2')
     } catch (error) {
@@ -131,7 +131,7 @@ const delNews = async (req, res) => {
 }
 const getQLNoti = async (req, res) => {
     const [data, er] = await pool.execute('SELECT * FROM `notification`')
-    console.log('a');
+
     res.json(data)
 }
 const delNoti = async (req, res) => {
@@ -180,7 +180,7 @@ const updateNoti = async (req, res) => {
 
 }
 const setintroduce = async (req, res) => {
-    console.log(req.body);
+
     var content = req.body.content
     var title = req.body.title
     var tomtat = req.body.tomtat
@@ -192,7 +192,7 @@ const setintroduce = async (req, res) => {
 }
 const getintroduce = async (req, res) => {
     const [data, er] = await pool.execute('SELECT * FROM introduce')
-    console.log(data);
+
     res.render('introduce.ejs', { introduce: data[0], data: await getMenu() })
 
 }

@@ -34,7 +34,7 @@ const testa = async (req, res) => {
 
     fs.readFile(req.file.path, (err, data) => {
         if (err) {
-            console.error('Error reading image file:', err);
+
             return res.status(500).send('Internal Server Error');
         }
 
@@ -47,7 +47,7 @@ const testa = async (req, res) => {
         // Hiển thị hình ảnh trong thẻ img
         res.send(`<img src="${imageUrl}" alt="Image" />`);
     })
-    console.log(a);
+
 }
 
 

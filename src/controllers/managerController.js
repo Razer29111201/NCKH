@@ -62,7 +62,7 @@ const getQLUser = async (req, res) => {
         var year = date.getFullYear();
         birthdate.push((day < 10 ? '0' : '') + day + '-' + (month < 10 ? '0' : '') + month + '-' + year)
     })
-    console.log(birthdate, birthdate[0]);
+
 
     res.render('user/QL_user.ejs', { user: user, birthdate: birthdate, data_banner: await sidebar_admin() })
 }
@@ -104,7 +104,7 @@ const getQLintro = async (req, res) => {
 }
 const setAllAdmin = async (req, res) => {
 
-    console.log(req.body);
+
     const [news, ere] = await pool.execute(`SELECT * FROM news WHERE date BETWEEN '${req.body.firTime}' AND '${req.body.lastTime}';`)
 
     if (news) {

@@ -5,7 +5,7 @@ import fs from 'fs';
 import util from 'util';
 const readFileAsync = util.promisify(fs.readFile);
 const setSubject = async (req, res) => {
-    console.log(req.body.group);
+
     const fileData = await readFileAsync(req.file.path);
 
     // Chuyển đổi dữ liệu nhị phân thành base64
@@ -16,7 +16,7 @@ const setSubject = async (req, res) => {
             res.redirect('/admin/6')
         })
         .catch(ex => {
-            console.log(ex);
+
         })
 
 
@@ -33,7 +33,7 @@ const updateSubject = async (req, res) => {
             res.redirect('/admin/6')
         })
         .catch(ex => {
-            console.log(ex);
+           
         })
 
 
@@ -45,7 +45,7 @@ const delSubject = async (req, res) => {
             res.redirect('/admin/6')
         })
         .catch(ex => {
-            console.log(ex);
+           
         })
 
 
@@ -62,7 +62,7 @@ const getSubjectInfobyid = async (req, res) => {
 }
 const getSubjectbyid = async (req, res) => {
     var id = req.body.id
-    console.log(id);
+
     await pool.execute(`SELECT * FROM subject where id = '${id}' `)
         .then(ress => {
 
@@ -88,7 +88,7 @@ const addDetail = async (req, res) => {
     const currentDate = new Date();
 
     const mysqlFormattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
-    console.log(req.body);
+
     await pool.execute(`INSERT INTO subject_info( name, slogan, price, tomtat, content, sale, img, date, idSj) VALUES ('${title}','${slogan}','${price}','${tomtat}','${content}','${sale}','${imageUrl}','${mysqlFormattedDate}','${idDetail}')`)
         .then(re => {
             res.redirect("/admin/6")
@@ -112,7 +112,7 @@ const editDetail = async (req, res) => {
     const currentDate = new Date();
 
     const mysqlFormattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
-    console.log(req.body);
+
     await pool.execute(`UPDATE subject_info SET name = '${title}', slogan = '${slogan}', price = '${price}', tomtat = '${tomtat}', content = '${content}', sale = '${sale}', img = '${imageData}', date = '${mysqlFormattedDate}'  WHERE idSj = '${idDetail.trim()}'`)
         .then(re => {
             res.redirect("/admin/6")
@@ -136,7 +136,7 @@ const getSubjectDetail = async (req, res) => {
         var content = Buffer.from(subject_info[0].content).toString('utf-8');
 
     }
-    console.log(subject_info);
+   
     res.render("subject/subjectDeatail.ejs", { data: await getMenu(), subject: subject, subject_group: subject_group, subject_info: subject_info[0], content: content })
 
 }

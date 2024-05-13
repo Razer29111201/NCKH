@@ -6,12 +6,12 @@ import util from 'util';
 const readFileAsync = util.promisify(fs.readFile);
 const getTeacheri = async (req, res) => {
     const [data, er] = await pool.execute('SELECT * FROM `teacher`')
-    console.log(data);
+
     res.render('teacher_info.ejs', { data: await getMenu(), teacher: data })
 }
 const getQLTeacheri = async (req, res) => {
     const [data, er] = await pool.execute('SELECT * FROM `teacher`')
-    console.log(data);
+
     res.render('QL_teacher.ejs', { data: await getMenu(), teacher: data })
 }
 
@@ -24,8 +24,6 @@ const setTeacheri = async (req, res) => {
     const imageData = fileData.toString('base64');
     const imageUrl = `data:image/jpeg;base64,${imageData}`;
     const data = req.body
-
-    console.log('a' + file);
     await pool.execute(`INSERT INTO teacher(name, brith, phone, address, position, position_group, email, img) VALUES( '${data.name}', '${data.date}', '${data.title}', '${data.address}', '${data.position}', '${data.gt}', '${data.mail}', '${imageUrl}')`)
         .then(ress => {
             res.redirect('/admin/3')
@@ -43,10 +41,10 @@ const updateTeacheri = async (req, res) => {
     const imageData = fileData.toString('base64');
     const imageUrl = `data:image/jpeg;base64,${imageData}`;
    
-    console.log(req.body, req.file);
+
     const data = req.body
    
-    console.log('a' + file);
+
     await pool.execute(`UPDATE teacher SET name='${data.name}',brith='${data.date}',phone='${data.title}',address='${data.address}',position='${data.position}',position_group='${data.gt}',email='${data.mail}',img='${imageUrl}' WHERE id='${data.id}'`)
         .then(re => {
             res.redirect('/admin/3')
@@ -57,7 +55,7 @@ const updateTeacheri = async (req, res) => {
 }
 const delTeacheri = async (req, res) => {
     const id = req.body.id
-    console.log(id);
+
     const [data, er] = await pool.execute(`DELETE FROM teacher WHERE  id='${id}'`)
     if (data) {
         res.redirect('/admin/3')
@@ -81,7 +79,7 @@ const geteditTeacher = async (req, res) => {
     var month = date.getMonth() + 1; // Tháng bắt đầu từ 0 nên cần cộng thêm 1
     var year = date.getFullYear();
     var brith_date = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day
-    console.log(brith_date);
+
 
     res.render('teacher/edit_teacher.ejs', { gt: gt, brith_date: brith_date, teacher: teacher[0] })
 }

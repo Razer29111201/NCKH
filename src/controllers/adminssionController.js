@@ -32,7 +32,7 @@ const geteditadminssions = async (req, res) => {
     var id = req.params.id
     if (id) {
         var [news, err] = await pool.execute(`SELECT * FROM news_adminssions where id='${id}'`)
-        console.log(news);
+   
         var [data] = await pool.execute('SELECT * FROM `adminssions_gr`')
         res.render('tuyensinh/edit_news_tuyensinh.ejs', { data: data, news: news[0] })
     }
@@ -49,7 +49,7 @@ const group_news = async (req, res) => {
     res.render('tuyensinh/tuyensinh_gr.ejs', { data: data })
 }
 const setQLadminssions = (req, res) => {
-    // console.log(req.body, req.files.diploma_image[0]);
+
     // var payment_proof = req.files.payment_proof[0].path.split('\\').splice(2).join('/')
     // var id_image = req.files.id_image[0].path.split('\\').splice(2).join('/')
     // var diploma_image = req.files.diploma_image[0].path.split('\\').splice(2).join('/')
@@ -63,7 +63,7 @@ const setQLadminssions = (req, res) => {
         hometown: req.body.ward + " " + req.body.district + " " + req.body.province,
         course: req.body.course
     }
-    console.log(data);
+
     const scriptUrl = 'https://script.google.com/macros/s/AKfycbxLzvIhTEAY6USnv9QSuRu7yf4RJBYaU2MbOpIpAqhtVZ3noLjMHSnsuj_usDBq2u7SPQ/exec';
 
 
@@ -87,7 +87,7 @@ const updateQLadminssions = async (req, res) => {
     const date = now.toLocaleDateString();
     var parts = date.split("/");
     var convertedDate = parts[0] + "-" + parts[1] + "-" + parts[2];
-    console.log(convertedDate);
+
 
     var [data] = await pool.execute(`UPDATE news_adminssions SET title='${req.body.title}',content='${req.body.content}',thumb='${imageUrl}',date='${convertedDate}',role='${req.body.role}}' WHERE id='${req.body.id}'`)
     if (data) {
@@ -118,9 +118,9 @@ const addQLadminssions = async (req, res) => {
 
     var parts = date.split("/");
     var convertedDate = parts[0] + "-" + parts[1] + "-" + parts[2];
-    console.log(convertedDate);
 
-    console.log(req.body, req.file, thumb);
+
+
 
     var [data, er] = await pool.execute(`INSERT INTO news_adminssions( title, content, thumb, date,role) VALUES ('${req.body.title}','${req.body.content}','${imageUrl}','${convertedDate}','${req.body.category}')`)
     if (data) {
@@ -184,7 +184,7 @@ const delgroup = async (req, res) => {
         })
         .catch(error => {
             // Xử lý lỗi
-            console.error('There was a problem with the fetch operation:', error);
+         
         });
 
 }

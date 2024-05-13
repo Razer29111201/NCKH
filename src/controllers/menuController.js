@@ -10,7 +10,7 @@ const setMenu = async (req, res) => {
             res.redirect('/admin/4')
         })
         .catch(ex => {
-            console.log(ex);
+
         })
 }
 const updateMenu = async (req, res) => {
@@ -22,7 +22,7 @@ const updateMenu = async (req, res) => {
             res.redirect('/admin/4')
         })
         .catch(ex => {
-            console.log(ex);
+
         })
 }
 const delMenu = async (req, res) => {
@@ -32,7 +32,7 @@ const delMenu = async (req, res) => {
             res.redirect('/admin/4')
         })
         .catch(ex => {
-            console.log(ex);
+
         })
 
 }

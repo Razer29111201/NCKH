@@ -8,7 +8,7 @@ const readFileAsync = util.promisify(fs.readFile);
 const setUser = async (req, res) => {
     var username = req.body.username
     var pass = req.body.password
-    console.log(req.body);
+
     try {
 
         var [data, err] = await pool.execute(`SELECT * FROM user WHERE username = '${username}' AND password = '${pass}'`)
@@ -147,7 +147,7 @@ const editprofile = async (req, res, next) => {
     } else {
         sdt = req.body.sdt
     }
-    console.log(sdt);
+
     const email = req.body.email;
     const address = req.body.address;
     await pool.execute(`UPDATE user SET subname='${firstName}',name='${lastName}',sdt='${sdt}',email='${email}',birth='${date}',address='${address}' WHERE id='${id}'`).then(re => {
@@ -180,7 +180,7 @@ const getresgister = async (req, res, next) => {
 const setresgister = async (req, res, next) => {
 
 
-    console.log(req.body);
+
     var fullName = req.body.name;
     var lastName;
     var firstName;
@@ -195,11 +195,11 @@ const setresgister = async (req, res, next) => {
         firstName = "";
     }
     const dateString = req.body.date
-    console.log(dateString);
+
     const [year, month, day] = dateString.split("-");
 
     const date = `${year}-${month}-${day} 00:00:00`;
-    console.log(date);
+
     var sdt = req.body.nber
     const user = req.body.user;
     const email = req.body.email;
@@ -247,7 +247,7 @@ const setavt = async (req, res, next) => {
 const change_role = async (req, res, next) => {
     const id = req.body.id
     const role = req.body.roleid
-    console.log(role);
+  
 
     await pool.execute(`UPDATE user SET role='${role}' WHERE id='${id}'`)
         .then(re => {
@@ -270,7 +270,7 @@ const edit_ql = async (req, res, next) => {
         firstName = "";
     }
     const dateString = req.body.date
-    console.log(dateString);
+
     const [year, month, day] = dateString.split("-");
     const id = req.body.id
     const user = req.body.user
@@ -284,7 +284,7 @@ const edit_ql = async (req, res, next) => {
 }
 const del_ql = async (req, res, next) => {
     const id = req.body.id
-    console.log("a");
+  
     await pool.execute(`DELETE FROM user WHERE  id='${id}'`)
         .then(re => {
             res.redirect('/admin/1')
