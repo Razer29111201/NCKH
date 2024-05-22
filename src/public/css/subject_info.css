@@ -90,6 +90,13 @@ body {
 
 .group_title h3 {
     font-size: 24px;
+    height: 70px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
 }
 
 .group_link {

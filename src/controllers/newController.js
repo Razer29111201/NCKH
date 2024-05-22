@@ -6,6 +6,23 @@ import fs from 'fs';
 import util from 'util';
 const readFileAsync = util.promisify(fs.readFile);
 const now = new Date();
+const user = async (req) => {
+
+    if (req.cookies.acc) {
+        var token = req.cookies.acc
+        var id = jwt.verify(token, 'shhhhh', function (err, decoded) {
+            return decoded
+        });
+        var [data, err] = await pool.execute('SELECT * FROM user WHERE id = ?', [id])
+        return data[0]
+    }
+    else {
+        console.log("Chưa đăng nhập");
+
+    }
+
+}
+
 
 const idlast = async (req, res) => {
 
@@ -53,9 +70,9 @@ const geteditNews = async (req, res) => {
     const id = req.params.id
     const [newsgroup, err] = await pool.execute('SELECT * FROM newsgroup')
     await pool.execute(`SELECT * FROM news where id = '${id}' `)
-        .then(reso => {
+        .then(async reso => {
             const data = reso[0][0]
-            res.render('news/edit_news.ejs', { news: data, news_group: newsgroup })
+            res.render('news/edit_news.ejs', { username: await user(req), news: data, news_group: newsgroup })
         })
 
 }
@@ -84,7 +101,7 @@ const setNews = async (req, res) => {
 
     const newsgroup = req.body.select
     await pool.execute(`INSERT INTO notification( title, link, type, time, iduser, status) VALUES ('${title}','/admin/2/${id}','1','${mysqlDateTimeString}','${iduser(req)}','0')`)
-    const [data, err] = await pool.execute(`INSERT INTO news(title, tomtat, content, date, author, idcmt, idgroup,thumb_news,status) values ('${title}','${tomtat}','${content}','${date}','${1}','${0}','${newsgroup}','${imageUrl}','1')`)
+    const [data, err] = await pool.execute(`INSERT INTO news(title, tomtat, content, date, author, idcmt, idgroup,thumb_news,status) values ('${title}','${tomtat}','${content}','${date}','${1}','${0}','${newsgroup}','${imageData}','1')`)
 
 
     res.redirect('/admin/2')
@@ -110,7 +127,7 @@ const updateNews = async (req, res) => {
 
         // Thực hiện các truy vấn SQL
         await pool.execute(`INSERT INTO notification( title, link, type, time, iduser, status) VALUES ('${title}','/admin/2/${id}','2','${mysqlDateTimeString}','${iduser(req)}','0')`);
-        const [result, _] = await pool.execute(`UPDATE news SET title='${title}',tomtat='${tomtat}',content='${content}',date='${date}',author='${1}',idcmt='${0}',idgroup='${newsgroup}',thumb_news = '${imageData}', status='0' WHERE id = ${id}`);
+        const [result, _] = await pool.execute(`UPDATE news SET title='${title}',tomtat='${tomtat}',content='${content}',date='${date}',author='${1}',idcmt='${0}',idgroup='${newsgroup}',thumb_news = '${imageData}', status='1' WHERE id = ${id}`);
 
         res.redirect('/admin/2');
     } catch (error) {
@@ -201,7 +218,7 @@ const setintroduce = async (req, res) => {
 const getintroduce = async (req, res) => {
     const [data, er] = await pool.execute('SELECT * FROM introduce')
 
-    res.render('introduce.ejs', { introduce: data[0], data: await getMenu() })
+    res.render('introduce.ejs', { username: await user(req), introduce: data[0], data: await getMenu() })
 
 }
 const updateintroduce = async (req, res) => {
@@ -333,10 +350,19 @@ const accept = async (req, res) => {
 
 
 }
+const event = async (req, res) => {
+
+
+    var [event, err] = await pool.execute(`SELECT * FROM news WHERE idgroup = 5 `)
+    res.render('event.ejs', { data: await getMenu(), event: event })
+
+
+
+}
 
 
 export {
     getNews, getNewsDetail, setNews, updateNews, delNews, geteditNews, updategroup, delgroup, setQLgroup, setQLbanner, updatebanner, delbanner
-    , getQLNoti, delNoti, updateNoti, setQLNoti, getintroduce, setintroduce, updateintroduce, delintroduce, accept, getNewsAPI
+    , getQLNoti, delNoti, updateNoti, setQLNoti, getintroduce, setintroduce, updateintroduce, delintroduce, accept, getNewsAPI, event
 
 }

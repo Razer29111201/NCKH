@@ -845,3 +845,45 @@ footer {
     -webkit-line-clamp: 2;
     margin: 5px 0;
 }
+
+/* loading */
+
+.spinner {
+    border: 5px solid #f3f3f3;
+    /* Light grey */
+    border-top: 5px solid #fff46e;
+    /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes in {
+    0% {
+        transform: translateY(-200px);
+    }
+
+    100% {
+        transform: 0;
+    }
+}
+
+.loading {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    animation: in 0.1s linear;
+}

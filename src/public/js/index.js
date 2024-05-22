@@ -100,7 +100,12 @@ const istrueSidebar = () => {
 }
 istrueSidebar()
 $('#form11').submit(function (event) {
+    $('#loading').html()
     event.preventDefault();
+    $('#loading').html(`  <div class="loading">
+    <div class="spinner"></div>
+
+</div>`)
 
     // Lấy giá trị của tên đăng nhập và mật khẩu từ form
 
@@ -116,6 +121,7 @@ $('#form11').submit(function (event) {
             location.href = '/'
         },
         error: function (xhr, status, error) {
+            $('#loading').html("")
             $('.err').text('Tài khoản hoặc mật khẩu không đúng')
 
 
@@ -147,57 +153,60 @@ if (log_out) {
 }
 var search = document.getElementById('search')
 var modal_search = document.querySelector('.search_detail')
-search.onchange = (e) => {
-    $.ajax({
-        url: '/news/search',
-        type: 'POST',
-        data: {
-            title: e.target.value
-        },
-        success: function (data) {
+search.oninput = (e) => {
+    if (e.target.value.length > 0) {
+        $.ajax({
+            url: '/news/search',
+            type: 'POST',
+            data: {
+                title: e.target.value
+            },
+            success: function (data) {
 
-            $('#header_news').html('')
-            $('#subject_news').html('')
-            $('#title_news').html(``)
-            $('#title_subject').html(``)
-            console.log(data);
-            if (data.news.length > 0 || data.subject.length > 0) {
+                $('#header_news').html('')
+                $('#subject_news').html('')
+                $('#title_news').html(``)
+                $('#title_subject').html(``)
+                console.log(data);
+                if (data.news.length > 0 || data.subject.length > 0) {
 
-                modal_search.classList.remove("hiden")
+                    modal_search.classList.remove("hiden")
 
-                if (data.news.length > 0) {
-                    $('#title_news').html(`<h4>Tin Tức</h4>`)
-                    for (let index = 0; index < 4; index++) {
-                        $('#header_news').append(`<li class="search_detail_item" ><a href="/news/newsDetail${data.news[index].id}">${data.news[index].title}</a></li>`)
+                    if (data.news.length > 0) {
+                        $('#title_news').html(`<h4>Tin Tức</h4>`)
+                        for (let index = 0; index < 4; index++) {
+                            $('#header_news').append(`<li class="search_detail_item" ><a href="/news/newsDetail${data.news[index].id}">${data.news[index].title}</a></li>`)
+                        }
+
+
+
+                    }
+                    if (data.subject.length > 0) {
+                        $('#title_subject').html(`<h4>Môn Học</h4>`)
+                        for (let index = 0; index < 4; index++) {
+                            $('#subject_news').append(`<li class="search_detail_item" ><a href="/subject/${data.subject[index].id}">${data.subject[index].name}</a></li>`)
+                        }
+
                     }
 
 
-
                 }
-                if (data.subject.length > 0) {
-                    $('#title_subject').html(`<h4>Môn Học</h4>`)
-                    for (let index = 0; index < 4; index++) {
-                        $('#subject_news').append(`<li class="search_detail_item" ><a href="/subject/${data.subject[index].id}">${data.subject[index].name}</a></li>`)
-                    }
-
+                else {
+                    $('#title_news').html(`Không có dữ liệu`)
                 }
+
+            },
+            error: function (xhr, status, error) {
+                $('.err').text('Tài khoản hoặc mật khẩu không đúng')
+
 
 
             }
-            else {
-                $('#title_news').html(`Không có dữ liệu`)
-            }
-
-        },
-        error: function (xhr, status, error) {
-            $('.err').text('Tài khoản hoặc mật khẩu không đúng')
-
-
 
         }
+        )
 
     }
-    )
 }
 document.addEventListener('click', (event) => {
     const target = event.target;

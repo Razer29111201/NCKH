@@ -5,8 +5,8 @@ const getMenu = async () => {
     return dataMenu
 }
 const getHomePage = async (req, res) => {
-    const [data, err] = await pool.execute('SELECT * FROM `user` ORDER BY id DESC;')
-    const [news, er] = await pool.execute('SELECT * FROM `news` ORDER BY id DESC;')
+
+    const [news, er] = await pool.execute('SELECT * FROM `news` where status = 0  ORDER BY id DESC;')
     var result = []
     news.forEach(e => {
         var a = `data:image/jpeg;base64,${e.thumb_news}`;

@@ -144,4 +144,5 @@ document.querySelector('.header_calender-title').innerText = `${day}/${month}/${
 
 
 var group = document.querySelectorAll('#group option')
-console.log(group.text); 
+console.log(group.text);
+

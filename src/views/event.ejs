@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/subject_info.css">
+    <title>
+        Danh sách tin
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <%- include('./partials/header.ejs'); %>
+        <div class="grid wide">
+            <div class="container">
+
+                <div class="subject_banner">
+                    <img src="https://image-proxy.mindx.edu.vn/1120x,webp/https://website-dev.hn.ss.bfcplatform.vn/Khoa_hoc_CONG_NGHE_danh_cho_tre_tu_6_17_3_3b04d8ea7d.png"
+                        alt="">
+                </div>
+                <div class="subject_body">
+                    <div class="subject_heading">
+                        <h3>
+                            Sự Kiện
+                        </h3>
+                    </div>
+                    <div class="row">
+                        <% for (var i=0; i < event.length; i++ ) { %>
+                            <div class="col m-4">
+                                <div class="group">
+                                    <a href="/news/newsDetail<%=event[i].id%>">
+
+                                        <div class="group_border">
+                                            <div class="group_img">
+                                                <img src="data:image/jpeg;base64,<%=event[i].thumb_news%>" alt="">
+
+                                            </div>
+                                            <div class="group_title">
+                                                <h3>
+                                                    <%= event[i].title %>
+                                                </h3>
+                                            </div>
+                                            <div class="group_link">
+                                                <h3>Tìm hiểu thêm </h3>
+                                                <i class="fa-solid fa-right-to-bracket"></i>
+                                            </div>
+
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+                            <% } %>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <%- include('./partials/footer.ejs'); %>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+            <script src="/js/index.js"> </script>
+</body>
+
+</html>

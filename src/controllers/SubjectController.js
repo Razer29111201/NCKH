@@ -4,6 +4,23 @@ import { getMenu } from "./homepageController.js";
 import fs from 'fs';
 import util from 'util';
 const readFileAsync = util.promisify(fs.readFile);
+const user = async (req) => {
+
+    if (req.cookies.acc) {
+        var token = req.cookies.acc
+        var id = jwt.verify(token, 'shhhhh', function (err, decoded) {
+            return decoded
+        });
+        var [data, err] = await pool.execute('SELECT * FROM user WHERE id = ?', [id])
+        return data[0]
+    }
+    else {
+        console.log("Chưa đăng nhập");
+
+    }
+
+}
+
 const setSubject = async (req, res) => {
 
     const fileData = await readFileAsync(req.file.path);
