@@ -36,7 +36,9 @@ const istrueSidebar = () => {
         success: function (data) {
             const checkrole = $("#role")
             const role_news = $("#role_news")
+
             if (checkrole) {
+                console.log(data.role);
                 if (data.role == 1) {
                     checkrole.html(`<p class="sidebar_title">Tài Khoản</p>
                         <li li class= "sidebar_item " >
@@ -47,7 +49,7 @@ const istrueSidebar = () => {
                                 <span>Tài Khoản</span>
                             </div>
                             <div class="sidebar_item-more">
-                                <i class="fa-solid fa-chevron-right"></i>
+                            <i class="fa-solid fa-user"></i>
                             </div>
                         </div>
                         <ul class="sidebar_item-list">
@@ -85,7 +87,7 @@ const istrueSidebar = () => {
                     loginsus.classList.remove('hiden')
                 }
                 $('#usersuccess').text(data.name)
-                if (data.role == 1) {
+                if (data.role == 1 || data.role == 3 || data.role == 4 || data.role == 5) {
                     $("#adminrole").html(`  <i class='bx bxs-caret-right-circle'></i>
                     <a href="/admin/1" id="admin">Quản Lý Web</a>`)
                 }
@@ -143,4 +145,66 @@ if (log_out) {
         window.location.href = "/"
     }
 }
+var search = document.getElementById('search')
+var modal_search = document.querySelector('.search_detail')
+search.onchange = (e) => {
+    $.ajax({
+        url: '/news/search',
+        type: 'POST',
+        data: {
+            title: e.target.value
+        },
+        success: function (data) {
+
+            $('#header_news').html('')
+            $('#subject_news').html('')
+            $('#title_news').html(``)
+            $('#title_subject').html(``)
+            console.log(data);
+            if (data.news.length > 0 || data.subject.length > 0) {
+
+                modal_search.classList.remove("hiden")
+
+                if (data.news.length > 0) {
+                    $('#title_news').html(`<h4>Tin Tức</h4>`)
+                    for (let index = 0; index < 4; index++) {
+                        $('#header_news').append(`<li class="search_detail_item" ><a href="/news/newsDetail${data.news[index].id}">${data.news[index].title}</a></li>`)
+                    }
+
+
+
+                }
+                if (data.subject.length > 0) {
+                    $('#title_subject').html(`<h4>Môn Học</h4>`)
+                    for (let index = 0; index < 4; index++) {
+                        $('#subject_news').append(`<li class="search_detail_item" ><a href="/subject/${data.subject[index].id}">${data.subject[index].name}</a></li>`)
+                    }
+
+                }
+
+
+            }
+            else {
+                $('#title_news').html(`Không có dữ liệu`)
+            }
+
+        },
+        error: function (xhr, status, error) {
+            $('.err').text('Tài khoản hoặc mật khẩu không đúng')
+
+
+
+        }
+
+    }
+    )
+}
+document.addEventListener('click', (event) => {
+    const target = event.target;
+
+    if (!target.closest('.search_detail') && !target.closest('.search')) {
+        modal_search.classList.add('hiden')
+    }
+
+});
 

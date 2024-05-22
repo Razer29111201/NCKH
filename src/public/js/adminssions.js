@@ -43,14 +43,14 @@ const api_provi = async () => {
 
     }).then(data => {
         data.forEach(element => {
-            console.log(data);
+
             var newOption = document.createElement("option");
             id = element.Id
             newOption.value = element.Name;
             newOption.text = element.Name;
             select.appendChild(newOption);
         });
-        console.log(select);
+
         select.addEventListener("change", function () {
             select1.innerHTML = ""
             const results = data.filter(item => item.Name === select.value);
@@ -77,3 +77,60 @@ const api_provi = async () => {
 
 
 api_provi()
+
+
+var course = document.getElementById("course")
+
+const urlParams = new URLSearchParams(window.location.search);
+const selectedId = urlParams.get('id');
+const id_class = urlParams.get('id_class');
+console.log(id_class);
+if (selectedId) {
+    $.ajax({
+        url: '/tuyensinh/getClassDetail',
+        type: "POST",
+        data: { id: selectedId },
+        success: function (data) {
+            if (data.length > 0) {
+                document.querySelector('.class_info').classList.remove('hidden')
+                data.forEach(e => {
+                    $('#class_info').append(`<option value="${e.id}" ${e.id == id_class ? 'selected' : ''} >
+                    ${e.subject.name + " - " + e.teacher.name + " - " + e.date + " - " + e.time}
+                </option >
+                <% } %> `)
+                })
+            }
+            else { }
+        },
+        error: function (xhr, status, error) {
+            console.log(status);
+        }
+    });
+}
+course.onchange = (e) => {
+    var id = e.target.value
+    $.ajax({
+        url: '/tuyensinh/getClassDetail',
+        type: "POST",
+        data: { id: id },
+        success: function (data) {
+            if (data.length > 0) {
+                document.querySelector('.class_info').classList.remove('hidden')
+                data.forEach(e => {
+                    $('#class_info').append(`<option value="${e.id}">
+                    ${e.subject.name + " - " + e.teacher.name + " - " + e.date + " - " + e.time}
+                </option >
+                <% } %> `)
+
+                })
+
+            }
+            else {
+
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log(status);
+        }
+    });
+}

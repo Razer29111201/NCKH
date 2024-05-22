@@ -36,7 +36,7 @@
                                 <div class="row">
                                     <div class="col m-6">
                                         <div class="detail_img">
-                                            <img src="<%= subject_info.img %>" alt="">
+                                            <img src="<%=img %>" alt="">
                                         </div>
                                     </div>
                                     <div class="col m-6">
@@ -63,7 +63,7 @@
                                                 </div>
                                             </div>
                                             <div class="couse_res">
-                                                <a href="">Đăng ký ngay!</a>
+                                                <button>Đăng ký ngay!</button>
                                             </div>
                                         </div>
 
@@ -112,6 +112,105 @@
 
 
                     </div>
+                    <div class="views_detail hidden">
+                        <div class="detail">
+                            <div class="detail_header">
+                                <h2>Khóa Học <%= subject_info.name %>
+                                </h2>
+                            </div>
+                            <div class="detail_body">
+                                <div class="detail_item">
+                                    <% if (clas.length>0) { %>
+                                        <div class="detail_item_heading">
+                                            <h3>
+                                                Các lớp sắp khai giảng
+                                            </h3>
+                                        </div>
+
+                                        <div class="content_table">
+                                            <table id="newsTable">
+                                                <thead>
+                                                    <tr>
+
+                                                        <th>
+                                                            Tên Khóa Học
+                                                        </th>
+                                                        <th>Ngày khai giảng</th>
+                                                        <th>Ngày dự kiến kết thúc</th>
+                                                        <th>Giờ bắt đầu</th>
+                                                        <th>Trạng thái</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Đã đăng ký</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <% for (var i=0; i < clas.length; i++ ) { %>
+                                                        <tr id="    ">
+
+                                                            <td>
+                                                                <%= subject_info.name %>
+                                                            </td>
+                                                            <td>
+                                                                <%= clas[i].date %>
+                                                            </td>
+                                                            <td>
+                                                                <%= clas[i].dateend %>
+                                                            </td>
+
+
+                                                            <td>
+                                                                <%= clas[i].time %>
+                                                            </td>
+                                                            <td style=" width: auto;">
+                                                                <%= clas[i].status %>
+                                                            </td>
+                                                            <td>
+                                                                <%= clas[i].soluong %>
+                                                            </td>
+
+                                                            <td>
+                                                                <%= clas[i].clas_info.length %>
+                                                            </td>
+
+
+                                                            <td style="width: 100px;"><button class="btn_table "> <a
+                                                                        href="/tuyensinh/form?id=<%= subject_info.idSj %>&id_class=<%= clas[i].id %>">Đăng
+                                                                        ký </a>
+                                                                </button>
+                                                            </td>
+
+                                                        </tr>
+                                                        <% } %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <% } else { %>
+                                            <div class="detail_item_heading">
+                                                <h3>
+                                                    Chưa có lớp sắp khai giảng
+                                                </h3>
+                                            </div>
+                                            <div class="detail_item_err">
+                                                <a href="/tuyensinh/form?id=<%= subject_info.idSj %>">Đăng Ký lớp mới
+                                                    ngay</a>
+
+                                            </div>
+
+
+                                            <% } %>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fixed">
+
+                        </div>
+                    </div>
 
                     <div class="comment">
 
@@ -129,6 +228,22 @@
                 nonce="XedaI3Yc"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <script src="/js/index.js"> </script>
+            <script>
+                var couse_res = document.querySelector('.couse_res')
+                var views_detail = document.querySelector('.views_detail')
+
+                couse_res.onclick = () => {
+                    views_detail.classList.remove('hidden')
+                }
+                document.addEventListener('click', (event) => {
+                    const target = event.target;
+
+                    if (!target.closest('.views_detail') && !target.closest('.couse_res')) {
+                        views_detail.classList.add('hidden')
+                    }
+
+                });
+            </script>
 </body>
 
 </html>

@@ -1,11 +1,13 @@
 import express from 'express'
 const router = express.Router();
 import multer from 'multer';
-import { getNews, getNewsDetail, updategroup, delgroup, setNews, updateNews, delNews, getQLNoti, updateNoti, setQLNoti, delNoti, geteditNews, setQLgroup, setQLbanner, updatebanner, delbanner ,accept} from '../controllers/newController.js';
+router.get('/', getNews)
+import { getNews, getNewsDetail, getNewsAPI, updategroup, delgroup, setNews, updateNews, delNews, getQLNoti, updateNoti, setQLNoti, delNoti, geteditNews, setQLgroup, setQLbanner, updatebanner, delbanner, accept } from '../controllers/newController.js';
 import { upload } from '../controllers/multer.js';
 
 
 router.get('/', getNews)
+router.post('/search', getNewsAPI)
 router.get('/newsDetail:id', getNewsDetail)
 router.post('/', upload.single('img'), setNews)
 router.post('/edit', upload.single('img'), updateNews)

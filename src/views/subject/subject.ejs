@@ -23,101 +23,161 @@
                         alt="">
                 </div>
                 <div class="subject_body">
+                    <div class="subject_heading">
+                        <h3>
+                            Các khóa học đang tuyển sinh
+                        </h3>
+                    </div>
+                    <div class="row">
+                        <% for (var i=0; i < displayedItems.length; i++ ) { %>
+                            <div class="col m-4">
+                                <div class="group">
+                                    <a href="/subject/<%=displayedItems[i].idsubject%>">
 
-                    <% for (var i=0; i < subject_group.length; i++ ) { %>
-                        <div class="subject_heading">
-                            <h3>
-                                <%=subject_group[i].name%>
-                            </h3>
-                        </div>
-                        <div class="subject_group">
-                            <div class="row">
-                                <% for (var j=0; j < subject.length; j++ ) { %>
-                                    <% if (subject[j].id_sbjgroup==subject_group[i].id) { %>
-                                        <div class="col m-4">
-                                            <div class="group">
-                                                <a href="/subject/<%=subject[j].id%>">
-
-                                                    <div class="group_border">
-                                                        <div class="group_img">
-                                                            <img src="<%=subject[j].img%>" alt="">
-
-                                                        </div>
-                                                        <div class="group_title">
-                                                            <h3>
-                                                                <%= subject[j].name %>
-                                                            </h3>
-                                                        </div>
-                                                        <div class="group_link">
-                                                            <h3>Tìm hiểu thêm </h3>
-                                                            <i class="fa-solid fa-right-to-bracket"></i>
-                                                        </div>
-
-                                                    </div>
-                                                </a>
+                                        <div class="group_border">
+                                            <div class="group_img">
+                                                <img src="<%=displayedItems[i].subject_info.img%>" alt="">
 
                                             </div>
-                                        </div>
-                                        <% } %>
-                                            <% } %>
+                                            <div class="group_title">
+                                                <h3>
+                                                    <%= displayedItems[i].subject_info.name %>
+                                                </h3>
+                                            </div>
+                                            <div class="group_link">
+                                                <h3>Tìm hiểu thêm </h3>
+                                                <i class="fa-solid fa-right-to-bracket"></i>
+                                            </div>
 
+                                        </div>
+                                    </a>
+
+                                </div>
                             </div>
                             <% } %>
 
-                        </div>
-                        <div class="subject_how">
-                            <div class="subject_heading">
-                                <h2>Lý do nên lựa chọn chúng tôi</h2>
-                            </div>
-                            <div class="how_body">
-                                <div class="row">
-                                    <div class="col m-6">
-                                        <div class="card">
-                                            <div class="how_item">
-                                                <i class="fa-solid fa-school"></i>
-                                                <p> Trường Học Uy Tín</p>
 
-                                            </div>
+                    </div>
+                    <div class="page">
+                        <% if (currentPage> 1) { %>
+                            <a href="/subject?count_Pending=<%= currentPage - 1 %>"><i
+                                    class="fa-solid fa-chevron-left"></i></a>
+                            <% } %>
+
+                                <% for (let i=1; i <=totalPages; i++) { %>
+                                    <% if (i===currentPage) { %>
+                                        <strong>
+                                            <%= i %>
+                                        </strong>
+                                        <% } else { %>
+                                            <a href="/subject?count_Pending=<%= i %>">
+                                                <%= i %>
+                                            </a>
+                                            <% } %>
+                                                <% } %>
+
+                                                    <% if (currentPage < totalPages) { %>
+                                                        <a href="/subject?count_Pending=<%= currentPage + 1 %>"><i
+                                                                class="fa-solid fa-chevron-right"></i></a>
+                                                        <% } %>
+                    </div>
+
+                </div>
+
+                <% for (var i=0; i < subject_group.length; i++ ) { %>
+                    <div class="subject_heading">
+                        <h3>
+                            <%=subject_group[i].name%>
+                        </h3>
+                    </div>
+                    <div class="subject_group">
+                        <div class="row">
+                            <% for (var j=0; j < subject.length; j++ ) { %>
+                                <% if (subject[j].id_sbjgroup==subject_group[i].id) { %>
+                                    <div class="col m-4">
+                                        <div class="group">
+                                            <a href="/subject/<%=subject[j].id%>">
+
+                                                <div class="group_border">
+                                                    <div class="group_img">
+                                                        <img src="<%=subject[j].img%>" alt="">
+
+                                                    </div>
+                                                    <div class="group_title">
+                                                        <h3>
+                                                            <%= subject[j].name %>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="group_link">
+                                                        <h3>Tìm hiểu thêm </h3>
+                                                        <i class="fa-solid fa-right-to-bracket"></i>
+                                                    </div>
+
+                                                </div>
+                                            </a>
+
                                         </div>
-                                        <div class="card">
-                                            <div class="how_item">
-                                                <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                    viewBox="0 0 512 512" class="w-16 h-16" height="1em" width="1em"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="32" d="M32 192L256 64l224 128-224 128L32 192z">
-                                                    </path>
-                                                    <path fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="32"
-                                                        d="M112 240v128l144 80 144-80V240m80 128V192M256 320v128">
-                                                    </path>
-                                                </svg>
-                                                <p> Đội ngũ giáo viên giàu kinh nghiệm, tay nghề cao, trình độ thạc sỹ
-                                                    trở
-                                                    lên </p>
-
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="how_item">
-                                                <i class="fa-solid fa-school"></i>
-                                                <p>Cơ sở vật chất tốt, trang thiết bị hiện đại</p>
-
-                                            </div>
-                                        </div>
-
                                     </div>
-                                    <div class="col m-6">
-                                        <div class="how_img">
-                                            <img src="https://website-dev.hn.ss.bfcplatform.vn/photo_6113930948979572008_y_1_8c2db4e57e.jpg"
-                                                alt="">
+                                    <% } %>
+                                        <% } %>
+
+                        </div>
+                        <% } %>
+
+                    </div>
+                    <div class="subject_how">
+                        <div class="subject_heading">
+                            <h2>Lý do nên lựa chọn chúng tôi</h2>
+                        </div>
+                        <div class="how_body">
+                            <div class="row">
+                                <div class="col m-6">
+                                    <div class="card">
+                                        <div class="how_item">
+                                            <i class="fa-solid fa-school"></i>
+                                            <p> Trường Học Uy Tín</p>
+
                                         </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="how_item">
+                                            <svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                                viewBox="0 0 512 512" class="w-16 h-16" height="1em" width="1em"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="32" d="M32 192L256 64l224 128-224 128L32 192z">
+                                                </path>
+                                                <path fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="32"
+                                                    d="M112 240v128l144 80 144-80V240m80 128V192M256 320v128">
+                                                </path>
+                                            </svg>
+                                            <p> Đội ngũ giáo viên giàu kinh nghiệm, tay nghề cao, trình độ thạc sỹ
+                                                trở
+                                                lên </p>
+
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="how_item">
+                                            <i class="fa-solid fa-school"></i>
+                                            <p>Cơ sở vật chất tốt, trang thiết bị hiện đại</p>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col m-6">
+                                    <div class="how_img">
+                                        <img src="https://website-dev.hn.ss.bfcplatform.vn/photo_6113930948979572008_y_1_8c2db4e57e.jpg"
+                                            alt="">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                </div>
+                    </div>
             </div>
+        </div>
         </div>
         </div>
         </div>

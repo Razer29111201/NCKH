@@ -6,6 +6,7 @@ import admissions from './admissions.js'
 import user from './user.js'
 import introduce from './introduce.js'
 import menu from './menu.js'
+import couses from './couses.js'
 import subject from './subject.js'
 import { upload } from '../controllers/multer.js';
 import { getHomePage, getNotification, test, testa } from '../controllers/homepageController.js'
@@ -21,6 +22,7 @@ const initRouter = (app) => {
     app.get('/', getHomePage)
     app.get('/test', test)
     app.post('/test', upload.single('img'), testa)
+    app.use('/couse', couses)
     app.use('/tuyensinh', admissions)
     app.use('/introduce', introduce)
     app.use('/teacher', teacher)

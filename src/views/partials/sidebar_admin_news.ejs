@@ -14,192 +14,203 @@
                 <span>Dashboard</span>
             </div>
         </li>
-        <div id="role">
+        <div id="role"></div>
 
-        </div>
-
-        <p class="sidebar_title">
-            Giới thiệu
-        </p>
-        <li class="sidebar_item ">
-            <div class="sidebar_i">
-                <div class="sidebar_i-left">
-
-                    <i class="fa-solid fa-newspaper"></i>
-                    <span>
-                        Giới thiệu
-                    </span>
+        <% if (username.role==1) { %>
+            <p class="sidebar_title">Giới thiệu</p>
+            <li class="sidebar_item">
+                <div class="sidebar_i">
+                    <div class="sidebar_i-left">
+                        <i class="fa-solid fa-clipboard"></i>
+                        <span>Giới thiệu</span>
+                    </div>
+                    <div class="sidebar_item-more">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
                 </div>
-                <div class="sidebar_item-more">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-            </div>
-            <ul class="sidebar_item-list">
-                <li class="sidebar_item-item">
-                    <a href="/admin/7 ">
-                        <i class="fa-solid fa-list"></i>
-                        Giới thiệu
-                    </a>
-                </li>
+                <ul class="sidebar_item-list">
+                    <li class="sidebar_item-item">
+                        <a href="/admin/7">
+                            <i class="fa-solid fa-list"></i>
+                            Giới thiệu
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <% } %>
 
+                <% if (username.role==1 || username.role==3) { %>
+                    <p class="sidebar_title">Tin Tức</p>
+                    <li class="sidebar_item">
+                        <div class="sidebar_i">
+                            <div class="sidebar_i-left">
+                                <i class="fa-solid fa-newspaper"></i>
+                                <span>Tin Tức</span>
+                            </div>
+                            <div class="sidebar_item-more">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        <ul class="sidebar_item-list">
+                            <li class="sidebar_item-item">
+                                <a href="/admin/2">
+                                    <i class="fa-solid fa-list"></i>
+                                    Danh sách Tin Tức
+                                </a>
+                            </li>
+                            <li class="sidebar_item-item">
+                                <a href="add_news">
+                                    <i class="fa-solid fa-plus"></i>
+                                    Thêm Tin Tức
+                                </a>
+                            </li>
+                            <li class="sidebar_item-item">
+                                <a href="/admin/news_group">
+                                    <i class="fa-solid fa-plus"></i>
+                                    Nhóm tin
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <% } %>
 
-            </ul>
-        </li>
+                        <% if (username.role==1 || username.role==4 || username.role==5) { %>
+                            <p class="sidebar_title">Môn Học</p>
+                            <li class="sidebar_item">
+                                <div class="sidebar_i">
+                                    <div class="sidebar_i-left">
+                                        <i class="fa-solid fa-newspaper"></i>
+                                        <span>Môn Học</span>
+                                    </div>
+                                    <div class="sidebar_item-more">
+                                        <i class="fa-solid fa-chevron-right"></i>
+                                    </div>
+                                </div>
+                                <ul class="sidebar_item-list">
+                                    <li class="sidebar_item-item">
+                                        <a href="/admin/6">
+                                            <i class="fa-solid fa-list"></i>
+                                            Danh sách môn học
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <% } %>
 
-        <p class="sidebar_title">
-            Giáo Viên
-        </p>
-        <li class="sidebar_item ">
-            <div class="sidebar_i">
-                <div class="sidebar_i-left">
+                                <% if (username.role==1 || username.role==4 || username.role==5) { %>
+                                    <p class="sidebar_title">Khóa Học</p>
+                                    <li class="sidebar_item">
+                                        <div class="sidebar_i">
+                                            <div class="sidebar_i-left">
+                                                <i class="fa-solid fa-newspaper"></i>
+                                                <span>Khóa Học</span>
+                                            </div>
+                                            <div class="sidebar_item-more">
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </div>
+                                        </div>
+                                        <ul class="sidebar_item-list">
+                                            <li class="sidebar_item-item">
+                                                <a href="/admin/4">
+                                                    <i class="fa-solid fa-list"></i>
+                                                    Quản lý học viên
+                                                </a>
+                                            </li>
+                                            <li class="sidebar_item-item">
+                                                <a href="/couse/QL_couse">
+                                                    <i class="fa-solid fa-list"></i>
+                                                    Quản lý khóa học
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <% } %>
 
-                    <i class="fa-solid fa-newspaper"></i>
-                    <span>
-                        Giáo Viên
-                    </span>
-                </div>
-                <div class="sidebar_item-more">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-            </div>
-            <ul class="sidebar_item-list">
-                <li class="sidebar_item-item">
-                    <a href="/admin/3 ">
-                        <i class="fa-solid fa-list"></i>
-                        Danh sách giáo viên
-                    </a>
-                </li>
-                <li class="sidebar_item-item">
-                    <a href="/teacher/addTeacher">
-                        <i class="fa-solid fa-plus"></i>
-                        Thêm giáo viên
-                    </a>
-                </li>
+                                        <% if (username.role==1) { %>
+                                            <p class="sidebar_title">Giáo Viên</p>
+                                            <li class="sidebar_item">
+                                                <div class="sidebar_i">
+                                                    <div class="sidebar_i-left">
+                                                        <i class="fa-solid fa-chalkboard-user"></i>
+                                                        <span>Giáo Viên</span>
+                                                    </div>
+                                                    <div class="sidebar_item-more">
+                                                        <i class="fa-solid fa-chevron-right"></i>
+                                                    </div>
+                                                </div>
+                                                <ul class="sidebar_item-list">
+                                                    <li class="sidebar_item-item">
+                                                        <a href="/admin/3">
+                                                            <i class="fa-solid fa-list"></i>
+                                                            Danh sách giáo viên
+                                                        </a>
+                                                    </li>
+                                                    <li class="sidebar_item-item">
+                                                        <a href="/teacher/addTeacher">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                            Thêm giáo viên
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <% } %>
 
-            </ul>
-        </li>
+                                                <% if (username.role==1) { %>
+                                                    <p class="sidebar_title">Banner</p>
+                                                    <li class="sidebar_item">
+                                                        <div class="sidebar_i">
+                                                            <div class="sidebar_i-left">
+                                                                <i class="fa-solid fa-newspaper"></i>
+                                                                <span>Banner</span>
+                                                            </div>
+                                                            <div class="sidebar_item-more">
+                                                                <i class="fa-solid fa-chevron-right"></i>
+                                                            </div>
+                                                        </div>
+                                                        <ul class="sidebar_item-list">
+                                                            <li class="sidebar_item-item">
+                                                                <a href="/admin/banner">
+                                                                    <i class="fa-solid fa-list"></i>
+                                                                    Quản lý Banner
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <% } %>
 
-        <p class="sidebar_title">Tin Tức</p>
-        <li class="sidebar_item ">
-            <div class="sidebar_i">
-                <div class="sidebar_i-left">
-
-                    <i class="fa-solid fa-newspaper"></i>
-                    <span>Tin Tức</span>
-                </div>
-                <div class="sidebar_item-more">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-            </div>
-            <ul class="sidebar_item-list">
-                <li class="sidebar_item-item">
-                    <a href="/admin/2">
-                        <i class="fa-solid fa-list"></i>
-                        Danh sách Tin Tức
-                    </a>
-                </li>
-                <li class="sidebar_item-item">
-                    <a href="add_news">
-                        <i class="fa-solid fa-plus"></i>
-                        Thêm Tin Tức
-                    </a>
-                </li>
-                <li class="sidebar_item-item">
-                    <a href="/admin/news_group">
-                        <i class="fa-solid fa-plus"></i>
-                        Nhóm tin
-                    </a>
-                </li>
-                <div id="role_news"></div>
-            </ul>
-        </li>
-
-        <p class="sidebar_title">Môn Học</p>
-        <li class="sidebar_item ">
-            <div class="sidebar_i">
-                <div class="sidebar_i-left">
-
-                    <i class="fa-solid fa-newspaper"></i>
-                    <span>Môn Học</span>
-                </div>
-                <div class="sidebar_item-more">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-            </div>
-            <ul class="sidebar_item-list">
-                <li class="sidebar_item-item">
-                    <a href="/admin/6">
-                        <i class="fa-solid fa-list"></i>
-                        Danh sách môn học
-                    </a>
-                </li>
-
-
-            </ul>
-
-        </li>
-        <p class="sidebar_title">Tuyển sinh</p>
-        <li class="sidebar_item ">
-            <div class="sidebar_i">
-                <div class="sidebar_i-left">
-
-                    <i class="fa-solid fa-newspaper"></i>
-                    <span>Tuyển sinh</span>
-                </div>
-                <div class="sidebar_item-more">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-            </div>
-            <ul class="sidebar_item-list">
-                <li class="sidebar_item-item">
-                    <a href="/admin/5">
-                        <i class="fa-solid fa-list"></i>
-                        Quản lý Tuyển sinh
-                    </a>
-                </li>
-                <li class="sidebar_item-item">
-                    <a href="/tuyensinh/add_news_tuyensinh">
-                        <i class="fa-solid fa-list"></i>
-                        Thêm thông tin
-                    </a>
-                </li>
-                <li class="sidebar_item-item">
-                    <a href="/tuyensinh/add_news_tuyensinh">
-                        <i class="fa-solid fa-list"></i>
-                        Danh Mục
-                    </a>
-                </li>
-
-
-            </ul>
-
-        </li>
-        <p class="sidebar_title">Banner</p>
-        <li class="sidebar_item ">
-            <div class="sidebar_i">
-                <div class="sidebar_i-left">
-
-                    <i class="fa-solid fa-newspaper"></i>
-                    <span>Banner</span>
-                </div>
-                <div class="sidebar_item-more">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-            </div>
-            <ul class="sidebar_item-list">
-                <li class="sidebar_item-item">
-                    <a href="/admin/banner">
-                        <i class="fa-solid fa-list"></i>
-                        Quản lý Tuyển sinh
-                    </a>
-                </li>
-
-
-            </ul>
-
-        </li>
-
-
+                                                        <% if (username.role==1) { %>
+                                                            <p class="sidebar_title">Tuyển sinh</p>
+                                                            <li class="sidebar_item">
+                                                                <div class="sidebar_i">
+                                                                    <div class="sidebar_i-left">
+                                                                        <i class="fa-solid fa-newspaper"></i>
+                                                                        <span>Tuyển sinh</span>
+                                                                    </div>
+                                                                    <div class="sidebar_item-more">
+                                                                        <i class="fa-solid fa-chevron-right"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <ul class="sidebar_item-list">
+                                                                    <li class="sidebar_item-item">
+                                                                        <a href="/admin/5">
+                                                                            <i class="fa-solid fa-list"></i>
+                                                                            Quản lý Tuyển sinh
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="sidebar_item-item">
+                                                                        <a href="/tuyensinh/add_news_tuyensinh">
+                                                                            <i class="fa-solid fa-list"></i>
+                                                                            Thêm thông tin
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="sidebar_item-item">
+                                                                        <a href="/tuyensinh/add_news_tuyensinh">
+                                                                            <i class="fa-solid fa-list"></i>
+                                                                            Danh Mục
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <% } %>
     </ul>
-
 </nav>

@@ -816,3 +816,32 @@ footer {
 .dot:hover {
     background-color: #717171;
 }
+
+.header-search {
+    position: relative;
+}
+
+.search_detail {
+
+    padding: 20px;
+    z-index: 1;
+    position: absolute;
+    width: 400px;
+    background-color: #fff;
+    box-shadow: 0 0 6px #c1c1c1;
+}
+
+.search_detail_list {}
+
+.search_detail_item {
+    font-size: 14px;
+    cursor: pointer;
+    height: 50px;
+    overflow: hidden;
+    display: block;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    margin: 5px 0;
+}

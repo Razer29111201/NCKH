@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/admin_css.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/couse/couse.css">
+    <!-- Thư viện Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Thư viện Select2 JS -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <%- include('../partials/sidebar_admin_news'); %>
+
+            <div class="flex_1">
+                <div>
+                    <%- include('../partials/header_admin'); %>
+
+                        <div class="content">
+                            <div class="body_title">
+                                <h3>Khóa học</h3>
+                            </div>
+                            <div class="content_body">
+
+                                <div class="body_btn-add">
+                                    <a href="/couse/addCouse">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Thêm lớp học
+                                    </a>
+                                </div>
+
+                                <div class="content_table">
+                                    <table id="newsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <div>STT</div>
+                                                </th>
+                                                <th>
+                                                    <div>Tên môn học</div>
+                                                </th>
+                                                <th>Giáo viên đứng lớp</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Thời gian</th>
+                                                <th>Trạng thái</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (var i=0; i < class_info.length; i++ ) { %>
+                                                <tr id="col<%= class_info[i].id %>">
+                                                    <td>
+                                                        <%= class_info[i].id %>
+                                                    </td>
+                                                    <td style="width: 300px;">
+                                                        <%= class_info[i].subject_info.name %>
+                                                    </td>
+                                                    <td>
+                                                        <%= class_info[i].teacher.name %>
+                                                    </td>
+
+
+                                                    <td>
+                                                        <%= class_info[i].date %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= class_info[i].time %>
+                                                    </td>
+                                                    <td style="width: auto;">
+                                                        <%= class_info[i].status %>
+                                                    </td>
+                                                    <td>
+                                                        <div id="detail">
+                                                            <button class="btn_table detail_btn ">Detail</button>
+                                                        </div>
+                                                    </td>
+
+                                                    <td style="width: 100px;"> <a
+                                                            href="/couse/edithocvien/<%= class_info[i].id %>"><button
+                                                                class="btn_table editButton">Sửa</button></a>
+                                                    </td>
+                                                    <td style="width: 100px;"><button
+                                                            class=" btn_table  deleteButton">Xóa</button>
+                                                    </td>
+
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+            <div class="views_detail hidden">
+
+                <div class="detail">
+                    <div class="header_detail">
+                        <div id="tongquan">
+
+                        </div>
+                    </div>
+                    <div class="detail_direc">
+                        <ul>
+                            <li>
+                                Thông tin chung
+                                <div class="border line"></div>
+                            </li>
+                            <li>
+                                Thời gian
+                                <div class="border"></div>
+
+                            </li>
+                            <li>
+                                học viên
+                                <div class="border"></div>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="detail_body">
+                        <div id="info">
+
+                        </div>
+
+                        <ul class="detail_list hidden date">
+                            <div class="update">
+                                <div class="updateDate hidden">
+                                    <form action="/couse/updateDate" method="post">
+                                        <li class="detail_item">
+                                            <input type="text" name="id" hidden class="iddate">
+                                            <label for="">Sửa Ngày:</label>
+                                            <input type="date" name="date">
+                                        </li>
+                                        <input type="submit" value="Lưu">
+                                    </form>
+                                </div>
+                                <div class="updateTime hidden">
+                                    <form action="/couse/updateTime" method="post">
+                                        <li class="detail_item">
+                                            <input type="text" name="id" hidden class="idtime">
+                                            <label for="">Sửa giờ:</label>
+                                            <input type="time" name="time">
+                                        </li>
+                                        <input type="submit" value="Lưu">
+                                    </form>
+                                </div>
+
+                            </div>
+                            <div id="date">
+
+                            </div>
+                            <div class="btn_update">
+                                <button class="btn" id="changeDate">Thay đổi ngày</button>
+                                <button class="btn" id="changeTime">Thay đổi giờ</button>
+                            </div>
+
+
+                        </ul>
+                        <ul class="detail_list hidden">
+                            <div class="addHocvien">
+                                <div>
+                                    <input type="text" hidden id="idClass">
+                                    <label for="">Thêm học viên: </label>
+                                    <select name="" id="searchable-select">
+                                        <% for (var i=0; i < hocvien.length; i++ ) { %>
+                                            <option value="<%= hocvien[i].id %>">
+                                                <%= hocvien[i].name %>
+                                            </option>
+                                            <% } %>
+                                    </select>
+                                </div>
+
+                                <button id="btn_add" class="btn_add">Lưu</button>
+                            </div>
+
+
+                            <div class="content_table">
+                                <table id="newsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div>STT</div>
+                                            </th>
+                                            <th>
+                                                <div>Tên</div>
+                                            </th>
+                                            <th>
+                                                code
+                                            </th>
+                                            <th>Sdt</th>
+                                            <th>Ngày Sinh</th>
+
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="hocvien_info">
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="fixed">
+
+                </div>
+
+            </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="/js/couse/couse.js"> </script>
+    <script src="/js/index.js"> </script>
+    <script src="/js/admin_js.js"> </script>
+    <script src="/js/admin_js.js"> </script>
+    <script>
+        $(document).ready(function () {
+            // Khởi tạo Select2 trên phần tử select
+            $('#searchable-select').select2();
+        });
+    </script>
+</body>
+
+</html>

@@ -59,6 +59,14 @@ const geteditNews = async (req, res) => {
         })
 
 }
+const getNewsAPI = async (req, res) => {
+
+    const title = req.body.title
+    const [name, errr] = await pool.execute(`SELECT * FROM subject WHERE name LIKE '%${title}%';`)
+    const [newsgroup, err] = await pool.execute(`SELECT * FROM news WHERE title LIKE '%${title}%';`)
+    res.json({ news: newsgroup, subject: name })
+
+}
 const setNews = async (req, res) => {
     const fileData = await readFileAsync(req.file.path);
 
@@ -329,6 +337,6 @@ const accept = async (req, res) => {
 
 export {
     getNews, getNewsDetail, setNews, updateNews, delNews, geteditNews, updategroup, delgroup, setQLgroup, setQLbanner, updatebanner, delbanner
-    , getQLNoti, delNoti, updateNoti, setQLNoti, getintroduce, setintroduce, updateintroduce, delintroduce, accept
+    , getQLNoti, delNoti, updateNoti, setQLNoti, getintroduce, setintroduce, updateintroduce, delintroduce, accept, getNewsAPI
 
 }

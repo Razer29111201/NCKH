@@ -51,18 +51,13 @@
                     <label for="id_card">Căn cước công dân:</label>
                     <input type="text" id="id_card" name="id_card">
                 </div>
-
-
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email">
                 </div>
-
             </div>
-
             <div class="section">
                 <h3>Địa chỉ cư trú</h3>
-
                 <div class="form-group">
                     <div class="third">
                         <label for="province">Tỉnh/Thành phố:</label>
@@ -72,7 +67,6 @@
                             <!-- Thêm các option khác tại đây -->
                         </select>
                     </div>
-
                     <div class="third">
                         <label for="district">Quận/Huyện:</label>
                         <select id="district" name="district">
@@ -81,7 +75,6 @@
                             <!-- Thêm các option khác tại đây -->
                         </select>
                     </div>
-
                     <div class="third">
                         <label for="ward">Phường/Xã:</label>
                         <select id="ward" name="ward">
@@ -91,22 +84,43 @@
                         </select>
                     </div>
                 </div>
-
             </div>
-
             <div class="section">
                 <h3>Môn học muốn đăng ký</h3>
 
                 <div class="form-group">
                     <label for="course">Môn học đăng ký:</label>
-                    <select id="course" name="course">
-                        <option value="math">Toán</option>
-                        <option value="physics">Vật lý</option>
-                        <option value="chemistry">Hóa học</option>
-                        <!-- Thêm các môn học khác tại đây -->
+                    <select id="course" name="course" value="<%= id %>">
+                        <% for (var i=0; i < subject.length; i++ ) { %>
+                            <option value="<%= subject[i].id %>" <%=subject[i].id==id ? 'selected' : '' %>>
+                                <%= subject[i].name %>
+                            </option>
+                            <% } %>
                     </select>
                 </div>
-
+                <div class="form-group  class_info hidden">
+                    <label for="course">Lớp học có sẵn:</label>
+                    <select id="class_info" name="course">
+                    </select>
+                </div>
+                <div class="form-group class_res">
+                    <div class="third">
+                        <label for="province">Ngày bắt đầu:</label>
+                        <input type="date" class="" name="date_class">
+                    </div>
+                    <div class="third">
+                        <label for="district">Giờ bắt đầu:</label>
+                        <select id="" name="district">
+                            <option value="08:00:00">08:00:00</option>
+                            <option value="09:00:00">09:00:00</option>
+                            <option value="10:00:00">10:00:00</option>
+                            <option value="14:00:00">14:00:00</option>
+                            <option value="15:00:00">15:00:00</option>
+                            <option value="16:00:00">16:00:00</option>
+                            <option value="19:00:00">19:00:00</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="section">
                 <h3>Thông tin chuyển khoản</h3>
@@ -114,6 +128,7 @@
                 <ul>
                     <li>Chủ tài khoản: NGUYỄN THỊ THU HIỀN (Phòng Đào tạo Trường đại học Hạ Long)</li>
                     <li>STK: 05001012531817</li>
+
                     <li>MSB - Ngân hàng TMCP Hàng hải Việt Nam</li>
                 </ul>
                 <p><strong>Lưu ý khi chuyển khoản:</strong></p>
@@ -127,24 +142,18 @@
 
             <div class="section">
                 <h3>Thông tin giấy tờ</h3>
-
                 <div class="form-group">
                     <label for="id_image">Hình ảnh căn cước công dân:</label>
                     <input type="file" id="id_image" name="id_image" accept="image/*">
                 </div>
-
                 <div class="form-group">
                     <label for="diploma_image">Hình ảnh bằng cấp:</label>
                     <input type="file" id="diploma_image" name="diploma_image" accept="image/*">
                 </div>
-
             </div>
-
             <button id="btn" type="submit">Gửi đăng ký</button>
         </div>
     </form>
-
-
     <%- include('./partials/footer'); %>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="/js/adminssions.js"></script>

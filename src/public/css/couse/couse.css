@@ -1,0 +1,320 @@
+.views_detail {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    display: flex;
+
+    justify-content: right;
+    animation: identifier 100ms ease;
+}
+
+.fixed {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #333;
+    opacity: 0.4;
+}
+
+@keyframes identifier {
+    0% {
+        transform: translateX(50vw);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.detail {
+    z-index: 1;
+    background-color: #fff;
+    width: 40vw;
+    height: 100vh;
+    padding: 20px;
+}
+
+.header_detail #tongquan {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 20px;
+}
+
+.detail_name {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.status {
+    border: none;
+    border-radius: 0;
+
+    color: #fff;
+    cursor: pointer;
+}
+
+.running {
+    background-color: #1F3BB3;
+}
+
+.pre_open {
+    background-color: #bb2ad5;
+}
+
+.pending {
+    background-color: #bfcd25;
+}
+
+.detail_body {
+    margin-top: 20px;
+}
+
+.detail_item {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.detail_item label {
+    width: 120px;
+}
+
+.detail_item input {
+    flex: 1;
+    margin-top: 5px;
+
+    border: 1px solid #dee2e6;
+    font-weight: 400;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    height: 2rem;
+
+    padding: 0 10px;
+    outline: none;
+}
+
+.detail_direc {
+    margin-top: 20px;
+
+}
+
+.detail_direc ul {
+    display: flex;
+}
+
+.detail_direc div {}
+
+.detail_direc li {
+    padding: 0 20px;
+    font-size: 13px;
+    cursor: pointer;
+    position: relative;
+    line-height: 3;
+
+}
+
+.line {
+    background-color: #1F3BB3;
+    position: absolute;
+    height: 2px;
+    width: 40px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hidden {
+    display: none;
+}
+
+.date label {
+    width: 40px;
+    font-size: 12px;
+}
+
+.date input {
+    width: 30%;
+    flex: none;
+}
+
+.detail_list {
+    height: 80vh;
+    overflow: auto;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+}
+
+.detail_list::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+}
+
+.update form {
+    display: flex;
+    align-items: center;
+}
+
+.update label {
+    width: 60px;
+}
+
+.updateDate {
+    margin-right: 30px;
+}
+
+.update input {
+    width: 100px;
+    margin: 0;
+}
+
+.update .detail_item {
+    margin: 0 20px;
+}
+
+.update input[type=submit],
+.btn {
+    padding: 8px 8px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    border: none;
+    background-color: #1F3BB3;
+
+}
+
+.btn_update {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-top: 20px;
+
+}
+
+.btn_update button {
+    padding: 10px;
+    margin: 0 10px;
+}
+
+
+
+/* Tạo thanh trượt */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ẩn input mặc định */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Tạo thanh trượt */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    width: 40px;
+    height: 20px;
+}
+
+/* Tạo vòng tròn bên trong thanh trượt */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+}
+
+/* Khi input được kiểm tra (checked), thay đổi màu nền */
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+/* Khi input được kiểm tra (checked), di chuyển vòng tròn */
+input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
+/* Tạo hình tròn cho thanh trượt */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.select2 {
+    width: 100%;
+}
+
+.addHocvien {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addHocvien label {
+    font-size: 12px;
+}
+
+.btn_add {
+    padding: 8px 8px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    border: none;
+    background-color: #1F3BB3;
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.page a,
+strong {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    background: #ffffff;
+    color: #182d8b;
+    margin: 0 10px;
+    font-size: 13px;
+}
+
+.page i {
+    font-size: 10px;
+}
+
+strong {
+    background: #182d8b;
+    color: #fff;
+}

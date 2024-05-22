@@ -8,7 +8,7 @@ setTimeout(function () {
     var user_drop = document.getElementById('user_drop')
     var noti_btn = document.getElementById('noti_btn')
     var noti_drop = document.getElementById('noti_drop')
-    console.log(user_btn, noti_btn);
+
     let isExpanded = false
 
     search_icon.onclick = () => {
@@ -50,7 +50,7 @@ setTimeout(function () {
     const sidebar_item = document.querySelectorAll('.sidebar_item')
 
     sidebar_item.forEach(item => {
-        console.log(item);
+
         item.onclick = () => {
             sidebar_item.forEach(otherItem => {
                 otherItem.classList.remove('active');
@@ -88,7 +88,7 @@ setTimeout(function () {
         greeting = 'Chà, Cú đêm,';
     }
 
-    console.log(greeting);
+
     document.getElementById('time_title').innerText = greeting
     document.querySelector('.header_calender-title').innerText = `${day}/${month}/${year}`
 
@@ -132,7 +132,7 @@ setTimeout(function () {
     const addd = (el) => {
 
         el.forEach(item => {
-            console.log(item);
+
             item.classList.add('hiden')
         })
     }
@@ -149,7 +149,7 @@ setTimeout(function () {
     var form_status = document.querySelectorAll('.content_table')
     var btn_status = document.querySelectorAll('.btn_status')
     const id = '<%= id%>'
-    console.log(btn_status);
+
     if (btn_status.length > 0) {
         btn_status.forEach((item, index) => {
             item.onclick = () => {
@@ -237,7 +237,7 @@ $.ajax({
     type: 'get',
     success: function (data) {
         data.forEach(item => {
-            console.log(item.time);
+
             if (item.type == 1) {
 
                 $.ajax({
@@ -248,7 +248,7 @@ $.ajax({
                     },
                     success: function (dat) {
 
-                        console.log(dat);
+
                         $('#add').append(` <li class="header_noti-item">
                        <a href="${item.link}">
                        <div class="flex">
@@ -288,7 +288,7 @@ $.ajax({
                     },
                     success: function (dat) {
 
-                        console.log(dat);
+
                         $('#editNoti').append(` <li class="header_noti-item">
                        <a href="${item.link}">
                             <div class="flex">
@@ -326,7 +326,7 @@ $.ajax({
                     },
                     success: function (dat) {
 
-                        console.log(dat);
+
                         $('#delnoti').append(` <li class="header_noti-item">
                        <a href="${item.link}">
                             <div class="flex">
@@ -357,7 +357,7 @@ $.ajax({
             }
         })
 
-        console.log(data);
+
     }
 })
 

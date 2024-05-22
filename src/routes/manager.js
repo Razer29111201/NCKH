@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router();
-import { getHomeAdmin, setsidebar, getNews, sidebar_admin, getQLteacher, getQLUser, getQLnews_a, getQLMenu, getQLSubject, getQLintro, setAllAdmin, getAddNews, getNewsgroup, getQLbanner } from '../controllers/managerController.js';
+import { getHomeAdmin, setsidebar, getNews, sidebar_admin, getQLteacher, getQLUser, getQLnews_a, getCouse, getQLSubject, getQLintro, setAllAdmin, getAddNews, getNewsgroup, getQLbanner } from '../controllers/managerController.js';
 
 
 
@@ -11,7 +11,7 @@ router.get('/2', getNews)
 router.get('/2/:id', getNews)
 router.get('/3', getQLteacher)
 router.get('/sidebar_admin', sidebar_admin)
-router.get('/4', getQLMenu)
+router.get('/4', getCouse)
 router.get('/5', getQLnews_a)
 router.get('/6', getQLSubject)
 router.get('/7', getQLintro)

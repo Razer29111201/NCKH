@@ -236,11 +236,28 @@ nav ul li:last-child a {
     font-size: 20px;
 }
 
+.couse_res button {
+    cursor: pointer;
+    padding: 18px 30px;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 14 px;
+    background-color: #2b3e90;
+    line-height: 12px;
+}
+
 .price_real {
     margin-left: 10px;
     text-decoration: line-through;
     opacity: 0.6;
     font-size: 12px;
+}
+
+body .hidden {
+    display: none;
+    animation: identifier 100ms ease;
 }
 
 .detail_tomtat {
@@ -274,3 +291,202 @@ nav ul li:last-child a {
 .comment {
     margin-top: 20px;
 }
+
+.views_detail {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    display: flex;
+
+    justify-content: right;
+    animation: identifier 100ms ease;
+}
+
+.fixed {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #333;
+    opacity: 0.4;
+}
+
+@keyframes identifier {
+    0% {
+        transform: translateX(50vw);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes identifier1 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50vw);
+    }
+}
+
+.detail {
+    z-index: 1;
+    background-color: #fff;
+    width: 40vw;
+    height: 100vh;
+    padding: 30px;
+    box-shadow: 0 0 6px #8f8f8f;
+}
+
+.detail_header h2 {
+    color: #1F3BB3;
+    margin-left: 10px;
+}
+
+.detail_header {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.detail_body {
+    margin-top: 20px;
+}
+
+.detail_item_heading {
+    margin-top: 20px;
+    color: #1F3BB3;
+    padding: 0 20px;
+    border-left: 1px solid #1F3BB3;
+}
+
+.detail_item_body {
+    display: flex;
+}
+
+.item_img {
+    height: 80px;
+    width: 160px;
+}
+
+.item_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.content_table {
+    margin-top: 30px;
+}
+
+
+
+.content_table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content_table th,
+.content_table td {
+    text-align: center;
+    padding: 8px 0;
+}
+
+.content_table th {
+    border-bottom: 2px solid #ccc;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.content_table td {
+    border-bottom: 1px solid #ccc;
+    font-size: 12px;
+}
+
+.detail_item_err {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.detail_item_err a {
+    color: #1F3BB3;
+}
+
+.btn_table {
+    padding: 8px 15px;
+    border: 1px solid #CADDFF;
+    box-sizing: border-box;
+    border-radius: 6px;
+    color: #000000;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+
+}
+
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.page a,
+strong {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    background: #ffffff;
+    color: #182d8b;
+    margin: 0 10px;
+    font-size: 13px;
+}
+
+.page i {
+    font-size: 10px;
+}
+
+strong {
+    background: #182d8b;
+    color: #fff;
+}
+
+/* Căn giữa dữ liệu trong cột Số Thứ Tự, Ngày Viết, và Trạng Thái
+/* .content_table td:nth-child(1),
+
+.content_tablet td:nth-child(4),
+
+.content_table td:nth-child(5) .content_table td:nth-child(6),
+
+.content_tablet td:nth-child(7),
+
+.content_table td:nth-child(8) {
+
+    text-align: center;
+}
+
+.content_table td:nth-child(1) {
+    width: 20px;
+}
+
+.content_table td:nth-child(2) {
+    max-width: 700px;
+    width: 700px;
+}
+
+.content_table td:nth-child(3),
+.content_table td:nth-child(4) {
+    max-width: 150px;
+    width: 150px;
+}
+
+.content_table td:nth-child(5),
+.content_table td:nth-child(6),
+.content_table td:nth-child(7) {
+    width: 80px;
+} */

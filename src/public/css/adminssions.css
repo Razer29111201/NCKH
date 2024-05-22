@@ -149,3 +149,31 @@ footer {
 .footer-bottom p {
     font-size: 14px;
 }
+
+.hidden {
+    display: none;
+}
+
+.class_res {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.class_res .third {
+    flex: 1;
+
+}
+
+.class_res .third input,
+.class_res .third select {
+    width: 100%;
+}
+
+.class_res .third:first-child {
+    margin-right: 30px;
+}
+
+.class_res .third:last-child {
+    margin-left: 30px;
+}

@@ -6,6 +6,23 @@ const now = new Date();
 import fs from 'fs';
 import util from 'util';
 const readFileAsync = util.promisify(fs.readFile);
+function convertMySQLDateToInputDate(mysqlDate) {
+    // Tạo đối tượng Date từ chuỗi ISO 8601
+    const date = new Date(mysqlDate);
+
+    // Lấy các thành phần năm, tháng, ngày
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    // Trả về định dạng YYYY-MM-DD
+    return `${year}-${month}-${day}`;
+}
+const convertImgtoBase64 = async (file) => {
+    var fileData = await readFileAsync(file);
+    var imageData = fileData.toString('base64');
+    return `data:image/jpeg;base64,${imageData}`;
+}
 
 const adminssions = async (req, res) => {
     var [data_gr, e] = await pool.execute('SELECT * FROM `adminssions_gr`')
@@ -21,7 +38,9 @@ const adminssions = async (req, res) => {
     }
 }
 const getadminssions = async (req, res) => {
-    res.render('admissions.ejs', { data: await getMenu() })
+    var id = req.query.id
+    var [subject, err] = await pool.execute('SELECT * FROM `subject`')
+    res.render('admissions.ejs', { data: await getMenu(), subject: subject, id: id })
 }
 const getaddadminssions = async (req, res) => {
 
@@ -32,7 +51,7 @@ const geteditadminssions = async (req, res) => {
     var id = req.params.id
     if (id) {
         var [news, err] = await pool.execute(`SELECT * FROM news_adminssions where id='${id}'`)
-   
+
         var [data] = await pool.execute('SELECT * FROM `adminssions_gr`')
         res.render('tuyensinh/edit_news_tuyensinh.ejs', { data: data, news: news[0] })
     }
@@ -48,8 +67,8 @@ const group_news = async (req, res) => {
 
     res.render('tuyensinh/tuyensinh_gr.ejs', { data: data })
 }
-const setQLadminssions = (req, res) => {
-
+const setQLadminssions = async (req, res) => {
+    console.log(req.body, req.files);
     // var payment_proof = req.files.payment_proof[0].path.split('\\').splice(2).join('/')
     // var id_image = req.files.id_image[0].path.split('\\').splice(2).join('/')
     // var diploma_image = req.files.diploma_image[0].path.split('\\').splice(2).join('/')
@@ -64,6 +83,9 @@ const setQLadminssions = (req, res) => {
         course: req.body.course
     }
 
+    const img = await convertImgtoBase64(req.files.payment_proof[0].path)
+    const img2 = await convertImgtoBase64(req.files.id_image[0].path)
+    const img3 = await convertImgtoBase64(req.files.diploma_image[0].path)
     const scriptUrl = 'https://script.google.com/macros/s/AKfycbxLzvIhTEAY6USnv9QSuRu7yf4RJBYaU2MbOpIpAqhtVZ3noLjMHSnsuj_usDBq2u7SPQ/exec';
 
 
@@ -76,6 +98,7 @@ const setQLadminssions = (req, res) => {
         .catch(error => {
             console.error('Error pushing data to Google Sheets:', error);
         });
+    res.send()
 }
 const updateQLadminssions = async (req, res) => {
     const fileData = await readFileAsync(req.file.path);
@@ -184,7 +207,7 @@ const delgroup = async (req, res) => {
         })
         .catch(error => {
             // Xử lý lỗi
-         
+
         });
 
 }
@@ -199,9 +222,28 @@ const getDetail = async (req, res) => {
 
 
 }
+const getClassDetail = async (req, res) => {
+    if (req.body.id) {
+
+        var [data, er] = await pool.execute(`SELECT * FROM class WHERE idsubject='${req.body.id}'`)
+        var result = await Promise.all(data.map(async e => {
+            var [data, er] = await pool.execute(`SELECT * FROM teacher WHERE id='${e.idTeacher}'`)
+            var [data1, er] = await pool.execute(`SELECT * FROM subject WHERE id='${e.idsubject}'`)
+            e.date = convertMySQLDateToInputDate(e.date)
+            e['teacher'] = data[0]
+            e['subject'] = data1[0]
+            return e
+        }))
+        res.json(result);
+
+    }
+
+
+}
+
 
 
 export {
-    addgroup, updategroup, delgroup, getadminssions, setQLadminssions, getQLadminssions, addQLadminssions, geteditadminssions
+    addgroup, getClassDetail, updategroup, delgroup, getadminssions, setQLadminssions, getQLadminssions, addQLadminssions, geteditadminssions
     , updateQLadminssions, delQLadminssions, getaddadminssions, group_news, getDetail, adminssions
 }

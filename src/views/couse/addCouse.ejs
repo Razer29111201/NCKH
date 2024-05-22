@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/news/index.css">
+    <link rel="stylesheet" href="/css/grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        select {
+            margin-top: 5px;
+            width: 100%;
+            border: 1px solid #dee2e6;
+            font-weight: 400;
+            font-size: 0.875rem;
+            border-radius: 4px;
+            height: 2rem;
+            margin-left: 10px;
+            padding: 0 10px;
+            outline: none;
+        }
+
+        .third {
+            margin-right: 20px;
+        }
+
+        .third select {
+            color: #333;
+            height: 30px;
+            padding: 0 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 16px;
+        }
+
+        #district,
+        #ward,
+        #province {
+            font-size: 12px;
+        }
+
+        .address {
+            display: flex;
+        }
+
+        .input-list {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <%- include('../partials/sidebar_admin_news'); %>
+            <div class="flex_1">
+                <div>
+
+                    <%- include('../partials/header_admin'); %>
+
+                        <div class="content">
+
+                            <div class="content_body">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <div class="body_title">
+                                            <h3>Thêm Khóa Học</h3>
+                                        </div>
+                                        <form action="/couse/addCouse" id="form_add" class="form_add" method="post">
+                                            <div class="form-group">
+                                                <label for="title">Tên khóa học:</label>
+                                                <select name="idsubject" id="">
+                                                    <option value="" hidden>-- Hãy chọn môn học --</option>
+                                                    <% for (var i=0; i < result.length; i++ ) { %>
+                                                        <option value="<%= result[i].id %>">
+                                                            <%= result[i].name %>
+                                                        </option>
+                                                        <% } %>
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Giới Tính:</label>
+                                                <select name="idteacher" id="">
+                                                    <option value="" hidden>-- Hãy chọn môn học --</option>
+                                                    <% for (var i=0; i < teacher.length; i++ ) { %>
+                                                        <option value="<%= teacher[i].id %>">
+                                                            <%= teacher[i].name %>
+                                                        </option>
+                                                        <% } %>
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="title">Ngày bắt đầu:</label>
+                                                <input type="date" id="date_start" name="date_start" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="summary">Khung giờ:</label>
+                                                <input id="time" type="time" name="time" required></input>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="summary">Số lượng:</label>
+                                                <input id="number" type="number" name="number" required></input>
+                                            </div>
+
+
+                                            <div class="form-group"><input type="submit" id="btn" value="Thêm Khóa Học">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+
+    </div>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+    <script src="/js/address.js"> </script>
+
+
+    <script>
+        document.getElementById("form_add").addEventListener("submit", function (event) {
+            // Hiển thị cửa sổ xác nhận
+            var isConfirmed = confirm("Bạn chắc chắn muốn thêm học viên?");
+
+            // Kiểm tra xem người dùng đã xác nhận hay không
+            if (!isConfirmed) {
+                // Nếu không xác nhận, ngăn chặn việc submit form
+                event.preventDefault();
+            }
+        });
+
+        const dateInput = document.getElementById('date_start');
+
+        dateInput.addEventListener('change', function () {
+            const selectedDate = new Date(dateInput.value);
+            const today = new Date();
+
+            if (selectedDate < today) {
+                alert('Vui lòng chọn ngày trong tương lai.');
+                dateInput.value = ''; // Xóa ngày đã chọn nếu là ngày quá khứ
+            }
+        });
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -12,8 +12,6 @@ const setUser = async (req, res) => {
     try {
 
         var [data, err] = await pool.execute(`SELECT * FROM user WHERE username = '${username}' AND password = '${pass}'`)
-
-
         var id = data[0].id
         var token = jwt.sign(id, 'shhhhh');
         var d = new Date();
@@ -25,10 +23,6 @@ const setUser = async (req, res) => {
     catch {
         res.status(401).send('Tên đăng nhập hoặc mật khẩu không đúng.');
     }
-
-
-
-
 }
 
 
@@ -247,7 +241,7 @@ const setavt = async (req, res, next) => {
 const change_role = async (req, res, next) => {
     const id = req.body.id
     const role = req.body.roleid
-  
+
 
     await pool.execute(`UPDATE user SET role='${role}' WHERE id='${id}'`)
         .then(re => {
@@ -284,7 +278,7 @@ const edit_ql = async (req, res, next) => {
 }
 const del_ql = async (req, res, next) => {
     const id = req.body.id
-  
+
     await pool.execute(`DELETE FROM user WHERE  id='${id}'`)
         .then(re => {
             res.redirect('/admin/1')

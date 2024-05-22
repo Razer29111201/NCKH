@@ -59,7 +59,7 @@
 }
 
 .news_title {
-    margin: 20px 10px;
+    margin: 40px 10px;
     width: 160px;
     height: 40px;
     display: flex;
@@ -82,11 +82,20 @@
 
 .new_title {
     position: relative;
-    height: 260px;
+
     text-align: justify;
 }
 
 .new_title h4 {
+    height: 60px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    padding-top: 5px;
+    line-height: 1.5;
+    position: relative;
     font-size: 20px;
     color: #eac71c;
     line-height: 1.5;
@@ -98,7 +107,8 @@
 }
 
 .new_time {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     text-align: right;
     opacity: 0.8;
 }
