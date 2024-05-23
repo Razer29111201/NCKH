@@ -18,7 +18,7 @@ router.get('/7', getQLintro)
 router.get('/add_news', getAddNews)
 router.get('/news_group', getNewsgroup)
 router.post('/setAllAdmin', setAllAdmin)
-router.get('/banner', sidebar_admin)
+router.get('/banner', getQLbanner)
 
 
 export default router

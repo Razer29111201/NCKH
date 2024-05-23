@@ -16,7 +16,7 @@
         </li>
         <div id="role"></div>
 
-        <% if (username.role==1) { %>
+        <% if (username.role==4 ||username.role==1 ) { %>
             <p class="sidebar_title">Giới thiệu</p>
             <li class="sidebar_item">
                 <div class="sidebar_i">
@@ -39,7 +39,7 @@
             </li>
             <% } %>
 
-                <% if (username.role==1 || username.role==3) { %>
+                <% if (username.role==1 || username.role==3 || username.role==4 || username.role==5) { %>
                     <p class="sidebar_title">Tin Tức</p>
                     <li class="sidebar_item">
                         <div class="sidebar_i">
@@ -126,7 +126,7 @@
                                     </li>
                                     <% } %>
 
-                                        <% if (username.role==1) { %>
+                                        <% if (username.role==1 || username.role==4 || username.role==5) { %>
                                             <p class="sidebar_title">Giáo Viên</p>
                                             <li class="sidebar_item">
                                                 <div class="sidebar_i">
@@ -155,7 +155,7 @@
                                             </li>
                                             <% } %>
 
-                                                <% if (username.role==1) { %>
+                                                <% if (username.role==1 || username.role==4 || username.role==3) { %>
                                                     <p class="sidebar_title">Banner</p>
                                                     <li class="sidebar_item">
                                                         <div class="sidebar_i">
@@ -178,7 +178,8 @@
                                                     </li>
                                                     <% } %>
 
-                                                        <% if (username.role==1) { %>
+                                                        <% if (username.role==1 ||username.role==4 ||    username.role==3)
+                                                            { %>
                                                             <p class="sidebar_title">Tuyển sinh</p>
                                                             <li class="sidebar_item">
                                                                 <div class="sidebar_i">

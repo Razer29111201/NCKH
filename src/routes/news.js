@@ -2,7 +2,7 @@ import express from 'express'
 const router = express.Router();
 import multer from 'multer';
 router.get('/', getNews)
-import { getNews, getNewsDetail, event,getNewsAPI, updategroup, delgroup, setNews, updateNews, delNews, getQLNoti, updateNoti, setQLNoti, delNoti, geteditNews, setQLgroup, setQLbanner, updatebanner, delbanner, accept } from '../controllers/newController.js';
+import { getNews, getNewsDetail, event, getNewsAPI, updategroup, delgroup, setNews, updateNews, delNews, getQLNoti, updateNoti, setQLNoti, delNoti, geteditNews, setQLgroup, setQLbanner, updatebanner, delbanner, accept } from '../controllers/newController.js';
 import { upload } from '../controllers/multer.js';
 
 
