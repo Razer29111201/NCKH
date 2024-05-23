@@ -296,10 +296,11 @@ const delbanner = async (req, res) => {
 
 }
 const setQLbanner = async (req, res) => {
-    var originalString = req.file.path;
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-    var result = originalString.substring(startIndex);
-    var file = req.file.path.split('\\').splice(2).join('/') || result
+    const fileData = await readFileAsync(req.file.path);
+
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
     const title = req.body.title;
     const link = req.body.link;
     const mysqlDateTimeString = now.toISOString().slice(0, 19).replace('T', ' ');
@@ -320,10 +321,11 @@ const setQLbanner = async (req, res) => {
 }
 const updatebanner = async (req, res) => {
     var id = req.body.id
-    var originalString = req.file.path;
-    var startIndex = originalString.indexOf("src/public/") + "src/public/".length;
-    var result = originalString.substring(startIndex);
-    var file = req.file.path.split('\\').splice(2).join('/') || result
+    const fileData = await readFileAsync(req.file.path);
+
+    // Chuyển đổi dữ liệu nhị phân thành base64
+    const imageData = fileData.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${imageData}`;
     const title = req.body.title;
     const link = req.body.link;
     const mysqlDateTimeString = now.toISOString().slice(0, 19).replace('T', ' ');
