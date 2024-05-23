@@ -304,7 +304,7 @@ const setQLbanner = async (req, res) => {
     const title = req.body.title;
     const link = req.body.link;
     const mysqlDateTimeString = now.toISOString().slice(0, 19).replace('T', ' ');
-    await pool.execute(`INSERT INTO banner( image, title, link, date) VALUES ('${file}','${title}','${link}','${mysqlDateTimeString}')`)
+    await pool.execute(`INSERT INTO banner( image, title, link, date) VALUES ('${imageUrl}','${title}','${link}','${mysqlDateTimeString}')`)
         .then(data => {
             // Xử lý dữ liệu
             res.redirect('/admin/banner')
@@ -331,7 +331,7 @@ const updatebanner = async (req, res) => {
     const mysqlDateTimeString = now.toISOString().slice(0, 19).replace('T', ' ');
 
 
-    const [data, er] = await pool.execute(`UPDATE banner SET image='${file}',title='${title}',link='${link}',date='${mysqlDateTimeString}' WHERE id='${id}'`)
+    const [data, er] = await pool.execute(`UPDATE banner SET image='${imageUrl}',title='${title}',link='${link}',date='${mysqlDateTimeString}' WHERE id='${id}'`)
 
     if (data) {
         res.redirect('/admin/banner')
