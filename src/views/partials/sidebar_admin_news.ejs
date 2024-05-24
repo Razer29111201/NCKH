@@ -39,7 +39,7 @@
             </li>
             <% } %>
 
-                <% if (username.role==1 || username.role==3 || username.role==4 || username.role==5) { %>
+                <% if (username.role==1 || username.role==3 || username.role==4 ) { %>
                     <p class="sidebar_title">Tin Tức</p>
                     <li class="sidebar_item">
                         <div class="sidebar_i">
@@ -178,7 +178,8 @@
                                                     </li>
                                                     <% } %>
 
-                                                        <% if (username.role==1 || username.role==4) { %>
+                                                        <% if (username.role==1 || username.role==4 || username.role==3)
+                                                            { %>
                                                             <p class="sidebar_title">Tuyển sinh</p>
                                                             <li class="sidebar_item">
                                                                 <div class="sidebar_i">

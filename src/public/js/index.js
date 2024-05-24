@@ -87,9 +87,21 @@ const istrueSidebar = () => {
                     loginsus.classList.remove('hiden')
                 }
                 $('#usersuccess').text(data.name)
-                if (data.role == 1 || data.role == 3 || data.role == 4 || data.role == 5) {
+                if (data.role == 1) {
                     $("#adminrole").html(`  <i class='bx bxs-caret-right-circle'></i>
                     <a href="/admin/1" id="admin">Quản Lý Web</a>`)
+                }
+                if (data.role == 3) {
+                    $("#adminrole").html(`  <i class='bx bxs-caret-right-circle'></i>
+                    <a href="/admin/3" id="admin">Quản Lý Web</a>`)
+                }
+                if (data.role == 4) {
+                    $("#adminrole").html(`  <i class='bx bxs-caret-right-circle'></i>
+                    <a href="/admin/3" id="admin">Quản Lý Web</a>`)
+                }
+                if (data.role == 5) {
+                    $("#adminrole").html(`  <i class='bx bxs-caret-right-circle'></i>
+                    <a href="/admin/4" id="admin">Quản Lý Web</a>`)
                 }
                 console.log(data);
                 $('#name').text(data.name)

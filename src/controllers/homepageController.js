@@ -15,11 +15,11 @@ const getHomePage = async (req, res) => {
 
     const [banner, erer] = await pool.execute('SELECT * FROM `banner` ORDER BY id DESC;')
     const [news_adminssions, erere] = await pool.execute('SELECT * FROM `news_adminssions` ORDER BY id DESC;')
-
+    console.log(news_adminssions);
     const [notification, e] = await pool.execute('SELECT * FROM `notification`')
 
 
-    res.render("index.ejs", { data: await getMenu(), news: news, noti: notification, result: result, banner: banner, news_adminssions: news_adminssions })
+    res.render("index.ejs", { data: await getMenu(), news: news, noti: notification, result: result, banner: banner, news_a: news_adminssions })
 }
 const getNotification = async (req, res) => {
     var id = req.params.id
